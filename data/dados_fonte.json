@@ -1,0 +1,1241 @@
+[
+    {
+        "id": 631868,
+        "nome": "4 Ingredient Chicken Pot Pie",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "pie crust",
+            "campbell's chicken gravy",
+            "cut-up vegetables",
+            "cans swanson premium chicken breast in water"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 440.62,
+        "popularidade_likes": 24
+    },
+    {
+        "id": 769754,
+        "nome": "Beef Carrot Stew",
+        "categorias": [
+            "antipasti",
+            "soup",
+            "starter",
+            "snack",
+            "appetizer",
+            "antipasto",
+            "hor d'oeuvre"
+        ],
+        "ingredientes": [
+            "scent leaves",
+            "beef",
+            "carrots",
+            "curry",
+            "garlic",
+            "ginger",
+            "seasoning cubes",
+            "bulb of onion",
+            "cooking spoons of blended tatashe-pepper mix",
+            "cooking spoons of vegetable oil"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 77.7,
+        "popularidade_likes": 171
+    },
+    {
+        "id": 1000566,
+        "nome": "Easy Instant Pot Beef Tips and Rice",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "sirloin beef tips",
+            "cream of mushroom soup",
+            "garlic powder",
+            "dale's seasoning sauce",
+            "olive oil",
+            "onion",
+            "water"
+        ],
+        "tempo_preparo_minutos": 30,
+        "custo_centavos_dolar": 220.3,
+        "popularidade_likes": 25
+    },
+    {
+        "id": 639779,
+        "nome": "Coconut Macaroons With Chocolate Drizzle",
+        "categorias": [],
+        "ingredientes": [
+            "flour",
+            "coconut",
+            "salt",
+            "vanilla extract",
+            "condensed milk"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 27.23,
+        "popularidade_likes": 10
+    },
+    {
+        "id": 632778,
+        "nome": "Artisan Farfalle Pasta With Smoked Salmon and Cream Sauce",
+        "categorias": [
+            "side dish",
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "chicken broth",
+            "5%% cooking cream",
+            "extra virgin oil",
+            "artisan pasta",
+            "shallots",
+            "salmon",
+            "sun tomatoes",
+            "white wine"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 649.97,
+        "popularidade_likes": 3
+    },
+    {
+        "id": 646905,
+        "nome": "Homemade Animal Crackers",
+        "categorias": [
+            "dessert"
+        ],
+        "ingredientes": [
+            "allspice",
+            "baking powder",
+            "brown sugar",
+            "butter",
+            "cinnamon",
+            "cocoa powder",
+            "egg",
+            "flour",
+            "oats",
+            "salt",
+            "vanilla"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 37.53,
+        "popularidade_likes": 39
+    },
+    {
+        "id": 656506,
+        "nome": "Poached Prawns with Fettuccine and French String Beans",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "fettuccine",
+            "lemon juice",
+            "prawns",
+            "salt and pepper",
+            "string beans",
+            "butter",
+            "water"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 277.97,
+        "popularidade_likes": 7
+    },
+    {
+        "id": 632449,
+        "nome": "Appetizing Apple and Almond Soup",
+        "categorias": [
+            "antipasti",
+            "soup",
+            "starter",
+            "snack",
+            "appetizer",
+            "antipasto",
+            "hor d'oeuvre"
+        ],
+        "ingredientes": [
+            "almonds",
+            "apples",
+            "carrots",
+            "cinnamon",
+            "gooseberry",
+            "heavy cream",
+            "salt",
+            "sugar",
+            "tomatoes",
+            "water"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 65.8,
+        "popularidade_likes": 4
+    },
+    {
+        "id": 638174,
+        "nome": "Chicken Lo Mein",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "bean sprouts",
+            "bok choy",
+            "carrot",
+            "spaghetti",
+            "garlic",
+            "ginger",
+            "chicken broth",
+            "soy sauce",
+            "mushrooms",
+            "peanut oil",
+            "scallions",
+            "chicken breast"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 177.0,
+        "popularidade_likes": 2
+    },
+    {
+        "id": 636864,
+        "nome": "Candied Spiced Pecans",
+        "categorias": [
+            "fingerfood",
+            "antipasti",
+            "starter",
+            "snack",
+            "appetizer",
+            "antipasto",
+            "hor d'oeuvre"
+        ],
+        "ingredientes": [
+            "allspice",
+            "brown sugar",
+            "butter",
+            "cinnamon",
+            "granulated sugar",
+            "ground cloves",
+            "maple extract",
+            "nutmeg",
+            "pecans",
+            "water"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 101.39,
+        "popularidade_likes": 104
+    },
+    {
+        "id": 645988,
+        "nome": "Guacamole",
+        "categorias": [
+            "antipasti",
+            "condiment",
+            "starter",
+            "snack",
+            "appetizer",
+            "dip",
+            "antipasto",
+            "hor d'oeuvre",
+            "spread"
+        ],
+        "ingredientes": [
+            "haas avocados",
+            "onion",
+            "jalapeno pepper",
+            "cilantro",
+            "salt",
+            "pepper",
+            "lime juice",
+            "basil",
+            "oregano"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 87.21,
+        "popularidade_likes": 20
+    },
+    {
+        "id": 661292,
+        "nome": "Spinach Coriander Chive Bread",
+        "categorias": [
+            "bread"
+        ],
+        "ingredientes": [
+            "all purpose flour",
+            "flour",
+            "milk",
+            "sunflower oil",
+            "yeast",
+            "sugar",
+            "salt",
+            "chives",
+            "coriander leaves",
+            "spinach",
+            "milk to brush the bread",
+            "seeds to sprinkle on the bread"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 94.11,
+        "popularidade_likes": 3
+    },
+    {
+        "id": 660227,
+        "nome": "Skinny Green Monster Smoothie",
+        "categorias": [
+            "morning meal",
+            "brunch",
+            "beverage",
+            "breakfast",
+            "drink"
+        ],
+        "ingredientes": [
+            "banana",
+            "baby spinach",
+            "peanut butter",
+            "vanilla almond milk",
+            "greek yogurt"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 199.46,
+        "popularidade_likes": 7
+    },
+    {
+        "id": 639306,
+        "nome": "Simple Poached Egg Dinner",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "full baby spinach",
+            "bacon",
+            "pasteurized eggs",
+            "olive oil",
+            "onion or",
+            "salt & pepper",
+            "vinegar"
+        ],
+        "tempo_preparo_minutos": 20,
+        "custo_centavos_dolar": 347.53,
+        "popularidade_likes": 3
+    },
+    {
+        "id": 716290,
+        "nome": "Mango Salsa",
+        "categorias": [
+            "antipasti",
+            "condiment",
+            "starter",
+            "snack",
+            "appetizer",
+            "dip",
+            "antipasto",
+            "hor d'oeuvre",
+            "spread"
+        ],
+        "ingredientes": [
+            "cherry tomatoes",
+            "bell pepper",
+            "lime juice",
+            "mangoes",
+            "mint leaves",
+            "bell pepper",
+            "onions",
+            "sugar"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 428.51,
+        "popularidade_likes": 14
+    },
+    {
+        "id": 664408,
+        "nome": "Vegan Chocolate Banana Pie",
+        "categorias": [
+            "dessert"
+        ],
+        "ingredientes": [
+            "silken tofu",
+            "bananas",
+            "chocolate-melted in a bain marie",
+            "cornstarch-mixed",
+            "maple syrup",
+            "pie crust"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 108.58,
+        "popularidade_likes": 23
+    },
+    {
+        "id": 647679,
+        "nome": "Hyderabadi baghara Baingan",
+        "categorias": [
+            "side dish"
+        ],
+        "ingredientes": [
+            "baby eggplants- 10-12",
+            "kashmiri chilies- 3-4",
+            "coconut",
+            "coriander seeds",
+            "cumin seeds",
+            "curry leaves- 8-10",
+            "garlic",
+            "ginger- 1",
+            "tamarind- a lime sized",
+            "oil",
+            "onion",
+            "salt",
+            "nigella seeds",
+            "sesame seeds",
+            "turmeric",
+            "jaggeryns",
+            "peanutsns",
+            "cashewnuts",
+            "cashewnuts"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 124.3,
+        "popularidade_likes": 2
+    },
+    {
+        "id": 634710,
+        "nome": "Beef Teriyaki Stir Fry",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "broccoli florets",
+            "brown sugar",
+            "cornstarch",
+            "sesame oil",
+            "flank steak",
+            "garlic",
+            "ginger",
+            "mushrooms",
+            "oil",
+            "bell pepper",
+            "scallions",
+            "sesame seeds",
+            "soy sauce"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 332.75,
+        "popularidade_likes": 5
+    },
+    {
+        "id": 657384,
+        "nome": "Pumpkin soup with wine",
+        "categorias": [
+            "antipasti",
+            "soup",
+            "starter",
+            "snack",
+            "appetizer",
+            "antipasto",
+            "hor d'oeuvre"
+        ],
+        "ingredientes": [
+            "muscat pumpkin",
+            "cream",
+            "cream",
+            "vegetable stock from 1 cube",
+            "sage leaves",
+            "red wine"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 513.27,
+        "popularidade_likes": 14
+    },
+    {
+        "id": 643059,
+        "nome": "Flank Steak With Garlicky Mediterranean Salad",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "balsamic vinegar",
+            "feta",
+            "flank steak",
+            "garlic",
+            "grill seasoning",
+            "lemon juice",
+            "lemon zest",
+            "salad greens",
+            "mushroom",
+            "olive oil",
+            "olives",
+            "oregano",
+            "bell pepper",
+            "onion",
+            "pepper flakes",
+            "roma tomato",
+            "salt"
+        ],
+        "tempo_preparo_minutos": 15,
+        "custo_centavos_dolar": 583.79,
+        "popularidade_likes": 2
+    },
+    {
+        "id": 716267,
+        "nome": "Soft Chin Chin",
+        "categorias": [
+            "side dish"
+        ],
+        "ingredientes": [
+            "all purpose flour",
+            "baking powder",
+            "butter/margarine",
+            "coconut milk",
+            "egg",
+            "oil",
+            "salt",
+            "sugar",
+            "vanilla"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 55.63,
+        "popularidade_likes": 204
+    },
+    {
+        "id": 653785,
+        "nome": "Orange & Ginger Chicken",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "brown sugar",
+            "flour",
+            "ginger root",
+            "garlic",
+            "green onion",
+            "lemon juice",
+            "olive oil",
+            "orange",
+            "pepper",
+            "pepper flakes",
+            "rice vinegar",
+            "salt",
+            "chicken breasts",
+            "soy sauce",
+            "water"
+        ],
+        "tempo_preparo_minutos": 180,
+        "custo_centavos_dolar": 139.68,
+        "popularidade_likes": 2
+    },
+    {
+        "id": 633921,
+        "nome": "Balsamic & Honey Glazed Salmon with Lemony Asparagus",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "apple cider vinegar",
+            "asparagus",
+            "balsamic vinegar",
+            "dill",
+            "garlic",
+            "grapeseed oil",
+            "herbs de provence",
+            "honey",
+            "juice of lemon",
+            "lemon zest",
+            "salmon fillet",
+            "salt and pepper",
+            "vegetable stock"
+        ],
+        "tempo_preparo_minutos": 60,
+        "custo_centavos_dolar": 443.76,
+        "popularidade_likes": 28
+    },
+    {
+        "id": 654034,
+        "nome": "Oreo Mini Cheesecake",
+        "categorias": [
+            "dessert"
+        ],
+        "ingredientes": [
+            "cream cheese",
+            "whipping cream",
+            "vanilla extract",
+            "eggs",
+            "cream of tartar",
+            "sugar",
+            "oreo"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 51.27,
+        "popularidade_likes": 9
+    },
+    {
+        "id": 637824,
+        "nome": "Chewy Gingersnaps",
+        "categorias": [
+            "dessert"
+        ],
+        "ingredientes": [
+            "baking soda",
+            "brown sugar",
+            "butter",
+            "cinnamon",
+            "eggs",
+            "flour",
+            "ginger",
+            "kosher salt",
+            "molasses",
+            "oil",
+            "pepper",
+            "sugar"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 30.37,
+        "popularidade_likes": 27
+    },
+    {
+        "id": 650650,
+        "nome": "Make Ahead Quiche",
+        "categorias": [
+            "lunch",
+            "main course",
+            "morning meal",
+            "brunch",
+            "main dish",
+            "breakfast",
+            "dinner"
+        ],
+        "ingredientes": [
+            "unbaked pie crust",
+            "cheddar cheese",
+            "monterrey jack cheese",
+            "flour",
+            "ham",
+            "eggs",
+            "half and half",
+            "green onions",
+            "salt",
+            "ground mustard",
+            "pepper"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 92.11,
+        "popularidade_likes": 2
+    },
+    {
+        "id": 642346,
+        "nome": "Egyptain Cauliflower Side Salad",
+        "categorias": [
+            "side dish",
+            "antipasti",
+            "salad",
+            "starter",
+            "snack",
+            "appetizer",
+            "antipasto",
+            "hor d'oeuvre"
+        ],
+        "ingredientes": [
+            "cauliflower",
+            "cumin",
+            "parsley",
+            "lemon juice",
+            "olive oil",
+            "bell pepper",
+            "salt"
+        ],
+        "tempo_preparo_minutos": 25,
+        "custo_centavos_dolar": 150.58,
+        "popularidade_likes": 3
+    },
+    {
+        "id": 644571,
+        "nome": "Ginger Chicken Stir-Fry",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "broccoli/cauliflower/carrots",
+            "chicken breasts",
+            "chicken broth",
+            "brown rice",
+            "cornstarch",
+            "ground ginger",
+            "onion",
+            "teriyaki sauce",
+            "vegetable oil",
+            "water"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 152.33,
+        "popularidade_likes": 2
+    },
+    {
+        "id": 645634,
+        "nome": "Grilled Chicken Banh Mi",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "fish sauce",
+            "lime juice",
+            "sugar",
+            "garlic",
+            "jalapeno",
+            "salt",
+            "chicken breasts",
+            "tap water",
+            "rice vinegar",
+            "salt",
+            "pepper",
+            "carrots",
+            "daikon radishes",
+            "sub rolls",
+            "mayonnaise",
+            "cucumber",
+            "cilantro leaves",
+            "jalapeno"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 258.48,
+        "popularidade_likes": 43
+    },
+    {
+        "id": 634389,
+        "nome": "Basic Hummus",
+        "categorias": [
+            "antipasti",
+            "condiment",
+            "starter",
+            "snack",
+            "appetizer",
+            "dip",
+            "antipasto",
+            "hor d'oeuvre",
+            "spread"
+        ],
+        "ingredientes": [
+            "chickpeas",
+            "olive oil",
+            "juice of lemon",
+            "garlic",
+            "tahini",
+            "water",
+            "cumin",
+            "salt"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 9.8,
+        "popularidade_likes": 4
+    },
+    {
+        "id": 633765,
+        "nome": "Baked Rigatoni With Sausage",
+        "categorias": [
+            "side dish",
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "from 1 bunch basil",
+            "pepper",
+            "canned tomatoes",
+            "mozzarella",
+            "garlic cloves",
+            "sausage",
+            "kosher salt",
+            "olive oil",
+            "onion",
+            "parmigiano-reggiano",
+            "rigatoni"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 258.68,
+        "popularidade_likes": 9
+    },
+    {
+        "id": 664655,
+        "nome": "Vegetarian Christmas wreath",
+        "categorias": [
+            "side dish"
+        ],
+        "ingredientes": [
+            "broccoli florets",
+            "cherry tomatoes",
+            "cheese",
+            "bell pepper",
+            "cream cheese",
+            "mayonnaise",
+            "dill",
+            "garlic",
+            "olives",
+            "scallion"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 191.76,
+        "popularidade_likes": 11
+    },
+    {
+        "id": 633492,
+        "nome": "Baked Caramel Custard",
+        "categorias": [
+            "dessert"
+        ],
+        "ingredientes": [
+            "egg substitute",
+            "egg yolk",
+            "evaporated skim milk",
+            "port wine",
+            "skim milk",
+            "sugar plus",
+            "sugar",
+            "vanilla"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 76.26,
+        "popularidade_likes": 46
+    },
+    {
+        "id": 643428,
+        "nome": "Fresh and Simple Swai Ceviche",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "avocado",
+            "chile-garlic paste",
+            "cilantro",
+            "swai fillets",
+            "juice of lime",
+            "olive oil",
+            "salt and pepper",
+            "shallot",
+            "tomato"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 266.64,
+        "popularidade_likes": 2
+    },
+    {
+        "id": 638231,
+        "nome": "Chicken Parmayonnaise",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "kosher salt and coarse pepper",
+            "herbs",
+            "mayonnaise",
+            "parmesan",
+            "chicken breasts"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 128.91,
+        "popularidade_likes": 2
+    },
+    {
+        "id": 636608,
+        "nome": "Butternut Squash, Arugula and Goat Cheese Quinoa",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "olive oil",
+            "butternut squash",
+            "quinoa",
+            "chicken stock",
+            "arugula",
+            "balsamic vinegar",
+            "goat cheese",
+            "salt and pepper",
+            "walnuts"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 251.24,
+        "popularidade_likes": 3
+    },
+    {
+        "id": 661218,
+        "nome": "Spicy Tuna Cakes",
+        "categorias": [],
+        "ingredientes": [
+            "cajun seasoning",
+            "tuna",
+            "chili peppers",
+            "dijon mustard",
+            "egg",
+            "garlic cloves",
+            "greek yogurt",
+            "green onions",
+            "hot sauce",
+            "juice of lemon",
+            "mirepoix",
+            "panko breadcrumbs",
+            "cream"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 144.39,
+        "popularidade_likes": 5
+    },
+    {
+        "id": 637766,
+        "nome": "Cherry Lime Mojito",
+        "categorias": [
+            "beverage",
+            "drink"
+        ],
+        "ingredientes": [
+            "cherries",
+            "mint leaves",
+            "lime",
+            "demerara sugar",
+            "rum",
+            "carbonated water"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 207.39,
+        "popularidade_likes": 21
+    },
+    {
+        "id": 649049,
+        "nome": "Korean Extra Crispy Fried Chicken w Sweet Spicy Glaze",
+        "categorias": [
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "chicken wings",
+            "canola oil",
+            "garlic",
+            "soy sauce",
+            "thai chili peppers",
+            "ketchup",
+            "rice vinegar",
+            "brown sugar",
+            "sesame oil",
+            "honey",
+            "cornstarch",
+            "water",
+            "salt and pepper",
+            "sesame seeds"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 226.95,
+        "popularidade_likes": 7
+    },
+    {
+        "id": 635370,
+        "nome": "Blue Cheese Tartlets With Fig Jam and Walnuts",
+        "categorias": [
+            "fingerfood",
+            "antipasti",
+            "starter",
+            "snack",
+            "appetizer",
+            "antipasto",
+            "hor d'oeuvre"
+        ],
+        "ingredientes": [
+            "cheese",
+            "butter",
+            "fig jam",
+            "flour",
+            "orange zest",
+            "walnuts"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 95.48,
+        "popularidade_likes": 8
+    },
+    {
+        "id": 654913,
+        "nome": "Pasta With Chicken and Mushrooms",
+        "categorias": [
+            "side dish",
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "balsamic vinegar",
+            "bay leaf",
+            "chicken breast halves",
+            "chicken broth",
+            "flour",
+            "linguini",
+            "mushrooms",
+            "olive oil",
+            "pepper",
+            "salt",
+            "thyme"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 175.15,
+        "popularidade_likes": 2
+    },
+    {
+        "id": 644800,
+        "nome": "Gluten Free Blueberry Muffins",
+        "categorias": [
+            "morning meal",
+            "brunch",
+            "breakfast"
+        ],
+        "ingredientes": [
+            "baking powder",
+            "driscoll's blueberries",
+            "eggs",
+            "flour",
+            "lemon zest",
+            "salt",
+            "sugar",
+            "butter",
+            "vanilla extract",
+            "milk",
+            "xanthan gum"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 49.84,
+        "popularidade_likes": 34
+    },
+    {
+        "id": 716276,
+        "nome": "Doughnuts",
+        "categorias": [
+            "morning meal",
+            "brunch",
+            "breakfast"
+        ],
+        "ingredientes": [
+            "flour",
+            "honey",
+            "powdered milk",
+            "salt",
+            "warm water",
+            "yeast"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 67.93,
+        "popularidade_likes": 205
+    },
+    {
+        "id": 658936,
+        "nome": "S'more Bars",
+        "categorias": [
+            "dessert"
+        ],
+        "ingredientes": [
+            "butter",
+            "sugar",
+            "graham cracker crumbs",
+            "milk chocolate chocolate chips minus a handful of chips",
+            "marshmallows"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 49.68,
+        "popularidade_likes": 14
+    },
+    {
+        "id": 635846,
+        "nome": "Braised Oxtail",
+        "categorias": [
+            "side dish"
+        ],
+        "ingredientes": [
+            "bay leaves",
+            "carrot",
+            "celery",
+            "noodles",
+            "fat",
+            "flour",
+            "onions",
+            "oxtail",
+            "bell pepper",
+            "salt",
+            "tomatoes",
+            "water"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 110.37,
+        "popularidade_likes": 2
+    },
+    {
+        "id": 642807,
+        "nome": "Fig, Apple, and Arugula Salad",
+        "categorias": [
+            "side dish",
+            "antipasti",
+            "salad",
+            "starter",
+            "snack",
+            "appetizer",
+            "antipasto",
+            "hor d'oeuvre"
+        ],
+        "ingredientes": [
+            "roquette arugula lettuce",
+            "figs",
+            "an apple",
+            "peppers",
+            "dressing",
+            "olive oil",
+            "maple syrup",
+            "rosemary",
+            "sumac powder"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 486.36,
+        "popularidade_likes": 4
+    },
+    {
+        "id": 648721,
+        "nome": "Kale and Roasted Sweet Potato Soup with Chicken Sausage",
+        "categorias": [
+            "lunch",
+            "soup",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "sweet potatoes",
+            "onion",
+            "kale",
+            "mushrooms",
+            "chicken sausage",
+            "chicken stock",
+            "garlic",
+            "thyme",
+            "ground coriander",
+            "chili flakes",
+            "sea salt",
+            "pepper",
+            "olive oil"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 292.88,
+        "popularidade_likes": 2
+    },
+    {
+        "id": 664244,
+        "nome": "Upside Down Chicken Cake",
+        "categorias": [],
+        "ingredientes": [
+            "strips.",
+            "butter",
+            "canola oil",
+            "carrot",
+            "chicken powder",
+            "chicken stock)",
+            "eggs",
+            "ice water",
+            "onion",
+            "pepper",
+            "flour",
+            "salt",
+            "sponge cake mix",
+            "spring onion",
+            "sugar",
+            "vanilla extract",
+            "ovalette",
+            "ovalette"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 93.59,
+        "popularidade_likes": 5
+    },
+    {
+        "id": 652377,
+        "nome": "Moon Pies",
+        "categorias": [
+            "dessert"
+        ],
+        "ingredientes": [
+            "baking powder",
+            "baking soda",
+            "butter",
+            "confectioners' sugar",
+            "egg",
+            "evaporated milk",
+            "flour",
+            "marshmallow creme",
+            "salt",
+            "cocoa powder",
+            "vanilla extract",
+            "sugar"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 19.73,
+        "popularidade_likes": 3
+    },
+    {
+        "id": 662709,
+        "nome": "Szechuan-Style Shirataki Noodles",
+        "categorias": [
+            "side dish",
+            "lunch",
+            "main course",
+            "main dish",
+            "dinner"
+        ],
+        "ingredientes": [
+            "shirataki",
+            "protein",
+            "soy sauce",
+            "rice wine",
+            "chili sauce",
+            "ginger",
+            "scallions",
+            "veggies",
+            "sesame oil",
+            "microwave the noodles",
+            "add the soy sauce",
+            "add the scallions and your protein and continue to stir-fry until it's through . add the noodles",
+            "turn into a bowl"
+        ],
+        "tempo_preparo_minutos": 45,
+        "custo_centavos_dolar": 862.45,
+        "popularidade_likes": 2
+    }
+]
