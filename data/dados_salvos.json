@@ -1,6 +1,6 @@
 [
     {
-        "id": 631868,
+        "versao_hash": "versao_inicial",
         "nome": "4 Ingredient Chicken Pot Pie",
         "categorias": [
             "lunch",
@@ -19,7 +19,7 @@
         "popularidade_likes": 24
     },
     {
-        "id": 769754,
+        "versao_hash": "versao_inicial",
         "nome": "Beef Carrot Stew",
         "categorias": [
             "antipasti",
@@ -47,7 +47,7 @@
         "popularidade_likes": 171
     },
     {
-        "id": 1000566,
+        "versao_hash": "versao_inicial",
         "nome": "Easy Instant Pot Beef Tips and Rice",
         "categorias": [
             "lunch",
@@ -69,7 +69,7 @@
         "popularidade_likes": 25
     },
     {
-        "id": 639779,
+        "versao_hash": "versao_inicial",
         "nome": "Coconut Macaroons With Chocolate Drizzle",
         "categorias": [],
         "ingredientes": [
@@ -84,7 +84,7 @@
         "popularidade_likes": 10
     },
     {
-        "id": 632778,
+        "versao_hash": "versao_inicial",
         "nome": "Artisan Farfalle Pasta With Smoked Salmon and Cream Sauce",
         "categorias": [
             "side dish",
@@ -108,7 +108,7 @@
         "popularidade_likes": 3
     },
     {
-        "id": 646905,
+        "versao_hash": "versao_inicial",
         "nome": "Homemade Animal Crackers",
         "categorias": [
             "dessert"
@@ -131,7 +131,7 @@
         "popularidade_likes": 39
     },
     {
-        "id": 656506,
+        "versao_hash": "versao_inicial",
         "nome": "Poached Prawns with Fettuccine and French String Beans",
         "categorias": [
             "lunch",
@@ -153,7 +153,7 @@
         "popularidade_likes": 7
     },
     {
-        "id": 632449,
+        "versao_hash": "versao_inicial",
         "nome": "Appetizing Apple and Almond Soup",
         "categorias": [
             "antipasti",
@@ -181,7 +181,7 @@
         "popularidade_likes": 4
     },
     {
-        "id": 638174,
+        "versao_hash": "versao_inicial",
         "nome": "Chicken Lo Mein",
         "categorias": [
             "lunch",
@@ -208,7 +208,7 @@
         "popularidade_likes": 2
     },
     {
-        "id": 636864,
+        "versao_hash": "versao_inicial",
         "nome": "Candied Spiced Pecans",
         "categorias": [
             "fingerfood",
@@ -236,7 +236,7 @@
         "popularidade_likes": 104
     },
     {
-        "id": 645988,
+        "versao_hash": "versao_inicial",
         "nome": "Guacamole",
         "categorias": [
             "antipasti",
@@ -265,7 +265,7 @@
         "popularidade_likes": 20
     },
     {
-        "id": 661292,
+        "versao_hash": "versao_inicial",
         "nome": "Spinach Coriander Chive Bread",
         "categorias": [
             "bread"
@@ -289,7 +289,7 @@
         "popularidade_likes": 3
     },
     {
-        "id": 660227,
+        "versao_hash": "versao_inicial",
         "nome": "Skinny Green Monster Smoothie",
         "categorias": [
             "morning meal",
@@ -310,7 +310,7 @@
         "popularidade_likes": 7
     },
     {
-        "id": 639306,
+        "versao_hash": "versao_inicial",
         "nome": "Simple Poached Egg Dinner",
         "categorias": [
             "lunch",
@@ -332,7 +332,7 @@
         "popularidade_likes": 3
     },
     {
-        "id": 716290,
+        "versao_hash": "versao_inicial",
         "nome": "Mango Salsa",
         "categorias": [
             "antipasti",
@@ -360,7 +360,7 @@
         "popularidade_likes": 14
     },
     {
-        "id": 664408,
+        "versao_hash": "versao_inicial",
         "nome": "Vegan Chocolate Banana Pie",
         "categorias": [
             "dessert"
@@ -378,7 +378,7 @@
         "popularidade_likes": 23
     },
     {
-        "id": 647679,
+        "versao_hash": "versao_inicial",
         "nome": "Hyderabadi baghara Baingan",
         "categorias": [
             "side dish"
@@ -409,7 +409,7 @@
         "popularidade_likes": 2
     },
     {
-        "id": 634710,
+        "versao_hash": "versao_inicial",
         "nome": "Beef Teriyaki Stir Fry",
         "categorias": [
             "lunch",
@@ -437,7 +437,7 @@
         "popularidade_likes": 5
     },
     {
-        "id": 657384,
+        "versao_hash": "versao_inicial",
         "nome": "Pumpkin soup with wine",
         "categorias": [
             "antipasti",
@@ -461,7 +461,7 @@
         "popularidade_likes": 14
     },
     {
-        "id": 643059,
+        "versao_hash": "versao_inicial",
         "nome": "Flank Steak With Garlicky Mediterranean Salad",
         "categorias": [
             "lunch",
@@ -493,7 +493,7 @@
         "popularidade_likes": 2
     },
     {
-        "id": 716267,
+        "versao_hash": "versao_inicial",
         "nome": "Soft Chin Chin",
         "categorias": [
             "side dish"
@@ -514,7 +514,7 @@
         "popularidade_likes": 204
     },
     {
-        "id": 653785,
+        "versao_hash": "versao_inicial",
         "nome": "Orange & Ginger Chicken",
         "categorias": [
             "lunch",
@@ -544,7 +544,7 @@
         "popularidade_likes": 2
     },
     {
-        "id": 633921,
+        "versao_hash": "versao_inicial",
         "nome": "Balsamic & Honey Glazed Salmon with Lemony Asparagus",
         "categorias": [
             "lunch",
@@ -572,7 +572,7 @@
         "popularidade_likes": 28
     },
     {
-        "id": 654034,
+        "versao_hash": "versao_inicial",
         "nome": "Oreo Mini Cheesecake",
         "categorias": [
             "dessert"
@@ -591,7 +591,7 @@
         "popularidade_likes": 9
     },
     {
-        "id": 637824,
+        "versao_hash": "versao_inicial",
         "nome": "Chewy Gingersnaps",
         "categorias": [
             "dessert"
@@ -615,7 +615,7 @@
         "popularidade_likes": 27
     },
     {
-        "id": 650650,
+        "versao_hash": "versao_inicial",
         "nome": "Make Ahead Quiche",
         "categorias": [
             "lunch",
@@ -644,7 +644,7 @@
         "popularidade_likes": 2
     },
     {
-        "id": 642346,
+        "versao_hash": "versao_inicial",
         "nome": "Egyptain Cauliflower Side Salad",
         "categorias": [
             "side dish",
@@ -670,7 +670,7 @@
         "popularidade_likes": 3
     },
     {
-        "id": 644571,
+        "versao_hash": "versao_inicial",
         "nome": "Ginger Chicken Stir-Fry",
         "categorias": [
             "lunch",
@@ -695,7 +695,7 @@
         "popularidade_likes": 2
     },
     {
-        "id": 645634,
+        "versao_hash": "versao_inicial",
         "nome": "Grilled Chicken Banh Mi",
         "categorias": [
             "lunch",
@@ -728,7 +728,7 @@
         "popularidade_likes": 43
     },
     {
-        "id": 634389,
+        "versao_hash": "versao_inicial",
         "nome": "Basic Hummus",
         "categorias": [
             "antipasti",
@@ -756,7 +756,7 @@
         "popularidade_likes": 4
     },
     {
-        "id": 633765,
+        "versao_hash": "versao_inicial",
         "nome": "Baked Rigatoni With Sausage",
         "categorias": [
             "side dish",
@@ -783,7 +783,7 @@
         "popularidade_likes": 9
     },
     {
-        "id": 664655,
+        "versao_hash": "versao_inicial",
         "nome": "Vegetarian Christmas wreath",
         "categorias": [
             "side dish"
@@ -805,7 +805,7 @@
         "popularidade_likes": 11
     },
     {
-        "id": 633492,
+        "versao_hash": "versao_inicial",
         "nome": "Baked Caramel Custard",
         "categorias": [
             "dessert"
@@ -825,7 +825,7 @@
         "popularidade_likes": 46
     },
     {
-        "id": 643428,
+        "versao_hash": "versao_inicial",
         "nome": "Fresh and Simple Swai Ceviche",
         "categorias": [
             "lunch",
@@ -849,7 +849,7 @@
         "popularidade_likes": 2
     },
     {
-        "id": 638231,
+        "versao_hash": "versao_inicial",
         "nome": "Chicken Parmayonnaise",
         "categorias": [
             "lunch",
@@ -869,7 +869,7 @@
         "popularidade_likes": 2
     },
     {
-        "id": 636608,
+        "versao_hash": "versao_inicial",
         "nome": "Butternut Squash, Arugula and Goat Cheese Quinoa",
         "categorias": [
             "lunch",
@@ -893,7 +893,7 @@
         "popularidade_likes": 3
     },
     {
-        "id": 661218,
+        "versao_hash": "versao_inicial",
         "nome": "Spicy Tuna Cakes",
         "categorias": [],
         "ingredientes": [
@@ -916,7 +916,7 @@
         "popularidade_likes": 5
     },
     {
-        "id": 637766,
+        "versao_hash": "versao_inicial",
         "nome": "Cherry Lime Mojito",
         "categorias": [
             "beverage",
@@ -935,7 +935,7 @@
         "popularidade_likes": 21
     },
     {
-        "id": 649049,
+        "versao_hash": "versao_inicial",
         "nome": "Korean Extra Crispy Fried Chicken w Sweet Spicy Glaze",
         "categorias": [
             "lunch",
@@ -964,7 +964,7 @@
         "popularidade_likes": 7
     },
     {
-        "id": 635370,
+        "versao_hash": "versao_inicial",
         "nome": "Blue Cheese Tartlets With Fig Jam and Walnuts",
         "categorias": [
             "fingerfood",
@@ -988,7 +988,7 @@
         "popularidade_likes": 8
     },
     {
-        "id": 654913,
+        "versao_hash": "versao_inicial",
         "nome": "Pasta With Chicken and Mushrooms",
         "categorias": [
             "side dish",
@@ -1015,7 +1015,7 @@
         "popularidade_likes": 2
     },
     {
-        "id": 644800,
+        "versao_hash": "versao_inicial",
         "nome": "Gluten Free Blueberry Muffins",
         "categorias": [
             "morning meal",
@@ -1040,7 +1040,7 @@
         "popularidade_likes": 34
     },
     {
-        "id": 716276,
+        "versao_hash": "versao_inicial",
         "nome": "Doughnuts",
         "categorias": [
             "morning meal",
@@ -1060,7 +1060,7 @@
         "popularidade_likes": 205
     },
     {
-        "id": 658936,
+        "versao_hash": "versao_inicial",
         "nome": "S'more Bars",
         "categorias": [
             "dessert"
@@ -1077,7 +1077,7 @@
         "popularidade_likes": 14
     },
     {
-        "id": 635846,
+        "versao_hash": "versao_inicial",
         "nome": "Braised Oxtail",
         "categorias": [
             "side dish"
@@ -1101,7 +1101,7 @@
         "popularidade_likes": 2
     },
     {
-        "id": 642807,
+        "versao_hash": "versao_inicial",
         "nome": "Fig, Apple, and Arugula Salad",
         "categorias": [
             "side dish",
@@ -1129,7 +1129,7 @@
         "popularidade_likes": 4
     },
     {
-        "id": 648721,
+        "versao_hash": "versao_inicial",
         "nome": "Kale and Roasted Sweet Potato Soup with Chicken Sausage",
         "categorias": [
             "lunch",
@@ -1158,7 +1158,7 @@
         "popularidade_likes": 2
     },
     {
-        "id": 664244,
+        "versao_hash": "versao_inicial",
         "nome": "Upside Down Chicken Cake",
         "categorias": [],
         "ingredientes": [
@@ -1186,7 +1186,7 @@
         "popularidade_likes": 5
     },
     {
-        "id": 652377,
+        "versao_hash": "versao_inicial",
         "nome": "Moon Pies",
         "categorias": [
             "dessert"
@@ -1210,7 +1210,7 @@
         "popularidade_likes": 3
     },
     {
-        "id": 662709,
+        "versao_hash": "versao_inicial",
         "nome": "Szechuan-Style Shirataki Noodles",
         "categorias": [
             "side dish",
@@ -1237,5 +1237,23 @@
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 862.45,
         "popularidade_likes": 2
+    },
+    {
+        "versao_hash": "versao_inicial",
+        "nome": "Cozido do Jean",
+        "categorias": [
+            "starter",
+            "breakfeast",
+            "brunch"
+        ],
+        "ingredientes": [
+            "arroz",
+            "água",
+            "salt",
+            "porkchop"
+        ],
+        "tempo_preparo_minutos": 20,
+        "custo_centavos_dolar": 0,
+        "popularidade_likes": 0.0
     }
 ]

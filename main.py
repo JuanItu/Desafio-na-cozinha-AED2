@@ -3,18 +3,22 @@
 import sys
 from pathlib import Path
 
+sys.stdout.reconfigure(encoding='utf-8')    #garante o uso e exibição de acentos e simbulos
+
 # Garante que a raiz do projeto está no path
 _RAIZ = Path(__file__).resolve().parent
 if str(_RAIZ) not in sys.path:
     sys.path.insert(0, str(_RAIZ))
 
-from data.load_source                  import carregar_dados, salvar_dados
-from motor.algoritmo_recomendações     import AlgoritmoRecomendacao
+from modelos.receita import Receita
+from data.load_source import carregar_dados, salvar_dados
+from motor.algoritmo_recomendações import AlgoritmoRecomendacao
 
 
-def montar_motor(lista_receitas, mapa_id_ingrediente) -> AlgoritmoRecomendacao:
+def montar_motor(lista_receitas) -> AlgoritmoRecomendacao:
     """Cria e popula o motor de recomendação com todas as receitas."""
-    motor = AlgoritmoRecomendacao(mapa_id_ingrediente)
+    # O motor não precisa mais de dicionário de IDs!
+    motor = AlgoritmoRecomendacao()
     for receita in lista_receitas:
         motor.adicionar_receita(receita)
     # força ordenação inicial (abaixa o flag)
@@ -23,7 +27,6 @@ def montar_motor(lista_receitas, mapa_id_ingrediente) -> AlgoritmoRecomendacao:
 
 
 def _pedir_lista(prompt: str) -> list[str]:
-    """Lê uma linha e devolve lista de itens separados por vírgula."""
     entrada = input(prompt).strip()
     if not entrada:
         return []
@@ -64,17 +67,66 @@ def menu_recomendacao(motor: AlgoritmoRecomendacao) -> None:
         categorias_exigidas=cats,
     )
     motor.exibir_recomendacao(resultados)
+    
+def menu_adicionar_receita(motor: AlgoritmoRecomendacao, lista_receitas: list) -> None:
+    print("\n" + "═" * 55)
+    print("  CRIAR NOVA RECEITA")
+    print("═" * 55)
+    
+    nome = input("  Nome da receita: ").strip()
+    if not nome:
+        print("  ⚠ Operação cancelada: Nome não pode ser vazio.")
+        return
+
+    tempo = _pedir_inteiro("  Tempo de preparo (min) [padrão=0]: ") or 0
+    custo = _pedir_inteiro("  Custo (centavos de dólar) [padrão=0]: ") or 0
+
+    # 1. TENTA CRIAR A RECEITA
+    try:
+        # Passamos fator_recomendacao=0 pois receitas novas começam sem popularidade
+        # Se você já estivesse usando a trie_global no main, passaria ela aqui também
+        nova_receita = Receita(nome_receita=nome, custo=custo, tempo_preparo=tempo, fator_recomendacao=0.0)
+    except ValueError as e:
+        print(f"  ⚠ Erro: {e}")
+        return # Aborta se a receita já existir no registro_global
+
+    # 2. ADICIONA CATEGORIAS
+    cats = _pedir_lista("  Categorias (sep. vírgula) [deixe em branco para pular]: ")
+    for cat in cats:
+        nova_receita.adicionar_categoria(cat)
+
+    # 3. ADICIONA INGREDIENTES (Loop até o usuário deixar em branco)
+    print("\n  -- Ingredientes -- (Deixe o nome em branco para encerrar)")
+    while True:
+        ing_nome = input("  Nome do ingrediente: ").strip()
+        if not ing_nome:
+            break
+            
+        qtd = _pedir_inteiro("  Quantidade (número) [padrão=1]: ") or 1
+        unidade = input("  Unidade (ex: g, ml, xícara) [padrão=und]: ").strip() or "und"
+        
+        nova_receita.adicionar_ingrediente(nome_ingrediente=ing_nome, unidade=unidade, quantidade=qtd)
+
+    # 4. SALVAMENTO E SINCRONIA
+    # Colocamos na lista principal para que a sua função salvar_dados a encontre
+    lista_receitas.append(nova_receita)
+    
+    # Avisamos o motor de recomendação que ele tem um novo item para ordenar
+    motor.adicionar_receita(nova_receita)
+    
+    print(f"\n  ✓ Receita '{nome}' criada com sucesso!")
 
 
 def menu_principal(motor, lista_receitas, lista_ingredientes,
                    lista_categorias, mapa_id_ingrediente):
     while True:
-        print("╔" + "═" * 43 + "╗")
+        print("\n╔" + "═" * 43 + "╗")
         print("║     DESAFIO NA COZINHA — MENU PRINCIPAL    ║")
         print("╠" + "═" * 43 + "╣")
         print("║  1. Ver vetor de recomendações (ordenado)  ║")
         print("║  2. Obter recomendação                     ║")
-        print("║  3. Salvar estado atual                    ║")
+        print("║  3. Adicionar nova receita                 ║") # <-- Nova opção!
+        print("║  4. Salvar estado atual                    ║") # <-- Opção deslocada
         print("║  0. Sair                                   ║")
         print("╚" + "═" * 43 + "╝")
         opcao = input("  Opção: ").strip()
@@ -84,8 +136,12 @@ def menu_principal(motor, lista_receitas, lista_ingredientes,
 
         elif opcao == "2":
             menu_recomendacao(motor)
-
+            
         elif opcao == "3":
+            menu_adicionar_receita(motor, lista_receitas)
+
+        elif opcao == "4":
+            # Repassamos as listas para o seu load_source salvar tudo
             salvar_dados(lista_receitas, lista_ingredientes,
                          lista_categorias, mapa_id_ingrediente)
 
@@ -104,7 +160,8 @@ def main():
           f"{len(lista_ingredientes)} ingredientes | "
           f"{len(lista_categorias)} categorias\n")
 
-    motor = montar_motor(lista_receitas, mapa_id_ingrediente)
+    # Passamos apenas a lista de receitas, o mapa de IDs não é mais necessário no motor
+    motor = montar_motor(lista_receitas)
 
     menu_principal(motor, lista_receitas, lista_ingredientes,
                    lista_categorias, mapa_id_ingrediente)

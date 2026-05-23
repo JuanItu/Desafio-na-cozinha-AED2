@@ -90,6 +90,46 @@ class TrieBuscaGeral:
         for char in letras_ordenadas:
             filho = node.children[char]
             self._coletar_em_ordem(filho, resultados)
+            
+    def remove(self, chave: str, objeto) -> None:
+        """Método público para remover um objeto da Trie."""
+        self._remove_recursivo(self.root, chave, objeto, 0)
+
+    def _remove_recursivo(self, node: 'TrieNode', chave: str, objeto, index: int) -> bool:
+        #Desce até o objeto, remove-o, e na volta vai apagando os nós fantasmas.
+        #Retorna True se o nó atual ficou inútil e pode ser deletado pelo pai.
+        
+        # 1. Caso Base: Chegamos no final do caminho da palavra
+        if index == len(chave):
+            # Se o nó tem objetos e o nosso objeto está lá dentro
+            if node.objetos is not None and objeto in node.objetos:
+                node.objetos.remove(objeto)
+                
+                # Se a lista ficou vazia, voltamos ela pra None pra economizar RAM
+                if not node.objetos:
+                    node.objetos = None
+                    
+            # A regra da poda: Posso ser deletado se não tenho objetos E não tenho filhos
+            return node.objetos is None and len(node.children) == 0
+
+        # 2. Descendo a árvore: Pega a próxima letra
+        char = chave[index]
+        
+        # Se a palavra não existe na árvore, não faz nada
+        if char not in node.children:
+            return False 
+
+        # 3. Chamada recursiva: manda descer até o final e espera a resposta na volta
+        pode_deletar_filho = self._remove_recursivo(node.children[char], chave, objeto, index + 1)
+
+        # 4. A Poda (Na volta da recursão)
+        if pode_deletar_filho:
+            del node.children[char] # DELETA O NÓ FANTASMA DA MEMÓRIA!
+            
+            # Agora que perdi um filho, será que EU também fiquei inútil?
+            return node.objetos is None and len(node.children) == 0
+
+        return False
 
 # --- Testando a Implementação ---
 #   APAGAR DEPOIS

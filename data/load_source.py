@@ -1,7 +1,4 @@
 # data/load_source.py
-# Carrega dados_fonte.json e monta os três vetores do sistema:
-#   lista_receitas, lista_ingredientes, lista_categorias
-# Também devolve um dicionário id_ingrediente→nome para uso do motor.
 
 import json
 import sys
@@ -12,7 +9,7 @@ if str(_RAIZ) not in sys.path:
     sys.path.insert(0, str(_RAIZ))
 
 from modelos.receita      import Receita
-from modelos.ingredientes import Ingredientes, QuantidadeIngredientes
+from modelos.ingredientes import Ingredientes
 from modelos.categoria    import Categoria
 
 _CAMINHO_FONTE  = Path(__file__).parent / "dados_fonte.json"
@@ -21,113 +18,72 @@ _CAMINHO_SALVOS = Path(__file__).parent / "dados_salvos.json"
 
 def carregar_dados(caminho: Path = _CAMINHO_FONTE):
     """
-    Lê o JSON e constrói os três vetores de objetos.
-
-    Retorna
-    -------
-    lista_receitas    : list[Receita]
-    lista_ingredientes: list[Ingredientes]
-    lista_categorias  : list[Categoria]
-    mapa_id_ingrediente: dict[int, str]   id → nome  (usado pelo motor)
+    Lê o JSON e constrói as instâncias. 
+    Graças ao Registro Global das classes, não precisamos mais gerenciar IDs!
     """
     with open(caminho, encoding="utf-8") as f:
         dados_json = json.load(f)
 
-    # ── 1. Monta ingredientes únicos ─────────────────────────────────
-    nome_para_id_ing: dict[str, int] = {}
-    lista_ingredientes: list[Ingredientes] = []
+    lista_receitas = []
 
-    for receita_json in dados_json:
-        for nome_ing in receita_json.get("ingredientes", []):
-            if nome_ing not in nome_para_id_ing:
-                novo_id = len(lista_ingredientes) + 1
-                nome_para_id_ing[nome_ing] = novo_id
-                lista_ingredientes.append(
-                    Ingredientes(
-                        id_ingredientes=novo_id,
-                        nome_ingrediente=nome_ing,
-                        quantidade_estoque=0,          # não disponível no JSON
-                        lista_receitas_ingredientes=[] # preenchido depois
-                    )
-                )
-
-    mapa_id_ingrediente: dict[int, str] = {
-        ing.id_ingredientes: ing.nome_ingrediente
-        for ing in lista_ingredientes
-    }
-
-    # ── 2. Monta categorias únicas ────────────────────────────────────
-    nome_para_cat: dict[str, Categoria] = {}
-    lista_categorias: list[Categoria] = []
-
-    for receita_json in dados_json:
-        for nome_cat in receita_json.get("categorias", []):
-            if nome_cat not in nome_para_cat:
-                cat = Categoria(
-                    id_categoria=len(lista_categorias) + 1,
-                    nome_categoria=nome_cat,
-                    lista_categoria_receitas=[]
-                )
-                nome_para_cat[nome_cat] = cat
-                lista_categorias.append(cat)
-
-    # ── 3. Monta receitas ─────────────────────────────────────────────
-    lista_receitas: list[Receita] = []
-
-    for receita_json in dados_json:
-        # Constrói lista de QuantidadeIngredientes (sem qtd/unidade no JSON)
-        lista_qi = [
-            QuantidadeIngredientes(
-                id_ingredientes=nome_para_id_ing[nome_ing],
-                unidade_utilizada="",  # não disponível
-                quantidade_necessaria=0
+    for r_json in dados_json:
+        # 1. Tenta criar a receita (se o nome já existir, ele pula)
+        try:
+            receita = Receita(
+                nome_receita=r_json["nome"],
+                custo=r_json["custo_centavos_dolar"],
+                tempo_preparo=r_json["tempo_preparo_minutos"],
+                fator_recomendacao=r_json["popularidade_likes"]
             )
-            for nome_ing in receita_json.get("ingredientes", [])
-        ]
+        except ValueError:
+            continue # Ignora duplicatas
 
-        receita = Receita(
-            id_ingredientes=receita_json["id"],          # id da receita
-            nome_receita=receita_json["nome"],
-            custo=receita_json["custo_centavos_dolar"],
-            tempo_preparo=receita_json["tempo_preparo_minutos"],
-            fator_recomendacao=receita_json["popularidade_likes"],
-            lista_categoria_receitas=receita_json.get("categorias", []),
-            lista_quantidade_ingredientes=lista_qi,
-            lista_id_hash_ingredientes=[
-                nome_para_id_ing[n] for n in receita_json.get("ingredientes", [])
-            ]
-        )
+        # 2. Registra categorias (A própria classe verifica se já existe e cria se não)
+        for nome_cat in r_json.get("categorias", []):
+            receita.adicionar_categoria(nome_cat)
+
+        # 3. Registra ingredientes 
+        # (O JSON fonte não possui quantidades, então usamos valores genéricos)
+        for nome_ing in r_json.get("ingredientes", []):
+            receita.adicionar_ingrediente(nome_ing, unidade="und", quantidade=1)
+
         lista_receitas.append(receita)
 
-        # Registra a receita em cada categoria
-        for nome_cat in receita_json.get("categorias", []):
-            nome_para_cat[nome_cat].lista_categoria_receitas.append(receita)
+    # 4. Coletamos as listas de categorias e ingredientes criados "magicamente" 
+    # nos registros globais de cada classe!
+    lista_categorias = list(Categoria.registro_global.values())
+    lista_ingredientes = list(Ingredientes.registro_global.values())
 
-        # Registra a receita em cada ingrediente
-        for nome_ing in receita_json.get("ingredientes", []):
-            id_ing = nome_para_id_ing[nome_ing]
-            lista_ingredientes[id_ing - 1].lista_receitas_ingredientes.append(receita)
-
-    return lista_receitas, lista_ingredientes, lista_categorias, mapa_id_ingrediente
+    # Retornamos {} no final apenas para não quebrar o desempacotamento de 4 variáveis do main.py
+    return lista_receitas, lista_ingredientes, lista_categorias, {}
 
 
 def salvar_dados(lista_receitas, lista_ingredientes, lista_categorias,
-                 mapa_id_ingrediente, caminho: Path = _CAMINHO_SALVOS):
-    """Serializa o estado atual para dados_salvos.json."""
+                 mapa_id_ingrediente=None, caminho: Path = _CAMINHO_SALVOS):
+    """
+    Serializa o estado atual para dados_salvos.json extraindo os nomes 
+    direto dos objetos nas listas (sem usar IDs).
+    """
     dados = []
+    
     for r in lista_receitas:
+        # Extrai os nomes dos objetos Categoria para uma lista de strings
+        nomes_cats = [cat.nome_categoria for cat in r.lista_categoria_receitas]
+        
+        # Extrai os nomes dos objetos Ingrediente dentro das Quantidades
+        nomes_ings = [qi.ingrediente.nome_ingrediente for qi in r.lista_quantidade_ingredientes]
+        
         dados.append({
-            "id": r.id_ingredientes,
+            "versao_hash": r.historico_versoes_hash[-1] if hasattr(r, 'historico_versoes_hash') else "1.0",
             "nome": r.nome_receita,
-            "categorias": r.lista_categoria_receitas,
-            "ingredientes": [
-                mapa_id_ingrediente[qi.id_ingredientes]
-                for qi in r.lista_quantidade_ingredientes
-            ],
+            "categorias": nomes_cats,
+            "ingredientes": nomes_ings,
             "tempo_preparo_minutos": r.tempo_preparo,
             "custo_centavos_dolar": r.custo,
             "popularidade_likes": r.fator_recomendacao,
         })
+        
     with open(caminho, "w", encoding="utf-8") as f:
         json.dump(dados, f, ensure_ascii=False, indent=4)
+        
     print(f"[dados] {len(dados)} receitas salvas em '{caminho}'.")
