@@ -1,19 +1,24 @@
 class Categoria:
     registro_global = {}
 
-    def __init__(self, nome_categoria):
+    def __init__(self, nome_categoria, trie_global=None, tabela_hash=None):
         self.nome_categoria = nome_categoria
-        # Começa sempre vazia internamente para evitar o bug do argumento padrão mutável
         self.lista_categoria_receitas = [] 
         
-        # Salva no registro usando o nome em minúsculo como chave única
         Categoria.registro_global[nome_categoria.lower()] = self
+        
+        # A própria categoria se insere nos motores de busca
+        if trie_global:
+            trie_global.insert(nome_categoria.lower(), self)
+        if tabela_hash:
+            tabela_hash.inserir(nome_categoria.lower(), self)
 
     @classmethod
-    def get_ou_criar(cls, nome_categoria):
+    def get_ou_criar(cls, nome_categoria, trie_global=None, tabela_hash=None):
         nome_key = nome_categoria.lower()
         if nome_key not in cls.registro_global:
-            return cls(nome_categoria)
+            # Passa os motores para o construtor
+            return cls(nome_categoria, trie_global, tabela_hash)
         return cls.registro_global[nome_key]
 
     def adicionar_receita(self, receita):
@@ -24,23 +29,28 @@ class Categoria:
         if receita in self.lista_categoria_receitas:
             self.lista_categoria_receitas.remove(receita)
 
-    def mudar_nome(self, novo_nome, trie_global=None):
-        #Muda o nome e atualiza o registro. Recebe a Trie opcionalmente para mantê-la sincronizada.
+    def mudar_nome(self, novo_nome, trie_global=None, tabela_hash=None):
         nome_antigo_key = self.nome_categoria.lower()
         novo_nome_key = novo_nome.lower()
         
         if novo_nome_key in Categoria.registro_global:
             raise ValueError(f"A categoria '{novo_nome}' já existe!")
             
+        # Remove dos motores de busca antigos
         if trie_global:
-            trie_global.remove(nome_antigo_key, self) # Poda o caminho antigo
+            trie_global.remove(nome_antigo_key, self) 
+        if tabela_hash:
+            tabela_hash.remover(nome_antigo_key, self)
             
         del Categoria.registro_global[nome_antigo_key]
         self.nome_categoria = novo_nome
         Categoria.registro_global[novo_nome_key] = self
         
+        # Insere nos motores de busca novos
         if trie_global:
-            trie_global.insert(novo_nome_key, self) # Insere o caminho novo
+            trie_global.insert(novo_nome_key, self) 
+        if tabela_hash:
+            tabela_hash.inserir(novo_nome_key, self)
 
     def __str__(self): return self.nome_categoria
     def __repr__(self): return self.nome_categoria
