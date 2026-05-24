@@ -90,6 +90,18 @@ class Receita:
             cat.adicionar_receita(self)
             return True 
         return False
+    
+    def remover_categoria(self, nome_categoria: str) -> bool:
+        """Remove a relação com uma categoria específica, atualizando ambos os lados."""
+        nome_key = nome_categoria.lower()
+        for cat in self.lista_categoria_receitas:
+            if cat.nome_categoria.lower() == nome_key:
+                # 1. Remove da receita
+                self.lista_categoria_receitas.remove(cat)
+                # 2. Avisa a categoria para esquecer esta receita
+                cat.remover_receita(self)
+                return True
+        return False
 
     def adicionar_ingrediente(self, nome_ingrediente, unidade, quantidade, trie_global=None, tabela_hash=None) -> bool:
         ingrediente_obj = Ingredientes.get_ou_criar(nome_ingrediente, trie_global, tabela_hash)
@@ -98,6 +110,18 @@ class Receita:
         self.lista_quantidade_ingredientes.append(relacao)
         ingrediente_obj.adicionar_receita(self)
         return True
+    
+    def remover_ingrediente(self, nome_ingrediente: str) -> bool:
+        """Remove a relação com um ingrediente específico, atualizando ambos os lados."""
+        nome_key = nome_ingrediente.lower()
+        for relacao in self.lista_quantidade_ingredientes:
+            if relacao.ingrediente.nome_ingrediente.lower() == nome_key:
+                # 1. Remove da receita
+                self.lista_quantidade_ingredientes.remove(relacao)
+                # 2. Avisa o ingrediente para esquecer esta receita
+                relacao.ingrediente.remover_receita(self)
+                return True
+        return False
 
     def atualizar_custo(self, novo_custo) -> bool:
         self.custo = novo_custo

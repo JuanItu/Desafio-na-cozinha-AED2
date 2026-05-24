@@ -41,6 +41,8 @@ def carregar_dados(usar_salvos: bool = False):
             receita.historico_estados = r_json["historico_estados"]
         if "ultima_atualizacao" in r_json:
             receita.ultima_atualizacao = datetime.fromisoformat(r_json["ultima_atualizacao"])
+        if not receita.historico_estados:
+            receita.salvar_snapshot("Estado original carregado do arquivo")
 
         for nome_cat in r_json.get("categorias", []):
             receita.adicionar_categoria(nome_cat)

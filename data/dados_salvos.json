@@ -1,6 +1,5 @@
 [
     {
-        "versao_hash": "versao_inicial",
         "nome": "4 Ingredient Chicken Pot Pie",
         "categorias": [
             "lunch",
@@ -16,10 +15,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 440.62,
-        "popularidade_likes": 24
+        "popularidade_likes": 24,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.189635",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Beef Carrot Stew",
         "categorias": [
             "antipasti",
@@ -44,10 +46,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 77.7,
-        "popularidade_likes": 171
+        "popularidade_likes": 171,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.189760",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Easy Instant Pot Beef Tips and Rice",
         "categorias": [
             "lunch",
@@ -66,10 +71,13 @@
         ],
         "tempo_preparo_minutos": 30,
         "custo_centavos_dolar": 220.3,
-        "popularidade_likes": 25
+        "popularidade_likes": 25,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.189866",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Coconut Macaroons With Chocolate Drizzle",
         "categorias": [],
         "ingredientes": [
@@ -81,10 +89,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 27.23,
-        "popularidade_likes": 10
+        "popularidade_likes": 10,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.189916",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Artisan Farfalle Pasta With Smoked Salmon and Cream Sauce",
         "categorias": [
             "side dish",
@@ -105,10 +116,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 649.97,
-        "popularidade_likes": 3
+        "popularidade_likes": 3,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.189946",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Homemade Animal Crackers",
         "categorias": [
             "dessert"
@@ -128,10 +142,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 37.53,
-        "popularidade_likes": 39
+        "popularidade_likes": 39,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.190004",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Poached Prawns with Fettuccine and French String Beans",
         "categorias": [
             "lunch",
@@ -150,10 +167,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 277.97,
-        "popularidade_likes": 7
+        "popularidade_likes": 7,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.191661",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Appetizing Apple and Almond Soup",
         "categorias": [
             "antipasti",
@@ -178,10 +198,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 65.8,
-        "popularidade_likes": 4
+        "popularidade_likes": 4,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.191715",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Chicken Lo Mein",
         "categorias": [
             "lunch",
@@ -205,10 +228,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 177.0,
-        "popularidade_likes": 2
+        "popularidade_likes": 2,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.191781",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Candied Spiced Pecans",
         "categorias": [
             "fingerfood",
@@ -233,10 +259,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 101.39,
-        "popularidade_likes": 104
+        "popularidade_likes": 104,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.191861",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Guacamole",
         "categorias": [
             "antipasti",
@@ -262,10 +291,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 87.21,
-        "popularidade_likes": 20
+        "popularidade_likes": 20,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.191925",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Spinach Coriander Chive Bread",
         "categorias": [
             "bread"
@@ -286,10 +318,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 94.11,
-        "popularidade_likes": 3
+        "popularidade_likes": 3,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.191995",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Skinny Green Monster Smoothie",
         "categorias": [
             "morning meal",
@@ -307,10 +342,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 199.46,
-        "popularidade_likes": 7
+        "popularidade_likes": 7,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192062",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Simple Poached Egg Dinner",
         "categorias": [
             "lunch",
@@ -329,10 +367,13 @@
         ],
         "tempo_preparo_minutos": 20,
         "custo_centavos_dolar": 347.53,
-        "popularidade_likes": 3
+        "popularidade_likes": 3,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192115",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Mango Salsa",
         "categorias": [
             "antipasti",
@@ -357,10 +398,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 428.51,
-        "popularidade_likes": 14
+        "popularidade_likes": 14,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192160",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Vegan Chocolate Banana Pie",
         "categorias": [
             "dessert"
@@ -375,10 +419,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 108.58,
-        "popularidade_likes": 23
+        "popularidade_likes": 23,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192226",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Hyderabadi baghara Baingan",
         "categorias": [
             "side dish"
@@ -406,10 +453,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 124.3,
-        "popularidade_likes": 2
+        "popularidade_likes": 2,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192259",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Beef Teriyaki Stir Fry",
         "categorias": [
             "lunch",
@@ -434,10 +484,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 332.75,
-        "popularidade_likes": 5
+        "popularidade_likes": 5,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192345",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Pumpkin soup with wine",
         "categorias": [
             "antipasti",
@@ -458,10 +511,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 513.27,
-        "popularidade_likes": 14
+        "popularidade_likes": 14,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192406",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Flank Steak With Garlicky Mediterranean Salad",
         "categorias": [
             "lunch",
@@ -490,10 +546,13 @@
         ],
         "tempo_preparo_minutos": 15,
         "custo_centavos_dolar": 583.79,
-        "popularidade_likes": 2
+        "popularidade_likes": 2,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192460",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Soft Chin Chin",
         "categorias": [
             "side dish"
@@ -511,10 +570,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 55.63,
-        "popularidade_likes": 204
+        "popularidade_likes": 204,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192543",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Orange & Ginger Chicken",
         "categorias": [
             "lunch",
@@ -541,10 +603,13 @@
         ],
         "tempo_preparo_minutos": 180,
         "custo_centavos_dolar": 139.68,
-        "popularidade_likes": 2
+        "popularidade_likes": 2,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192584",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Balsamic & Honey Glazed Salmon with Lemony Asparagus",
         "categorias": [
             "lunch",
@@ -569,10 +634,13 @@
         ],
         "tempo_preparo_minutos": 60,
         "custo_centavos_dolar": 443.76,
-        "popularidade_likes": 28
+        "popularidade_likes": 28,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192660",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Oreo Mini Cheesecake",
         "categorias": [
             "dessert"
@@ -588,10 +656,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 51.27,
-        "popularidade_likes": 9
+        "popularidade_likes": 9,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192727",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Chewy Gingersnaps",
         "categorias": [
             "dessert"
@@ -612,10 +683,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 30.37,
-        "popularidade_likes": 27
+        "popularidade_likes": 27,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192772",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Make Ahead Quiche",
         "categorias": [
             "lunch",
@@ -641,10 +715,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 92.11,
-        "popularidade_likes": 2
+        "popularidade_likes": 2,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192827",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Egyptain Cauliflower Side Salad",
         "categorias": [
             "side dish",
@@ -667,10 +744,13 @@
         ],
         "tempo_preparo_minutos": 25,
         "custo_centavos_dolar": 150.58,
-        "popularidade_likes": 3
+        "popularidade_likes": 3,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192895",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Ginger Chicken Stir-Fry",
         "categorias": [
             "lunch",
@@ -692,10 +772,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 152.33,
-        "popularidade_likes": 2
+        "popularidade_likes": 2,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.192960",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Grilled Chicken Banh Mi",
         "categorias": [
             "lunch",
@@ -725,10 +808,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 258.48,
-        "popularidade_likes": 43
+        "popularidade_likes": 43,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193022",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Basic Hummus",
         "categorias": [
             "antipasti",
@@ -753,10 +839,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 9.8,
-        "popularidade_likes": 4
+        "popularidade_likes": 4,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193109",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Baked Rigatoni With Sausage",
         "categorias": [
             "side dish",
@@ -780,10 +869,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 258.68,
-        "popularidade_likes": 9
+        "popularidade_likes": 9,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193167",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Vegetarian Christmas wreath",
         "categorias": [
             "side dish"
@@ -802,10 +894,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 191.76,
-        "popularidade_likes": 11
+        "popularidade_likes": 11,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193228",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Baked Caramel Custard",
         "categorias": [
             "dessert"
@@ -822,10 +917,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 76.26,
-        "popularidade_likes": 46
+        "popularidade_likes": 46,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193275",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Fresh and Simple Swai Ceviche",
         "categorias": [
             "lunch",
@@ -846,10 +944,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 266.64,
-        "popularidade_likes": 2
+        "popularidade_likes": 2,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193327",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Chicken Parmayonnaise",
         "categorias": [
             "lunch",
@@ -866,10 +967,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 128.91,
-        "popularidade_likes": 2
+        "popularidade_likes": 2,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193380",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Butternut Squash, Arugula and Goat Cheese Quinoa",
         "categorias": [
             "lunch",
@@ -890,10 +994,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 251.24,
-        "popularidade_likes": 3
+        "popularidade_likes": 3,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193417",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Spicy Tuna Cakes",
         "categorias": [],
         "ingredientes": [
@@ -913,10 +1020,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 144.39,
-        "popularidade_likes": 5
+        "popularidade_likes": 5,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193478",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Cherry Lime Mojito",
         "categorias": [
             "beverage",
@@ -932,10 +1042,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 207.39,
-        "popularidade_likes": 21
+        "popularidade_likes": 21,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193533",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Korean Extra Crispy Fried Chicken w Sweet Spicy Glaze",
         "categorias": [
             "lunch",
@@ -961,10 +1074,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 226.95,
-        "popularidade_likes": 7
+        "popularidade_likes": 7,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193578",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Blue Cheese Tartlets With Fig Jam and Walnuts",
         "categorias": [
             "fingerfood",
@@ -985,10 +1101,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 95.48,
-        "popularidade_likes": 8
+        "popularidade_likes": 8,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193649",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Pasta With Chicken and Mushrooms",
         "categorias": [
             "side dish",
@@ -1012,10 +1131,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 175.15,
-        "popularidade_likes": 2
+        "popularidade_likes": 2,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193697",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Gluten Free Blueberry Muffins",
         "categorias": [
             "morning meal",
@@ -1037,10 +1159,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 49.84,
-        "popularidade_likes": 34
+        "popularidade_likes": 34,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193763",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Doughnuts",
         "categorias": [
             "morning meal",
@@ -1057,10 +1182,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 67.93,
-        "popularidade_likes": 205
+        "popularidade_likes": 205,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193819",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "S'more Bars",
         "categorias": [
             "dessert"
@@ -1074,10 +1202,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 49.68,
-        "popularidade_likes": 14
+        "popularidade_likes": 14,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193856",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Braised Oxtail",
         "categorias": [
             "side dish"
@@ -1098,10 +1229,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 110.37,
-        "popularidade_likes": 2
+        "popularidade_likes": 2,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193885",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Fig, Apple, and Arugula Salad",
         "categorias": [
             "side dish",
@@ -1126,10 +1260,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 486.36,
-        "popularidade_likes": 4
+        "popularidade_likes": 4,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.193942",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Kale and Roasted Sweet Potato Soup with Chicken Sausage",
         "categorias": [
             "lunch",
@@ -1155,10 +1292,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 292.88,
-        "popularidade_likes": 2
+        "popularidade_likes": 2,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.194014",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Upside Down Chicken Cake",
         "categorias": [],
         "ingredientes": [
@@ -1183,10 +1323,13 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 93.59,
-        "popularidade_likes": 5
+        "popularidade_likes": 5,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.194092",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
         "nome": "Moon Pies",
         "categorias": [
             "dessert"
@@ -1207,10 +1350,129 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 19.73,
-        "popularidade_likes": 3
+        "popularidade_likes": 3,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.194162",
+        "data_exclusao": null,
+        "excluida": false
     },
     {
-        "versao_hash": "versao_inicial",
+        "nome": "Cozido do Jean",
+        "categorias": [
+            "starter",
+            "breakfeast",
+            "brunch"
+        ],
+        "ingredientes": [
+            "arroz",
+            "salt",
+            "porkchop",
+            "water"
+        ],
+        "tempo_preparo_minutos": 30,
+        "custo_centavos_dolar": 200,
+        "popularidade_likes": 100.0,
+        "historico_estados": [
+            {
+                "data": "24/05/2026 18:32:19",
+                "motivo": "Edição: Custo",
+                "nome": "Cozido do Jean",
+                "custo": 100,
+                "tempo": 20,
+                "categorias": [
+                    "starter",
+                    "breakfeast",
+                    "brunch"
+                ],
+                "ingredientes": [
+                    "1und arroz",
+                    "1und água",
+                    "1und salt",
+                    "1und porkchop"
+                ]
+            },
+            {
+                "data": "24/05/2026 18:33:46",
+                "motivo": "Edição: Custo, Tempo",
+                "nome": "Cozido do Jean",
+                "custo": 200,
+                "tempo": 30,
+                "categorias": [
+                    "starter",
+                    "breakfeast",
+                    "brunch"
+                ],
+                "ingredientes": [
+                    "1und arroz",
+                    "1und água",
+                    "1und salt",
+                    "1und porkchop"
+                ]
+            },
+            {
+                "data": "24/05/2026 19:22:52",
+                "motivo": "Edição: Fator, +Ingrediente (water), +Ingrediente (water)",
+                "nome": "Cozido do Jean",
+                "custo": 200,
+                "tempo": 30,
+                "categorias": [
+                    "starter",
+                    "breakfeast",
+                    "brunch"
+                ],
+                "ingredientes": [
+                    "1und arroz",
+                    "1und água",
+                    "1und salt",
+                    "1und porkchop",
+                    "1xicara water",
+                    "1cup water"
+                ]
+            },
+            {
+                "data": "24/05/2026 19:26:29",
+                "motivo": "Edição: -Ingrediente (water), -Ingrediente (água)",
+                "nome": "Cozido do Jean",
+                "custo": 200,
+                "tempo": 30,
+                "categorias": [
+                    "starter",
+                    "breakfeast",
+                    "brunch"
+                ],
+                "ingredientes": [
+                    "1und arroz",
+                    "1und salt",
+                    "1und porkchop",
+                    "1cup water"
+                ]
+            }
+        ],
+        "ultima_atualizacao": "2026-05-24T19:26:29.594496",
+        "data_exclusao": null,
+        "excluida": false
+    },
+    {
+        "nome": "Rice and Beans",
+        "categorias": [
+            "brazil",
+            "starter"
+        ],
+        "ingredientes": [
+            "rice",
+            "beans",
+            "água",
+            "salt"
+        ],
+        "tempo_preparo_minutos": 20,
+        "custo_centavos_dolar": 300,
+        "popularidade_likes": 0.0,
+        "historico_estados": [],
+        "ultima_atualizacao": "2026-05-24T18:31:06.194327",
+        "data_exclusao": null,
+        "excluida": false
+    },
+    {
         "nome": "Szechuan-Style Shirataki Noodles",
         "categorias": [
             "side dish",
@@ -1236,41 +1498,40 @@
         ],
         "tempo_preparo_minutos": 45,
         "custo_centavos_dolar": 862.45,
-        "popularidade_likes": 2
-    },
-    {
-        "versao_hash": "versao_inicial",
-        "nome": "Cozido do Jean",
-        "categorias": [
-            "starter",
-            "breakfeast",
-            "brunch"
+        "popularidade_likes": 2,
+        "historico_estados": [
+            {
+                "data": "24/05/2026 18:31:27",
+                "motivo": "Exclusão da Receita",
+                "nome": "Szechuan-Style Shirataki Noodles",
+                "custo": 862.45,
+                "tempo": 45,
+                "categorias": [
+                    "side dish",
+                    "lunch",
+                    "main course",
+                    "main dish",
+                    "dinner"
+                ],
+                "ingredientes": [
+                    "1und shirataki",
+                    "1und protein",
+                    "1und soy sauce",
+                    "1und rice wine",
+                    "1und chili sauce",
+                    "1und ginger",
+                    "1und scallions",
+                    "1und veggies",
+                    "1und sesame oil",
+                    "1und microwave the noodles",
+                    "1und add the soy sauce",
+                    "1und add the scallions and your protein and continue to stir-fry until it's through . add the noodles",
+                    "1und turn into a bowl"
+                ]
+            }
         ],
-        "ingredientes": [
-            "arroz",
-            "água",
-            "salt",
-            "porkchop"
-        ],
-        "tempo_preparo_minutos": 20,
-        "custo_centavos_dolar": 0,
-        "popularidade_likes": 0.0
-    },
-    {
-        "versao_hash": "versao_inicial",
-        "nome": "Rice and Beans",
-        "categorias": [
-            "brazil",
-            "starter"
-        ],
-        "ingredientes": [
-            "rice",
-            "beans",
-            "água",
-            "salt"
-        ],
-        "tempo_preparo_minutos": 20,
-        "custo_centavos_dolar": 300,
-        "popularidade_likes": 0.0
+        "ultima_atualizacao": "2026-05-24T18:31:27.175687",
+        "data_exclusao": "2026-05-24T18:31:27.175678",
+        "excluida": true
     }
 ]

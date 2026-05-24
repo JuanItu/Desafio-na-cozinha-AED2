@@ -37,6 +37,14 @@ def _pedir_inteiro(prompt: str) -> int | None:
     except ValueError:
         print("  ⚠ Valor inválido, ignorado.")
         return None
+    
+def _pedir_float(prompt: str) -> float | None:
+    entrada = input(prompt).strip()
+    if not entrada: return None
+    try: return float(entrada)
+    except ValueError:
+        print("  ⚠ Valor inválido, ignorado.")
+        return None
 
 def menu_recomendacao(motor: AlgoritmoRecomendacao, lista_receitas, trie_global, tabela_hash) -> None:
     print("\n" + "═" * 55)
@@ -315,6 +323,11 @@ def menu_visualizar_receita(receita: Receita, motor, lista_receitas, trie_global
                 print("  1. Renomear Receita")
                 print("  2. Alterar Custo")
                 print("  3. Alterar Tempo")
+                print("  4. Alterar Fator de Recomendação")
+                print("  5. Adicionar Ingrediente")
+                print("  6. Remover Ingrediente")
+                print("  7. Adicionar Categoria")
+                print("  8. Remover Categoria")
                 print("  0. Salvar e Sair do Modo de Edição")
                 edicao = input("  Opção: ").strip()
                 
@@ -340,6 +353,57 @@ def menu_visualizar_receita(receita: Receita, motor, lista_receitas, trie_global
                     if novo_t is not None:
                         receita.atualizar_tempo(novo_t)
                         alteracoes_feitas.append("Tempo")
+                elif edicao == '4':
+                    novo_f = _pedir_float("  Novo Fator (ex: 4.5): ")
+                    if novo_f is not None:
+                        receita.atualizar_fator_recomendacao(novo_f)
+                        alteracoes_feitas.append("Fator")
+                elif edicao == '5':
+                    ing_nome = input("  Nome do ingrediente a adicionar: ").strip()
+                    if ing_nome:
+                        qtd = _pedir_inteiro("  Quantidade (número) [padrão=1]: ") or 1
+                        und = input("  Unidade (ex: g, ml) [padrão=und]: ").strip() or "und"
+                        receita.adicionar_ingrediente(ing_nome, und, qtd, trie_global, tabela_hash)
+                        alteracoes_feitas.append(f"+Ingrediente ({ing_nome})")
+                elif edicao == '6':
+                    if not receita.lista_quantidade_ingredientes:
+                        print("  ✗ Esta receita não tem ingredientes para remover.")
+                    else:
+                        print("\n  Qual ingrediente deseja remover?")
+                        for i, rel in enumerate(receita.lista_quantidade_ingredientes, 1):
+                            print(f"    {i}. {rel.ingrediente.nome_ingrediente}")
+                        
+                        idx = _pedir_inteiro("  Número do ingrediente: ")
+                        if idx and 1 <= idx <= len(receita.lista_quantidade_ingredientes):
+                            rel_alvo = receita.lista_quantidade_ingredientes[idx - 1]
+                            nome_ing_alvo = rel_alvo.ingrediente.nome_ingrediente
+                            receita.remover_ingrediente(nome_ing_alvo)
+                            alteracoes_feitas.append(f"-Ingrediente ({nome_ing_alvo})")
+                        else:
+                            print("  ⚠ Seleção inválida.")
+                elif edicao == '7':
+                    cat_nome = input("  Nome da categoria a adicionar: ").strip()
+                    if cat_nome:
+                        receita.adicionar_categoria(cat_nome, trie_global, tabela_hash)
+                        alteracoes_feitas.append(f"+Categoria ({cat_nome})")
+                elif edicao == '8':
+                    if not receita.lista_categoria_receitas:
+                        print("  ✗ Esta receita não tem categorias para remover.")
+                    else:
+                        print("\n  Qual categoria deseja remover?")
+                        for i, cat in enumerate(receita.lista_categoria_receitas, 1):
+                            print(f"    {i}. {cat.nome_categoria}")
+                        
+                        idx = _pedir_inteiro("  Número da categoria: ")
+                        if idx and 1 <= idx <= len(receita.lista_categoria_receitas):
+                            cat_alvo = receita.lista_categoria_receitas[idx - 1]
+                            nome_cat_alvo = cat_alvo.nome_categoria
+                            receita.remover_categoria(nome_cat_alvo)
+                            alteracoes_feitas.append(f"-Categoria ({nome_cat_alvo})")
+                        else:
+                            print("  ⚠ Seleção inválida.")
+                else:
+                    print("  ⚠ Opção inválida.")
         elif escolha == 'X':
             confirm = input("  Excluir Receita (Mover para Arquivo Morto)? (S/N): ").upper()
             if confirm == 'S':
