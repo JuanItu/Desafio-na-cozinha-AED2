@@ -1255,5 +1255,22 @@
         "tempo_preparo_minutos": 20,
         "custo_centavos_dolar": 0,
         "popularidade_likes": 0.0
+    },
+    {
+        "versao_hash": "versao_inicial",
+        "nome": "Rice and Beans",
+        "categorias": [
+            "brazil",
+            "starter"
+        ],
+        "ingredientes": [
+            "rice",
+            "beans",
+            "água",
+            "salt"
+        ],
+        "tempo_preparo_minutos": 20,
+        "custo_centavos_dolar": 300,
+        "popularidade_likes": 0.0
     }
 ]

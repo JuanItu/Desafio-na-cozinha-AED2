@@ -16,11 +16,23 @@ _CAMINHO_FONTE  = Path(__file__).parent / "dados_fonte.json"
 _CAMINHO_SALVOS = Path(__file__).parent / "dados_salvos.json"
 
 
-def carregar_dados(caminho: Path = _CAMINHO_FONTE):
+def carregar_dados(usar_salvos: bool = False):
     """
     Lê o JSON e constrói as instâncias. 
     Graças ao Registro Global das classes, não precisamos mais gerenciar IDs!
     """
+    # Lógica de escolha do arquivo com trava de segurança
+    if usar_salvos:
+        if _CAMINHO_SALVOS.exists():
+            caminho = _CAMINHO_SALVOS
+            print("  -> Lendo do arquivo de dados salvos...")
+        else:
+            caminho = _CAMINHO_FONTE
+            print("  ⚠ Nenhum dado salvo encontrado! Lendo da base de fábrica...")
+    else:
+        caminho = _CAMINHO_FONTE
+        print("  -> Lendo da base de fábrica original...")
+
     with open(caminho, encoding="utf-8") as f:
         dados_json = json.load(f)
 
@@ -37,24 +49,25 @@ def carregar_dados(caminho: Path = _CAMINHO_FONTE):
             )
         except ValueError:
             continue # Ignora duplicatas
+            
+        # -- RECUPERA O HASH SE FOR O ARQUIVO SALVO --
+        if "versao_hash" in r_json:
+            receita.historico_versoes_hash = [r_json["versao_hash"]]
 
-        # 2. Registra categorias (A própria classe verifica se já existe e cria se não)
+        # 2. Registra categorias
         for nome_cat in r_json.get("categorias", []):
             receita.adicionar_categoria(nome_cat)
 
         # 3. Registra ingredientes 
-        # (O JSON fonte não possui quantidades, então usamos valores genéricos)
         for nome_ing in r_json.get("ingredientes", []):
             receita.adicionar_ingrediente(nome_ing, unidade="und", quantidade=1)
 
         lista_receitas.append(receita)
 
-    # 4. Coletamos as listas de categorias e ingredientes criados "magicamente" 
-    # nos registros globais de cada classe!
+    # 4. Coletamos as listas de categorias e ingredientes criados
     lista_categorias = list(Categoria.registro_global.values())
     lista_ingredientes = list(Ingredientes.registro_global.values())
 
-    # Retornamos {} no final apenas para não quebrar o desempacotamento de 4 variáveis do main.py
     return lista_receitas, lista_ingredientes, lista_categorias, {}
 
 
