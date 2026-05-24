@@ -7,18 +7,13 @@ class Ingredientes:
         self.lista_receitas_ingredientes = []
         
         Ingredientes.registro_global[nome_ingrediente.lower()] = self
-        
-        # O próprio ingrediente se insere nos motores de busca
-        if trie_global:
-            trie_global.insert(nome_ingrediente.lower(), self)
-        if tabela_hash:
-            tabela_hash.inserir(nome_ingrediente.lower(), self)
+        if trie_global: trie_global.insert(nome_ingrediente.lower(), self)
+        if tabela_hash: tabela_hash.inserir(nome_ingrediente.lower(), self)
 
     @classmethod
     def get_ou_criar(cls, nome_ingrediente, trie_global=None, tabela_hash=None):
         nome_key = nome_ingrediente.lower()
         if nome_key not in cls.registro_global:
-            # Lembre de passar 0.0 para o estoque ao repassar os parâmetros
             return cls(nome_ingrediente, 0.0, trie_global, tabela_hash)
         return cls.registro_global[nome_key]
 
@@ -30,14 +25,23 @@ class Ingredientes:
         if receita in self.lista_receitas_ingredientes:
             self.lista_receitas_ingredientes.remove(receita)
 
+    def excluir(self, trie_global=None, tabela_hash=None):
+        for rec in list(self.lista_receitas_ingredientes):
+            nova_lista = [qi for qi in rec.lista_quantidade_ingredientes if qi.ingrediente != self]
+            rec.lista_quantidade_ingredientes = nova_lista
+            rec.salvar_snapshot(f"Ingrediente '{self.nome_ingrediente}' foi apagado do sistema")
+            
+        nome_key = self.nome_ingrediente.lower()
+        if trie_global: trie_global.remove(nome_key, self)
+        if tabela_hash: tabela_hash.remover(nome_key, self)
+        if nome_key in Ingredientes.registro_global:
+            del Ingredientes.registro_global[nome_key]
+
     def mudar_nome(self, novo_nome, trie_global=None, tabela_hash=None):
         nome_antigo_key = self.nome_ingrediente.lower()
         novo_nome_key = novo_nome.lower()
-        
-        if novo_nome_key in Ingredientes.registro_global:
-            raise ValueError(f"O ingrediente '{novo_nome}' já existe!")
+        if novo_nome_key in Ingredientes.registro_global: raise ValueError(f"O ingrediente '{novo_nome}' já existe!")
             
-        # Remove dos motores antigos
         if trie_global: trie_global.remove(nome_antigo_key, self)
         if tabela_hash: tabela_hash.remover(nome_antigo_key, self)
         
@@ -45,7 +49,6 @@ class Ingredientes:
         self.nome_ingrediente = novo_nome
         Ingredientes.registro_global[novo_nome_key] = self
         
-        # Insere nos motores novos
         if trie_global: trie_global.insert(novo_nome_key, self)
         if tabela_hash: tabela_hash.inserir(novo_nome_key, self)
 
@@ -54,9 +57,7 @@ class Ingredientes:
 
 
 class QuantidadeIngredientes:
-    # Esta classe não precisa de registro global pois ela é apenas um "elo" de ligação.
     def __init__(self, ingrediente_obj, unidade_utilizada, quantidade_necessaria):
-        # Recebe o objeto Inteiro em vez do ID!
         self.ingrediente = ingrediente_obj 
         self.unidade_utilizada = unidade_utilizada
         self.quantidade_necessaria = quantidade_necessaria
