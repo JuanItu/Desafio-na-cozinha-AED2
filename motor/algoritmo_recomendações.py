@@ -18,35 +18,13 @@ class AlgoritmoRecomendacao:
     fator_recomendacao (decrescente).
 
     flag_reordenar é levantado sempre que uma receita é
-    adicionada/removida; a ordenação só ocorre quando necessário.
-
-    O algoritmo é guloso: percorre o vetor do maior para o menor
-    fator e retorna a primeira receita que satisfaz TODOS os
-    parâmetros informados pelo cliente.
-
-    Modos de busca (parâmetro 'modo')
-    ----------------------------------
-    "none_guloso"          → sem filtros, retorna as top-N pelo fator
-    "tempo_preparo"        → filtra por tempo máximo (int, minutos)
-    "custo_indicado"       → filtra por custo máximo (int, centavos)
-    "ingrediente_proibido" → rejeita receitas com certos ingredientes
-    "ingrediente_exigido"  → exige ingredientes específicos
-    "categoria_exigida"    → exige categorias específicas
-    Combinados             → todos os filtros fornecidos são aplicados
+    adicionada/removida ou quando o main notifica uma alteração de fator.
     """
 
-    def __init__(self, mapa_id_ingrediente: dict):
-        """
-        Parâmetros
-        ----------
-        mapa_id_ingrediente : dict[int, str]
-            Dicionário {id_ingrediente: nome_ingrediente} produzido
-            por load_source.carregar_dados(). Necessário para
-            traduzir os IDs de QuantidadeIngredientes em nomes.
-        """
+    def __init__(self):
+        # Não precisamos mais do mapa_id_ingrediente! Tudo funciona por referência.
         self.lista_recomendacao: list[Receita] = []
         self.flag_reordenar: bool = False
-        self._mapa_ing: dict[int, str] = mapa_id_ingrediente
 
     # ── Gerenciamento do vetor ─────────────────────────────────────────
 
@@ -63,6 +41,10 @@ class AlgoritmoRecomendacao:
         except ValueError:
             pass
 
+    def notificar_atualizacao(self) -> None:
+        """Chamado pelo main.py quando a flag 'recomendacao_desatualizada' da receita disparar."""
+        self.flag_reordenar = True
+
     def _reordenar_se_necessario(self) -> None:
         """Ordena por fator_recomendacao desc apenas se flag estiver ativo."""
         if self.flag_reordenar:
@@ -75,9 +57,9 @@ class AlgoritmoRecomendacao:
     # ── Helpers internos ───────────────────────────────────────────────
 
     def _nomes_ingredientes(self, receita: Receita) -> set[str]:
-        """Retorna set de nomes (lowercase) dos ingredientes da receita."""
+        """Retorna set de nomes (lowercase) dos objetos ingrediente da receita."""
         return {
-            self._mapa_ing.get(qi.id_ingredientes, "").lower()
+            qi.ingrediente.nome_ingrediente.lower()
             for qi in receita.lista_quantidade_ingredientes
         }
 
@@ -108,7 +90,8 @@ class AlgoritmoRecomendacao:
     def _ok_categoria_exigida(self, receita: Receita, categorias: list) -> bool:
         if not categorias:
             return True
-        cats_receita = {c.lower() for c in receita.lista_categoria_receitas}
+        # Agora lemos o nome_categoria do objeto Categoria diretamente
+        cats_receita = {c.nome_categoria.lower() for c in receita.lista_categoria_receitas}
         return all(c.lower() in cats_receita for c in categorias)
 
     # ── Algoritmo guloso principal ─────────────────────────────────────
@@ -122,29 +105,11 @@ class AlgoritmoRecomendacao:
         ingredientes_exigidos:  list | None = None,
         categorias_exigidas:    list | None = None,
     ) -> list[Receita]:
-        """
-        Percorre o vetor (maior → menor fator_recomendacao) e retorna
-        as primeiras `quantidade` receitas que passam em TODOS os filtros.
-
-        Parâmetros
-        ----------
-        quantidade            : int   — quantas receitas retornar (default 1)
-        tempo_maximo          : int   — minutos máximos de preparo
-        custo_maximo          : int   — centavos de dólar máximos
-        ingredientes_proibidos: list  — nomes de ingredientes proibidos
-        ingredientes_exigidos : list  — nomes de ingredientes obrigatórios
-        categorias_exigidas   : list  — nomes de categorias obrigatórias
-
-        Retorna
-        -------
-        list[Receita] com até `quantidade` receitas.
-        """
-        # Normaliza listas vazias
+        
         proibidos = ingredientes_proibidos or []
         exigidos  = ingredientes_exigidos  or []
         categorias = categorias_exigidas   or []
 
-        # Modo none_guloso: nenhum filtro, só pega as top-N
         none_guloso = (
             tempo_maximo is None
             and custo_maximo is None
@@ -154,28 +119,18 @@ class AlgoritmoRecomendacao:
         )
 
         self._reordenar_se_necessario()
-
         recomendadas: list[Receita] = []
 
         for receita in self.lista_recomendacao:
-
             if none_guloso:
                 recomendadas.append(receita)
-
             else:
-                # Testa cada parâmetro em sequência (guloso)
-                if not self._ok_tempo(receita, tempo_maximo):
-                    continue
-                if not self._ok_custo(receita, custo_maximo):
-                    continue
-                if not self._ok_ing_proibido(receita, proibidos):
-                    continue
-                if not self._ok_ing_exigido(receita, exigidos):
-                    continue
-                if not self._ok_categoria_exigida(receita, categorias):
-                    continue
+                if not self._ok_tempo(receita, tempo_maximo): continue
+                if not self._ok_custo(receita, custo_maximo): continue
+                if not self._ok_ing_proibido(receita, proibidos): continue
+                if not self._ok_ing_exigido(receita, exigidos): continue
+                if not self._ok_categoria_exigida(receita, categorias): continue
 
-                # ✓ Todos os parâmetros alcançados → indica receita
                 recomendadas.append(receita)
 
             if len(recomendadas) == quantidade:
@@ -186,7 +141,6 @@ class AlgoritmoRecomendacao:
     # ── Exibição ───────────────────────────────────────────────────────
 
     def exibir_lista(self, limite: int = 20) -> None:
-        """Imprime o vetor ordenado (útil para depuração)."""
         self._reordenar_se_necessario()
         total = len(self.lista_recomendacao)
         print(f"\n{'#':<5} {'Nome':<42} {'Fator':>6} {'Custo(¢$)':>10} {'Tempo':>7}")
@@ -203,18 +157,17 @@ class AlgoritmoRecomendacao:
         print(f"  Total: {total} receitas | flag_reordenar={self.flag_reordenar}\n")
 
     def exibir_recomendacao(self, receitas: list[Receita]) -> None:
-        """Imprime o resultado de uma chamada a recomendar()."""
         if not receitas:
             print("  ✗ Nenhuma receita encontrada para os parâmetros informados.\n")
             return
         for i, r in enumerate(receitas, 1):
-            ingredientes = [
-                self._mapa_ing.get(qi.id_ingredientes, "?")
-                for qi in r.lista_quantidade_ingredientes
-            ]
+            # Agora extraímos os nomes diretamente dos objetos nas listas
+            ingredientes = [qi.ingrediente.nome_ingrediente for qi in r.lista_quantidade_ingredientes]
+            categorias = [c.nome_categoria for c in r.lista_categoria_receitas]
+            
             print(f"  [{i}] {r.nome_receita}")
             print(f"      Fator: {r.fator_recomendacao} | "
                   f"Custo: {r.custo:.0f}¢$ | "
                   f"Tempo: {r.tempo_preparo}min")
-            print(f"      Categorias: {', '.join(r.lista_categoria_receitas)}")
+            print(f"      Categorias: {', '.join(categorias)}")
             print(f"      Ingredientes: {', '.join(ingredientes)}\n")
