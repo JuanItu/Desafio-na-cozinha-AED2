@@ -1,16 +1,15 @@
 from modelos.categoria import Categoria
 from modelos.ingredientes import Ingredientes, QuantidadeIngredientes
+from datetime import datetime
 
 class Receita:
     registro_global = {}
+    registro_excluidas = {} # O nosso "Arquivo Morto"
 
     def __init__(self, nome_receita, custo=0.0, tempo_preparo=0, fator_recomendacao=0.0, trie_global=None, tabela_hash=None):
         nome_key = nome_receita.lower()
         
-        # 1. REGRA DE CRIAÇÃO: Verifica se já existe antes de fazer qualquer coisa
         if nome_key in Receita.registro_global:
-            # Ao lançar este erro, a criação é abortada. 
-            # O `main` captura isso, sabe que falhou e NÃO altera a flag do algoritmo.
             raise ValueError(f"A receita '{nome_receita}' já existe e não foi adicionada.")
 
         self.nome_receita = nome_receita
@@ -21,31 +20,46 @@ class Receita:
         self.lista_categoria_receitas = []
         self.lista_quantidade_ingredientes = []
         
-        # 2. LISTA DE HASHES/VERSÕES: Nasce com uma string básica ou pode usar a serialização depois
-        self.historico_versoes_hash = ["versao_inicial"]
+        # --- PREPARAÇÃO DO MODO INVESTIGAÇÃO ---
+        self.historico_estados = []
+        self.ultima_atualizacao = datetime.now()
+        self.data_exclusao = None
         
-        # 3. REGISTRO E TRIE: Como passou pela verificação, adicionamos com sucesso!
         Receita.registro_global[nome_key] = self
         if trie_global is not None:
             trie_global.insert(nome_key, self)
-        if tabela_hash is not None:              # <-- Sincroniza
+        if tabela_hash is not None:              
             tabela_hash.inserir(nome_key, self)
 
-    # --- MÉTODOS DE SINALIZAÇÃO PARA O ALGORITMO ---
+    def salvar_snapshot(self, motivo="Atualização Geral"):
+        """Tira uma 'foto' do estado atual da receita e guarda no histórico."""
+        self.ultima_atualizacao = datetime.now()
+        
+        categorias = [c.nome_categoria for c in self.lista_categoria_receitas]
+        ingredientes = [f"{qi.quantidade_necessaria}{qi.unidade_utilizada} {qi.ingrediente.nome_ingrediente}" 
+                        for qi in self.lista_quantidade_ingredientes]
+                        
+        snapshot = {
+            "data": self.ultima_atualizacao.strftime("%d/%m/%Y %H:%M:%S"),
+            "motivo": motivo,
+            "nome": self.nome_receita,
+            "custo": self.custo,
+            "tempo": self.tempo_preparo,
+            "categorias": categorias,
+            "ingredientes": ingredientes
+        }
+        
+        self.historico_estados.append(snapshot)
+        
+        # Limita o histórico a 5 versões para economizar memória
+        if len(self.historico_estados) > 5:
+            self.historico_estados.pop(0)
 
     def atualizar_fator_recomendacao(self, novo_fator) -> bool:
-        """
-        Altera o fator e retorna True para sinalizar ao 'main' 
-        que o algoritmo de recomendação ficou desatualizado.
-        """
         self.fator_recomendacao = novo_fator
         return True 
 
     def excluir(self, trie_global=None, tabela_hash=None) -> bool:
-        """
-        Limpa as relações bidirecionais, remove da Trie, do Registro Geral 
-        e retorna True para avisar o 'main' que a exclusão foi um sucesso e o algoritmo desatualizou.
-        """
         # Limpa as categorias
         for cat in self.lista_categoria_receitas:
             cat.remover_receita(self)
@@ -57,22 +71,19 @@ class Receita:
         nome_key = self.nome_receita.lower()
         
         # Atualiza os motores de busca
-        if trie_global is not None: 
-            trie_global.remove(nome_key, self)
-        if tabela_hash is not None:
-            tabela_hash.remover(nome_key, self)
+        if trie_global is not None: trie_global.remove(nome_key, self)
+        if tabela_hash is not None: tabela_hash.remover(nome_key, self)
             
-        # Remove do Banco de Dados
+        # Remove do Banco de Dados Principal e vai para a Lixeira
         if nome_key in Receita.registro_global:
             del Receita.registro_global[nome_key]
             
-        # Sinaliza sucesso para o main
+        self.data_exclusao = datetime.now()
+        self.salvar_snapshot("Exclusão da Receita")
+        Receita.registro_excluidas[nome_key] = self 
         return True
 
-    # --- MÉTODOS DE RELACIONAMENTO ---
-
     def adicionar_categoria(self, nome_categoria, trie_global=None, tabela_hash=None) -> bool:
-        # Repassa os motores para o get_ou_criar da Categoria
         cat = Categoria.get_ou_criar(nome_categoria, trie_global, tabela_hash)
         if cat not in self.lista_categoria_receitas:
             self.lista_categoria_receitas.append(cat)
@@ -81,16 +92,12 @@ class Receita:
         return False
 
     def adicionar_ingrediente(self, nome_ingrediente, unidade, quantidade, trie_global=None, tabela_hash=None) -> bool:
-        # Repassa os motores para o get_ou_criar do Ingrediente
         ingrediente_obj = Ingredientes.get_ou_criar(nome_ingrediente, trie_global, tabela_hash)
         relacao = QuantidadeIngredientes(ingrediente_obj, unidade, quantidade)
         
         self.lista_quantidade_ingredientes.append(relacao)
         ingrediente_obj.adicionar_receita(self)
-        
         return True
-
-    # --- OUTROS MÉTODOS ---
 
     def atualizar_custo(self, novo_custo) -> bool:
         self.custo = novo_custo
@@ -107,22 +114,15 @@ class Receita:
         if novo_nome_key in Receita.registro_global:
             raise ValueError(f"A receita '{novo_nome}' já existe!")
             
-        # Poda os motores de busca
-        if trie_global: 
-            trie_global.remove(nome_antigo_key, self)
-        if tabela_hash:
-            tabela_hash.remover(nome_antigo_key, self)
+        if trie_global: trie_global.remove(nome_antigo_key, self)
+        if tabela_hash: tabela_hash.remover(nome_antigo_key, self)
             
-        # Atualiza o registro
         del Receita.registro_global[nome_antigo_key]
         self.nome_receita = novo_nome
         Receita.registro_global[novo_nome_key] = self
         
-        # Insere o nome novo nos motores de busca
-        if trie_global: 
-            trie_global.insert(novo_nome_key, self)
-        if tabela_hash:
-            tabela_hash.inserir(novo_nome_key, self)
+        if trie_global: trie_global.insert(novo_nome_key, self)
+        if tabela_hash: tabela_hash.inserir(novo_nome_key, self)
 
     def __str__(self): return self.nome_receita
     def __repr__(self): return f"<Receita: {self.nome_receita}>"

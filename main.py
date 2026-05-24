@@ -3,9 +3,8 @@
 import sys
 from pathlib import Path
 
-sys.stdout.reconfigure(encoding='utf-8')    # Garante o uso e exibição de acentos e símbolos
+sys.stdout.reconfigure(encoding='utf-8')
 
-# Garante que a raiz do projeto está no path
 _RAIZ = Path(__file__).resolve().parent
 if str(_RAIZ) not in sys.path:
     sys.path.insert(0, str(_RAIZ))
@@ -19,35 +18,27 @@ from motor.algoritmo_recomendações import AlgoritmoRecomendacao
 from motor.busca_geral import TrieBuscaGeral
 from motor.busca_id import TabelaHashNomes, construir_tabela_hash
 
-
 def montar_motor(lista_receitas) -> AlgoritmoRecomendacao:
-    """Cria e popula o motor de recomendação com todas as receitas."""
     motor = AlgoritmoRecomendacao()
     for receita in lista_receitas:
         motor.adicionar_receita(receita)
     motor._reordenar_se_necessario()
     return motor
 
-
 def _pedir_lista(prompt: str) -> list[str]:
     entrada = input(prompt).strip()
-    if not entrada:
-        return []
+    if not entrada: return []
     return [item.strip() for item in entrada.split(",") if item.strip()]
-
 
 def _pedir_inteiro(prompt: str) -> int | None:
     entrada = input(prompt).strip()
-    if not entrada:
-        return None
-    try:
-        return int(entrada)
+    if not entrada: return None
+    try: return int(entrada)
     except ValueError:
         print("  ⚠ Valor inválido, ignorado.")
         return None
 
-
-def menu_recomendacao(motor: AlgoritmoRecomendacao) -> None:
+def menu_recomendacao(motor: AlgoritmoRecomendacao, lista_receitas, trie_global, tabela_hash) -> None:
     print("\n" + "═" * 55)
     print("  RECOMENDAÇÃO DE RECEITAS")
     print("═" * 55)
@@ -62,38 +53,27 @@ def menu_recomendacao(motor: AlgoritmoRecomendacao) -> None:
 
     print()
     resultados = motor.recomendar(
-        quantidade=qtd,
-        tempo_maximo=tempo,
-        custo_maximo=custo,
-        ingredientes_proibidos=proib,
-        ingredientes_exigidos=exig,
-        categorias_exigidas=cats,
+        quantidade=qtd, tempo_maximo=tempo, custo_maximo=custo,
+        ingredientes_proibidos=proib, ingredientes_exigidos=exig, categorias_exigidas=cats
     )
     
-    # Loop interativo da recomendação
     while True:
         motor.exibir_recomendacao(resultados)
-        
-        if not resultados:
-            break # Sai direto se a busca não encontrou nada
+        if not resultados: break
             
         escolha = _pedir_inteiro("  Digite o número da receita para explorar (0 para voltar): ")
-        if escolha == 0 or escolha is None:
-            break
+        if escolha == 0 or escolha is None: break
         elif 1 <= escolha <= len(resultados):
-            menu_visualizar_receita(resultados[escolha - 1])
-        else:
-            print("  ⚠ Opção inválida.\n")
+            menu_visualizar_receita(resultados[escolha - 1], motor, lista_receitas, trie_global, tabela_hash)
+        else: print("  ⚠ Opção inválida.\n")
 
-
-def menu_busca_geral(trie_global: TrieBuscaGeral) -> None:
+def menu_busca_geral(motor, lista_receitas, trie_global: TrieBuscaGeral, tabela_hash) -> None:
     print("\n" + "═" * 55)
     print("  BUSCA GERAL (NOME OU PREFIXO)")
     print("═" * 55)
     
     prefixo = input("  Digite o termo de busca: ").strip().lower()
-    if not prefixo:
-        return
+    if not prefixo: return
         
     no_resultado = trie_global.get_node(prefixo)
     if not no_resultado:
@@ -107,7 +87,6 @@ def menu_busca_geral(trie_global: TrieBuscaGeral) -> None:
         print(f"\n  ✗ Nenhum resultado encontrado para '{prefixo}'.")
         return
 
-    # Um loop para permitir que o usuário explore vários itens da busca e volte pra cá
     while True:
         print(f"\n  ✓ {total} resultado(s) encontrado(s) para '{prefixo}':\n")
         
@@ -118,50 +97,42 @@ def menu_busca_geral(trie_global: TrieBuscaGeral) -> None:
             print("  [ RECEITAS ]")
             for r in dados['Receita']:
                 print(f"   {contador}. {r.nome_receita}")
-                opcoes[contador] = ('receita', r)
+                opcoes[str(contador)] = ('receita', r)
                 contador += 1
                 
         if dados['Categoria']:
             print("\n  [ CATEGORIAS ]")
             for c in dados['Categoria']:
                 print(f"   {contador}. {c.nome_categoria}")
-                opcoes[contador] = ('categoria', c)
+                opcoes[str(contador)] = ('categoria', c)
                 contador += 1
                 
         if dados['Ingredientes']:
             print("\n  [ INGREDIENTES ]")
             for i in dados['Ingredientes']:
                 print(f"   {contador}. {i.nome_ingrediente}")
-                opcoes[contador] = ('ingrediente', i)
+                opcoes[str(contador)] = ('ingrediente', i)
                 contador += 1
 
-        escolha = _pedir_inteiro("\n  Digite o número para inspecionar (0 para sair da busca): ")
+        escolha = input("\n  Digite o número para inspecionar (0 para sair): ").strip()
         
-        if escolha == 0 or escolha is None:
-            break
+        if escolha == '0': break
         elif escolha in opcoes:
             tipo, obj = opcoes[escolha]
-            if tipo == 'receita':
-                menu_visualizar_receita(obj)
-            elif tipo == 'categoria':
-                menu_visualizar_categoria(obj)
-            elif tipo == 'ingrediente':
-                menu_visualizar_ingrediente(obj)
-        else:
-            print("  ⚠ Opção inválida.")
+            if tipo == 'receita': menu_visualizar_receita(obj, motor, lista_receitas, trie_global, tabela_hash)
+            elif tipo == 'categoria': menu_visualizar_categoria(obj, motor, lista_receitas, trie_global, tabela_hash)
+            elif tipo == 'ingrediente': menu_visualizar_ingrediente(obj, motor, lista_receitas, trie_global, tabela_hash)
+        else: print("  ⚠ Opção inválida.")
 
-
-def menu_busca_hash(tabela_hash: TabelaHashNomes) -> None:
-    """Menu de busca por nome exato via Tabela Hash com suporte interativo."""
+def menu_busca_hash(motor, lista_receitas, trie_global, tabela_hash: TabelaHashNomes) -> None:
     print("\n" + "=" * 55)
     print("  BUSCA POR NOME EXATO (TABELA HASH)")
     print("=" * 55)
 
     nome = input("  Digite o nome exato: ").strip()
-    if not nome:
-        return
+    if not nome: return
 
-    resultados = tabela_hash.buscar(nome) # Agora retorna uma lista!
+    resultados = tabela_hash.buscar(nome) 
 
     if not resultados:
         print(f"\n  ✗ Nenhum resultado para '{nome}'.")
@@ -174,40 +145,25 @@ def menu_busca_hash(tabela_hash: TabelaHashNomes) -> None:
         contador = 1
         
         for obj in resultados:
-            from modelos.receita import Receita
-            from modelos.categoria import Categoria
-            from modelos.ingredientes import Ingredientes
-            
-            if isinstance(obj, Receita):
-                print(f"   {contador}. [RECEITA] {obj.nome_receita}")
-            elif isinstance(obj, Categoria):
-                print(f"   {contador}. [CATEGORIA] {obj.nome_categoria}")
-            elif isinstance(obj, Ingredientes):
-                print(f"   {contador}. [INGREDIENTE] {obj.nome_ingrediente}")
+            if isinstance(obj, Receita): print(f"   {contador}. [RECEITA] {obj.nome_receita}")
+            elif isinstance(obj, Categoria): print(f"   {contador}. [CATEGORIA] {obj.nome_categoria}")
+            elif isinstance(obj, Ingredientes): print(f"   {contador}. [INGREDIENTE] {obj.nome_ingrediente}")
                 
-            opcoes[contador] = obj
+            opcoes[str(contador)] = obj
             contador += 1
             
-        escolha = _pedir_inteiro("\n  Digite o número para inspecionar (0 para sair da busca): ")
+        escolha = input("\n  Digite o número para inspecionar (0 para sair): ").strip()
         
-        if escolha == 0 or escolha is None:
-            break
+        if escolha == '0': break
         elif escolha in opcoes:
             obj_escolhido = opcoes[escolha]
-            if isinstance(obj_escolhido, Receita):
-                menu_visualizar_receita(obj_escolhido)
-            elif isinstance(obj_escolhido, Categoria):
-                menu_visualizar_categoria(obj_escolhido)
-            elif isinstance(obj_escolhido, Ingredientes):
-                menu_visualizar_ingrediente(obj_escolhido)
-        else:
-            print("  ⚠ Opção inválida.")
-
+            if isinstance(obj_escolhido, Receita): menu_visualizar_receita(obj_escolhido, motor, lista_receitas, trie_global, tabela_hash)
+            elif isinstance(obj_escolhido, Categoria): menu_visualizar_categoria(obj_escolhido, motor, lista_receitas, trie_global, tabela_hash)
+            elif isinstance(obj_escolhido, Ingredientes): menu_visualizar_ingrediente(obj_escolhido, motor, lista_receitas, trie_global, tabela_hash)
+        else: print("  ⚠ Opção inválida.")
 
 def menu_diagnostico_hash(tabela_hash: TabelaHashNomes) -> None:
-    """Exibe o estado fisico da tabela hash (comando de diagnostico)."""
     tabela_hash.diagnostico("DIAGNOSTICO ATUAL DA TABELA HASH")
-
 
 def menu_adicionar_receita(motor: AlgoritmoRecomendacao, lista_receitas: list, trie_global: TrieBuscaGeral, tabela_hash: TabelaHashNomes) -> None:
     print("\n" + "═" * 55)
@@ -228,32 +184,25 @@ def menu_adicionar_receita(motor: AlgoritmoRecomendacao, lista_receitas: list, t
         print(f"  ⚠ Erro: {e}")
         return 
 
-    # 2. ADICIONA CATEGORIAS (Código super limpo agora)
     cats = _pedir_lista("  Categorias (sep. vírgula) [deixe em branco para pular]: ")
-    for cat in cats:
-        # Passamos os motores, a magia acontece lá dentro!
-        nova_receita.adicionar_categoria(cat, trie_global, tabela_hash)
+    for cat in cats: nova_receita.adicionar_categoria(cat, trie_global, tabela_hash)
 
-    # 3. ADICIONA INGREDIENTES
     print("\n  -- Ingredientes -- (Deixe o nome em branco para encerrar)")
     while True:
         ing_nome = input("  Nome do ingrediente: ").strip()
-        if not ing_nome:
-            break
+        if not ing_nome: break
             
         qtd = _pedir_inteiro("  Quantidade (número) [padrão=1]: ") or 1
         unidade = input("  Unidade (ex: g, ml, xícara) [padrão=und]: ").strip() or "und"
         
-        # Passamos os motores, a magia acontece lá dentro!
         nova_receita.adicionar_ingrediente(nome_ingrediente=ing_nome, unidade=unidade, quantidade=qtd, trie_global=trie_global, tabela_hash=tabela_hash)
 
-    # 4. SALVAMENTO E SINCRONIA GERAL
     lista_receitas.append(nova_receita)
     motor.adicionar_receita(nova_receita)
-    
+    nova_receita.salvar_snapshot("Criação da Receita (Original)")
     print(f"\n  ✓ Receita '{nome}' criada com sucesso!")
 
-def menu_visualizar_categoria(categoria: Categoria) -> None:
+def menu_visualizar_categoria(categoria: Categoria, motor, lista_receitas, trie_global, tabela_hash) -> None:
     while True:
         print("\n" + "═" * 55)
         print(f"  CATEGORIA: {categoria.nome_categoria.upper()}")
@@ -263,23 +212,35 @@ def menu_visualizar_categoria(categoria: Categoria) -> None:
         contador = 1
         
         print("  Receitas nesta categoria:")
-        if not categoria.lista_categoria_receitas:
-            print("   - Nenhuma receita encontrada.")
+        if not categoria.lista_categoria_receitas: print("   - Nenhuma receita encontrada.")
         else:
             for rec in categoria.lista_categoria_receitas:
                 print(f"   {contador}. {rec.nome_receita}")
-                opcoes[contador] = rec
+                opcoes[str(contador)] = rec
                 contador += 1
                 
-        escolha = _pedir_inteiro("\n  Digite o número da receita para explorar (0 para voltar): ")
-        if escolha == 0 or escolha is None:
-            break
+        print("\n  [E] Renomear Categoria | [X] Excluir Categoria | [0] Voltar")
+        escolha = input("  Ação: ").strip().upper()
+        
+        if escolha == '0': break
+        elif escolha == 'E':
+            novo_nome = input("  Novo nome da categoria: ").strip()
+            if novo_nome:
+                try:
+                    categoria.mudar_nome(novo_nome, trie_global, tabela_hash)
+                    print("  ✓ Categoria renomeada!")
+                except ValueError as e: print(f"  ⚠ Erro: {e}")
+        elif escolha == 'X':
+            confirmar = input("  Certeza que deseja excluir? (S/N): ").upper()
+            if confirmar == 'S':
+                categoria.excluir(trie_global, tabela_hash)
+                print("  ✓ Categoria excluída!")
+                break
         elif escolha in opcoes:
-            menu_visualizar_receita(opcoes[escolha])
-        else:
-            print("  ⚠ Opção inválida.")
+            menu_visualizar_receita(opcoes[escolha], motor, lista_receitas, trie_global, tabela_hash)
+        else: print("  ⚠ Opção inválida.")
 
-def menu_visualizar_ingrediente(ingrediente: Ingredientes) -> None:
+def menu_visualizar_ingrediente(ingrediente: Ingredientes, motor, lista_receitas, trie_global, tabela_hash) -> None:
     while True:
         print("\n" + "═" * 55)
         print(f"  INGREDIENTE: {ingrediente.nome_ingrediente.upper()}")
@@ -289,23 +250,35 @@ def menu_visualizar_ingrediente(ingrediente: Ingredientes) -> None:
         contador = 1
         
         print("  Receitas que usam este ingrediente:")
-        if not ingrediente.lista_receitas_ingredientes:
-            print("   - Nenhuma receita encontrada.")
+        if not ingrediente.lista_receitas_ingredientes: print("   - Nenhuma receita encontrada.")
         else:
             for rec in ingrediente.lista_receitas_ingredientes:
                 print(f"   {contador}. {rec.nome_receita}")
-                opcoes[contador] = rec
+                opcoes[str(contador)] = rec
                 contador += 1
                 
-        escolha = _pedir_inteiro("\n  Digite o número da receita para explorar (0 para voltar): ")
-        if escolha == 0 or escolha is None:
-            break
+        print("\n  [E] Renomear Ingrediente | [X] Excluir Ingrediente | [0] Voltar")
+        escolha = input("  Ação: ").strip().upper()
+        
+        if escolha == '0': break
+        elif escolha == 'E':
+            novo_nome = input("  Novo nome do ingrediente: ").strip()
+            if novo_nome:
+                try:
+                    ingrediente.mudar_nome(novo_nome, trie_global, tabela_hash)
+                    print("  ✓ Ingrediente renomeado!")
+                except ValueError as e: print(f"  ⚠ Erro: {e}")
+        elif escolha == 'X':
+            confirmar = input("  Certeza que deseja excluir? (S/N): ").upper()
+            if confirmar == 'S':
+                ingrediente.excluir(trie_global, tabela_hash)
+                print("  ✓ Ingrediente excluído!")
+                break
         elif escolha in opcoes:
-            menu_visualizar_receita(opcoes[escolha])
-        else:
-            print("  ⚠ Opção inválida.")
+            menu_visualizar_receita(opcoes[escolha], motor, lista_receitas, trie_global, tabela_hash)
+        else: print("  ⚠ Opção inválida.")
 
-def menu_visualizar_receita(receita: Receita) -> None:
+def menu_visualizar_receita(receita: Receita, motor, lista_receitas, trie_global, tabela_hash) -> None:
     while True:
         print("\n" + "═" * 55)
         print(f"  RECEITA: {receita.nome_receita.upper()}")
@@ -316,34 +289,121 @@ def menu_visualizar_receita(receita: Receita) -> None:
         contador = 1
         
         print("\n  [ Categorias ]")
-        if not receita.lista_categoria_receitas:
-            print("   - Nenhuma categoria")
+        if not receita.lista_categoria_receitas: print("   - Nenhuma categoria")
         else:
             for cat in receita.lista_categoria_receitas:
                 print(f"   {contador}. {cat.nome_categoria}")
-                opcoes[contador] = ('categoria', cat)
+                opcoes[str(contador)] = ('categoria', cat)
                 contador += 1
                 
         print("\n  [ Ingredientes ]")
-        if not receita.lista_quantidade_ingredientes:
-            print("   - Nenhum ingrediente")
+        if not receita.lista_quantidade_ingredientes: print("   - Nenhum ingrediente")
         else:
             for rel in receita.lista_quantidade_ingredientes:
                 print(f"   {contador}. {rel.quantidade_necessaria} {rel.unidade_utilizada} de {rel.ingrediente.nome_ingrediente}")
-                opcoes[contador] = ('ingrediente', rel.ingrediente)
+                opcoes[str(contador)] = ('ingrediente', rel.ingrediente)
                 contador += 1
                 
-        escolha = _pedir_inteiro("\n  Digite o número para explorar a categoria/ingrediente (0 para voltar): ")
-        if escolha == 0 or escolha is None:
-            break
+        print("\n  [E] Editar Receita | [X] Excluir Receita | [0] Voltar")
+        escolha = input("  Ação ou Número para explorar: ").strip().upper()
+        
+        if escolha == '0': break
+        elif escolha == 'E':
+            alteracoes_feitas = []
+            while True:
+                print("\n  [ MODO DE EDIÇÃO ]")
+                print("  1. Renomear Receita")
+                print("  2. Alterar Custo")
+                print("  3. Alterar Tempo")
+                print("  0. Salvar e Sair do Modo de Edição")
+                edicao = input("  Opção: ").strip()
+                
+                if edicao == '0':
+                    if alteracoes_feitas:
+                        motivo = "Edição: " + ", ".join(alteracoes_feitas)
+                        receita.salvar_snapshot(motivo)
+                        print("  ✓ Alterações salvas no histórico de versões!")
+                    break
+                elif edicao == '1':
+                    n_nome = input("  Novo Nome: ")
+                    try: 
+                        receita.mudar_nome(n_nome, trie_global, tabela_hash)
+                        alteracoes_feitas.append("Nome")
+                    except ValueError as e: print(f"  ⚠ Erro: {e}")
+                elif edicao == '2':
+                    novo_c = _pedir_inteiro("  Novo Custo: ")
+                    if novo_c is not None:
+                        receita.atualizar_custo(novo_c)
+                        alteracoes_feitas.append("Custo")
+                elif edicao == '3':
+                    novo_t = _pedir_inteiro("  Novo Tempo: ")
+                    if novo_t is not None:
+                        receita.atualizar_tempo(novo_t)
+                        alteracoes_feitas.append("Tempo")
+        elif escolha == 'X':
+            confirm = input("  Excluir Receita (Mover para Arquivo Morto)? (S/N): ").upper()
+            if confirm == 'S':
+                receita.excluir(trie_global, tabela_hash)
+                if receita in lista_receitas: lista_receitas.remove(receita)
+                motor.remover_receita(receita)
+                print("  ✓ Receita Excluída!")
+                break
         elif escolha in opcoes:
             tipo, obj = opcoes[escolha]
-            if tipo == 'categoria':
-                menu_visualizar_categoria(obj)
-            else:
-                menu_visualizar_ingrediente(obj)
-        else:
-            print("  ⚠ Opção inválida.")
+            if tipo == 'categoria': menu_visualizar_categoria(obj, motor, lista_receitas, trie_global, tabela_hash)
+            else: menu_visualizar_ingrediente(obj, motor, lista_receitas, trie_global, tabela_hash)
+        else: print("  ⚠ Opção inválida.")
+
+
+def menu_investigacao() -> None:
+    while True:
+        print("\n" + "═" * 55)
+        print("  MODO INVESTIGAÇÃO (HISTÓRICO E ARQUIVO MORTO)")
+        print("═" * 55)
+        print("  1. Ver Atuais e Versões (Mais recentes primeiro)")
+        print("  2. Ver Receitas Excluídas (Mais recentes primeiro)")
+        print("  0. Voltar")
+        
+        opcao = input("  Escolha: ").strip()
+        
+        if opcao == "0": break
+        elif opcao == "1":
+            atuais = sorted(list(Receita.registro_global.values()), key=lambda r: r.ultima_atualizacao, reverse=True)
+            _exibir_lista_investigacao(atuais, "RECEITAS ATUAIS")
+        elif opcao == "2":
+            excluidas = sorted(list(Receita.registro_excluidas.values()), key=lambda r: r.data_exclusao, reverse=True)
+            _exibir_lista_investigacao(excluidas, "RECEITAS EXCLUÍDAS")
+        else: print("  ⚠ Opção inválida.")
+
+def _exibir_lista_investigacao(lista_receitas: list, titulo: str):
+    if not lista_receitas:
+        print(f"\n  ✗ Nenhuma receita encontrada em {titulo}.")
+        return
+        
+    while True:
+        print("\n" + "-" * 55)
+        print(f"  {titulo}")
+        print("-" * 55)
+        
+        opcoes = {}
+        for i, rec in enumerate(lista_receitas, 1):
+            data_str = rec.data_exclusao.strftime('%d/%m %H:%M') if rec.data_exclusao else rec.ultima_atualizacao.strftime('%d/%m %H:%M')
+            print(f"  {i}. [{data_str}] {rec.nome_receita}")
+            opcoes[str(i)] = rec
+            
+        escolha = input("\n  Digite o número para ver o histórico (0 para voltar): ").strip()
+        
+        if escolha == '0': break
+        elif escolha in opcoes:
+            rec_escolhida = opcoes[escolha]
+            print("\n  [ HISTÓRICO DE ESTADOS ]")
+            for versao in reversed(rec_escolhida.historico_estados):
+                print(f"\n  • Data: {versao['data']} | Motivo: {versao['motivo']}")
+                print(f"    Nome: {versao['nome']} | Custo: {versao['custo']}¢$ | Tempo: {versao['tempo']}min")
+                print(f"    Categorias: {', '.join(versao['categorias']) if versao['categorias'] else 'Nenhuma'}")
+                print(f"    Ingredientes: {', '.join(versao['ingredientes']) if versao['ingredientes'] else 'Nenhum'}")
+        else: print("  ⚠ Opção inválida.")
+
 
 def menu_principal(motor, lista_receitas, lista_ingredientes,
                    lista_categorias, mapa_id_ingrediente, trie_global, tabela_hash):
@@ -358,30 +418,23 @@ def menu_principal(motor, lista_receitas, lista_ingredientes,
         print("║  5. Diagnostico da Tabela Hash                 ║")
         print("║  6. Adicionar nova receita                     ║")
         print("║  7. Salvar estado atual                        ║")
+        print("║  8. Modo Investigação (Histórico/Lixeira)      ║")
         print("║  0. Sair                                       ║")
         print("╚" + "═" * 48 + "╝")
         opcao = input("  Opção: ").strip()
 
-        if opcao == "1":
-            motor.exibir_lista(limite=15)
-        elif opcao == "2":
-            menu_recomendacao(motor)
-        elif opcao == "3":
-            menu_busca_geral(trie_global)
-        elif opcao == "4":
-            menu_busca_hash(tabela_hash)
-        elif opcao == "5":
-            menu_diagnostico_hash(tabela_hash)
-        elif opcao == "6":
-            menu_adicionar_receita(motor, lista_receitas, trie_global, tabela_hash)
-        elif opcao == "7":
-            salvar_dados(lista_receitas, lista_ingredientes,
-                         lista_categorias, mapa_id_ingrediente)
+        if opcao == "1": motor.exibir_lista(limite=15)
+        elif opcao == "2": menu_recomendacao(motor, lista_receitas, trie_global, tabela_hash)
+        elif opcao == "3": menu_busca_geral(motor, lista_receitas, trie_global, tabela_hash)
+        elif opcao == "4": menu_busca_hash(motor, lista_receitas, trie_global, tabela_hash)
+        elif opcao == "5": menu_diagnostico_hash(tabela_hash)
+        elif opcao == "6": menu_adicionar_receita(motor, lista_receitas, trie_global, tabela_hash)
+        elif opcao == "7": salvar_dados(lista_receitas, lista_ingredientes, lista_categorias, mapa_id_ingrediente)
+        elif opcao == "8": menu_investigacao()
         elif opcao == "0":
             print("  Encerrando. Até logo!")
             break
-        else:
-            print("  Opção inválida.\n")
+        else: print("  Opção inválida.\n")
 
 
 def main():
@@ -404,26 +457,18 @@ def main():
           f"{len(lista_categorias)} categorias")
 
     print("\nMontando os motores de processamento...")
-    # Montamos o motor de recomendação
     motor = montar_motor(lista_receitas)
     
-    # Montamos o motor de busca (Trie)
     trie_global = TrieBuscaGeral()
-    for r in lista_receitas:
-        trie_global.insert(r.nome_receita.lower(), r)
-    for c in lista_categorias:
-        trie_global.insert(c.nome_categoria.lower(), c)
-    for i in lista_ingredientes:
-        trie_global.insert(i.nome_ingrediente.lower(), i)
+    for r in lista_receitas: trie_global.insert(r.nome_receita.lower(), r)
+    for c in lista_categorias: trie_global.insert(c.nome_categoria.lower(), c)
+    for i in lista_ingredientes: trie_global.insert(i.nome_ingrediente.lower(), i)
         
-    # Montamos a tabela hash (busca por nome exato)
     tabela_hash = construir_tabela_hash(lista_receitas, lista_ingredientes, lista_categorias)
     print("  ✓ Motores prontos!\n")
 
-    # Iniciamos o loop principal do programa
     menu_principal(motor, lista_receitas, lista_ingredientes,
                    lista_categorias, mapa_id_ingrediente, trie_global, tabela_hash)
-
 
 if __name__ == "__main__":
     main()
