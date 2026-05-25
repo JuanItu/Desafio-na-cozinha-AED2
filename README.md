@@ -169,7 +169,9 @@ Acessado pela opção `[8]` no menu principal. Permite ver o **histórico comple
 Acessado pela opção `[2]` no menu principal. Usa o algoritmo guloso para recomendar receitas sob múltiplas restrições simultâneas (tempo, custo, ingredientes, categorias).
 
 ### 🔍 Modo Consulta Rápida
-Acessado pelas opções `[3]` (Trie, prefixo) e `[4]` (Hash, nome exato) no menu principal.
+Acessado pelas opções [3] (Trie, prefixo) e [4] (Hash, nome exato) no menu principal, permite visualizar e editar os dados das receitas, ingredientes e categorias.
+### Adição de receitas 
+Permite adicionar receitas ao catálogo, elas podem ser inicializadas com nome, custo, tempo de preparo, lista de categorias e lista de ingredientes. O fator de recomendação é iniciado em 0, pois uma receita recém adicionada não teria ainda avaliações do público, além disso, colocar receitas ou ingredientes ausentes no sistema os adiciona automaticamente.
 
 ---
 
@@ -252,31 +254,51 @@ cd Desafio-na-cozinha-AED2-main
 python motor/busca_id.py
 ```
 
-**Saída esperada no terminal:**
+**Saída esperada no terminal utilizando os dados fonte:**
 
 ```
-=== DEMO: Redimensionamento Dinamico ===
-
-== ESTADO INICIAL ==
-  Capacidade (buckets) : 7
-  Elementos inseridos  : 0
-  Fator de carga       : 0.0000  (limite: 0.7)
-  Colisoes acumuladas  : 0
-  Rehashes realizados  : 0
-
-Inserindo elementos...
-  + 'Bolo de Chocolate'  | fator=0.143 | capacidade=7
-  + 'Farinha de Trigo'   | fator=0.286 | capacidade=7
-  + 'Sobremesas'         | fator=0.429 | capacidade=7
-  + 'Torta de Limao'     | fator=0.571 | capacidade=7
-  + 'Acucar Refinado'    | fator=0.714 | capacidade=7   ← GATILHO DISPARADO
-  + 'Salgados'           | fator=...   | capacidade=17  ← tabela redimensionada!
-  + 'Lasanha Bolonhesa'  | fator=...   | capacidade=17
-
-== ESTADO FINAL ==
-  Capacidade (buckets) : 17
-  Rehashes realizados  : 1
-  ...
+============================================================
+  DIAGNOSTICO ATUAL DA TABELA HASH
+============================================================
+  Capacidade (buckets) : 797
+  Elementos inseridos  : 356
+  Fator de carga       : 0.4467  (limite: 0.7)
+  Colisoes acumuladas  : 53
+  Rehashes realizados  : 6
+------------------------------------------------------------
+  Mapa dos primeiros 30 buckets:
+    [  0] [ vazio ]
+    [  1] "garlic powder"
+    [  2] [ vazio ]
+    [  3] [ vazio ]
+    [  4] [ vazio ]
+    [  5] [ vazio ]
+    [  6] [ vazio ]
+    [  7] "tap water" -> "oreo mini cheesecake" <- COLISAO
+    [  8] [ vazio ]
+    [  9] [ vazio ]
+    [ 10] [ vazio ]
+    [ 11] [ vazio ]
+    [ 12] [ vazio ]
+    [ 13] [ vazio ]
+    [ 14] [ vazio ]
+    [ 15] [ vazio ]
+    [ 16] [ vazio ]
+    [ 17] [ vazio ]
+    [ 18] "linguini" -> "asparagus" <- COLISAO
+    [ 19] "evaporated skim milk"
+    [ 20] [ vazio ]
+    [ 21] [ vazio ]
+    [ 22] "xanthan gum" -> "ginger- 1" <- COLISAO
+    [ 23] "guacamole"
+    [ 24] [ vazio ]
+    [ 25] "appetizer"
+    [ 26] [ vazio ]
+    [ 27] [ vazio ]
+    [ 28] "upside down chicken cake"
+    [ 29] [ vazio ]
+    ... (e mais 767 buckets)
+============================================================
 ```
 
 O log mostra exatamente o momento em que o fator de carga ultrapassa 0.7 e a tabela dobra de tamanho automaticamente.
