@@ -257,6 +257,91 @@ python motor/busca_id.py
 **Saída esperada no terminal utilizando os dados fonte:**
 
 ```
+=== DEMO: Redimensionamento Dinamico ===
+
+-- ANTES do carregamento em lote --
+
+============================================================
+  ESTADO INICIAL
+============================================================
+  Capacidade (buckets) : 7
+  Elementos inseridos  : 0
+  Fator de carga       : 0.0000  (limite: 0.7)
+  Colisoes acumuladas  : 0
+  Rehashes realizados  : 0
+------------------------------------------------------------
+  Mapa dos primeiros 7 buckets:
+    [  0] [ vazio ]
+    [  1] [ vazio ]
+    [  2] [ vazio ]
+    [  3] [ vazio ]
+    [  4] [ vazio ]
+    [  5] [ vazio ]
+    [  6] [ vazio ]
+============================================================
+
+Inserindo elementos...
+  + 'Bolo de Chocolate' | fator=0.143 | capacidade=7
+  + 'Farinha de Trigo' | fator=0.286 | capacidade=7
+  + 'Sobremesas' | fator=0.429 | capacidade=7
+  + 'Torta de Limao' | fator=0.571 | capacidade=7
+  + 'Acucar Refinado' | fator=0.294 | capacidade=17
+  + 'Salgados' | fator=0.353 | capacidade=17
+  + 'Lasanha Bolonhesa' | fator=0.412 | capacidade=17
+
+-- DEPOIS do carregamento em lote --
+
+============================================================
+  ESTADO FINAL
+============================================================
+  Capacidade (buckets) : 17
+  Elementos inseridos  : 7
+  Fator de carga       : 0.4118  (limite: 0.7)
+  Colisoes acumuladas  : 1
+  Rehashes realizados  : 1
+------------------------------------------------------------
+  Mapa dos primeiros 17 buckets:
+    [  0] [ vazio ]
+    [  1] "torta de limao"
+    [  2] "farinha de trigo"
+    [  3] [ vazio ]
+    [  4] "salgados"
+    [  5] [ vazio ]
+    [  6] "acucar refinado" -> "bolo de chocolate" <- COLISAO
+    [  7] "lasanha bolonhesa"
+    [  8] [ vazio ]
+    [  9] [ vazio ]
+    [ 10] [ vazio ]
+    [ 11] [ vazio ]
+    [ 12] "sobremesas"
+    [ 13] [ vazio ]
+    [ 14] [ vazio ]
+    [ 15] [ vazio ]
+    [ 16] [ vazio ]
+============================================================
+
+-- Testes de busca --
+  buscar('Bolo de Chocolate') -> ['<objeto_receita:Bolo de Chocolate>']
+  buscar('Farinha de Trigo') -> ['<objeto_ingrediente:Farinha de Trigo>']
+  buscar('Sobremesas') -> ['<objeto_categoria:Sobremesas>']
+
+  buscar('inexistente') -> []
+  'bolo de chocolate' in tabela -> True
+```
+
+O log mostra exatamente o momento em que o fator de carga ultrapassa 0.7 e a tabela dobra de tamanho automaticamente.
+
+#### Opção B — Teste via menu interativo do sistema completo
+
+```bash
+python main.py
+```
+
+1. Selecione `[1]` para carregar os dados de fábrica (50 receitas → força múltiplos rehashings na construção)
+2. No menu principal, escolha `[5] Diagnostico da Tabela Hash`
+3. O terminal exibirá o estado físico completo da tabela **após** o carregamento em lote:
+
+```
 ============================================================
   DIAGNOSTICO ATUAL DA TABELA HASH
 ============================================================
@@ -299,36 +384,6 @@ python motor/busca_id.py
     [ 29] [ vazio ]
     ... (e mais 767 buckets)
 ============================================================
-```
-
-O log mostra exatamente o momento em que o fator de carga ultrapassa 0.7 e a tabela dobra de tamanho automaticamente.
-
-#### Opção B — Teste via menu interativo do sistema completo
-
-```bash
-python main.py
-```
-
-1. Selecione `[1]` para carregar os dados de fábrica (50 receitas → força múltiplos rehashings na construção)
-2. No menu principal, escolha `[5] Diagnostico da Tabela Hash`
-3. O terminal exibirá o estado físico completo da tabela **após** o carregamento em lote:
-
-```
-============================================================
-  DIAGNOSTICO ATUAL DA TABELA HASH
-============================================================
-  Capacidade (buckets) : 193
-  Elementos inseridos  : 130
-  Fator de carga       : 0.6736  (limite: 0.7)
-  Colisoes acumuladas  : 8
-  Rehashes realizados  : 3
-------------------------------------------------------------
-  Mapa dos primeiros 30 buckets:
-    [  0] [ vazio ]
-    [  1] "lunch"
-    [  2] [ vazio ]
-    [  3] "butter" -> "buttered noodles" <- COLISAO
-    ...
 ```
 
 Isso demonstra visualmente o estado físico da tabela depois que as 50 receitas + ingredientes + categorias foram inseridos — exatamente o cenário de "carregamento em lote que força redimensionamento" descrito na Opção A do enunciado de recuperação.
