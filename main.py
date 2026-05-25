@@ -253,11 +253,13 @@ def menu_visualizar_ingrediente(ingrediente: Ingredientes, motor, lista_receitas
         print("\n" + "═" * 55)
         print(f"  INGREDIENTE: {ingrediente.nome_ingrediente.upper()}")
         print("═" * 55)
+        # --- EXIBE O ESTOQUE ---
+        print(f"  Estoque atual: {ingrediente.quantidade_estoque} {ingrediente.unidade_estoque}")
         
         opcoes = {}
         contador = 1
         
-        print("  Receitas que usam este ingrediente:")
+        print("\n  Receitas que usam este ingrediente:")
         if not ingrediente.lista_receitas_ingredientes: print("   - Nenhuma receita encontrada.")
         else:
             for rec in ingrediente.lista_receitas_ingredientes:
@@ -265,17 +267,33 @@ def menu_visualizar_ingrediente(ingrediente: Ingredientes, motor, lista_receitas
                 opcoes[str(contador)] = rec
                 contador += 1
                 
-        print("\n  [E] Renomear Ingrediente | [X] Excluir Ingrediente | [0] Voltar")
-        escolha = input("  Ação: ").strip().upper()
+        print("\n  [E] Editar Ingrediente | [X] Excluir Ingrediente | [0] Voltar")
+        escolha = input("  Ação ou Número para explorar: ").strip().upper()
         
         if escolha == '0': break
+        
+        # --- MODO DE EDIÇÃO DO INGREDIENTE ---
         elif escolha == 'E':
-            novo_nome = input("  Novo nome do ingrediente: ").strip()
-            if novo_nome:
-                try:
-                    ingrediente.mudar_nome(novo_nome, trie_global, tabela_hash)
-                    print("  ✓ Ingrediente renomeado!")
-                except ValueError as e: print(f"  ⚠ Erro: {e}")
+            print("\n  [ MODO DE EDIÇÃO ]")
+            print("  1. Renomear Ingrediente")
+            print("  2. Atualizar Estoque Global")
+            print("  0. Cancelar")
+            ed = input("  Opção: ").strip()
+            
+            if ed == '1':
+                novo_nome = input("  Novo nome do ingrediente: ").strip()
+                if novo_nome:
+                    try:
+                        ingrediente.mudar_nome(novo_nome, trie_global, tabela_hash)
+                        print("  ✓ Ingrediente renomeado!")
+                    except ValueError as e: print(f"  ⚠ Erro: {e}")
+            elif ed == '2':
+                nova_qtd = _pedir_float("  Nova quantidade (número): ")
+                if nova_qtd is not None:
+                    nova_und = input("  Nova unidade (ex: kg, ml, und): ").strip() or "und"
+                    ingrediente.atualizar_estoque(nova_qtd, nova_und)
+                    print("  ✓ Estoque atualizado com sucesso!")
+                    
         elif escolha == 'X':
             confirmar = input("  Certeza que deseja excluir? (S/N): ").upper()
             if confirmar == 'S':
@@ -466,6 +484,7 @@ def _exibir_lista_investigacao(lista_receitas: list, titulo: str):
                 print(f"    Nome: {versao['nome']} | Custo: {versao['custo']}¢$ | Tempo: {versao['tempo']}min")
                 print(f"    Categorias: {', '.join(versao['categorias']) if versao['categorias'] else 'Nenhuma'}")
                 print(f"    Ingredientes: {', '.join(versao['ingredientes']) if versao['ingredientes'] else 'Nenhum'}")
+            input("\n  [ Pressione ENTER para voltar à lista ]")
         else: print("  ⚠ Opção inválida.")
 
 

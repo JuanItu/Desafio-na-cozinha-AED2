@@ -26,7 +26,20 @@ def carregar_dados(usar_salvos: bool = False):
 
     lista_receitas = []
 
-    for r_json in dados_json:
+    # --- SUPORTE AOS DOIS FORMATOS DE JSON ---
+    if isinstance(dados_json, dict) and "receitas" in dados_json:
+        # Novo formato: Dicionário. Carregamos o estoque global primeiro!
+        lista_r_json = dados_json["receitas"]
+        for ing_data in dados_json.get("estoque_ingredientes", []):
+            ing = Ingredientes.get_ou_criar(ing_data["nome"])
+            ing.quantidade_estoque = ing_data.get("quantidade", 0.0)
+            ing.unidade_estoque = ing_data.get("unidade", "und")
+    else:
+        # Formato antigo: Lista pura (ex: dados_fonte.json)
+        lista_r_json = dados_json
+
+    # O resto continua exatamente igual para as receitas
+    for r_json in lista_r_json:
         try:
             receita = Receita(
                 nome_receita=r_json["nome"],
@@ -41,16 +54,19 @@ def carregar_dados(usar_salvos: bool = False):
             receita.historico_estados = r_json["historico_estados"]
         if "ultima_atualizacao" in r_json:
             receita.ultima_atualizacao = datetime.fromisoformat(r_json["ultima_atualizacao"])
-        if not receita.historico_estados:
-            receita.salvar_snapshot("Estado original carregado do arquivo")
 
         for nome_cat in r_json.get("categorias", []):
             receita.adicionar_categoria(nome_cat)
 
-        for nome_ing in r_json.get("ingredientes", []):
-            receita.adicionar_ingrediente(nome_ing, unidade="und", quantidade=1)
+        for ing_data in r_json.get("ingredientes", []):
+            if isinstance(ing_data, dict):
+                receita.adicionar_ingrediente(ing_data["nome"], ing_data.get("unidade", "und"), ing_data.get("quantidade", 1))
+            else:
+                receita.adicionar_ingrediente(ing_data, unidade="und", quantidade=1)
 
-        # Trata o Arquivo Morto
+        if not receita.historico_estados:
+            receita.salvar_snapshot("Criação da Receita (Original)")
+
         if r_json.get("excluida", False):
             receita.data_exclusao = datetime.fromisoformat(r_json["data_exclusao"]) if r_json.get("data_exclusao") else datetime.now()
             nome_key = receita.nome_receita.lower()
@@ -65,18 +81,26 @@ def carregar_dados(usar_salvos: bool = False):
 
     return lista_receitas, lista_ingredientes, lista_categorias, {}
 
+
 def salvar_dados(lista_receitas, lista_ingredientes, lista_categorias, mapa_id_ingrediente=None, caminho: Path = _CAMINHO_SALVOS):
-    dados = []
+    dados_receitas = []
     todas_as_receitas = list(lista_receitas) + list(Receita.registro_excluidas.values())
     
     for r in todas_as_receitas:
         nomes_cats = [cat.nome_categoria for cat in r.lista_categoria_receitas]
-        nomes_ings = [qi.ingrediente.nome_ingrediente for qi in r.lista_quantidade_ingredientes]
+        dados_ings = [
+            {
+                "nome": qi.ingrediente.nome_ingrediente,
+                "quantidade": qi.quantidade_necessaria,
+                "unidade": qi.unidade_utilizada
+            } 
+            for qi in r.lista_quantidade_ingredientes
+        ]
         
-        dados.append({
+        dados_receitas.append({
             "nome": r.nome_receita,
             "categorias": nomes_cats,
-            "ingredientes": nomes_ings,
+            "ingredientes": dados_ings,
             "tempo_preparo_minutos": r.tempo_preparo,
             "custo_centavos_dolar": r.custo,
             "popularidade_likes": r.fator_recomendacao,
@@ -86,7 +110,22 @@ def salvar_dados(lista_receitas, lista_ingredientes, lista_categorias, mapa_id_i
             "excluida": r.data_exclusao is not None
         })
         
-    with open(caminho, "w", encoding="utf-8") as f:
-        json.dump(dados, f, ensure_ascii=False, indent=4)
+    # --- NOVO: SALVA O ESTOQUE GLOBAL ---
+    dados_estoque = []
+    for ing in Ingredientes.registro_global.values():
+        dados_estoque.append({
+            "nome": ing.nome_ingrediente,
+            "quantidade": ing.quantidade_estoque,
+            "unidade": ing.unidade_estoque
+        })
         
-    print(f"\n  ✓ {len(dados)} receitas (vivas e no arquivo morto) salvas com sucesso!")
+    # Empacota as duas gavetas
+    dados_completos = {
+        "receitas": dados_receitas,
+        "estoque_ingredientes": dados_estoque
+    }
+        
+    with open(caminho, "w", encoding="utf-8") as f:
+        json.dump(dados_completos, f, ensure_ascii=False, indent=4)
+        
+    print(f"\n  ✓ {len(dados_receitas)} receitas e {len(dados_estoque)} estoques de ingredientes salvos com sucesso!")

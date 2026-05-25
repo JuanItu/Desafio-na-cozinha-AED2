@@ -1,21 +1,31 @@
 class Ingredientes:
     registro_global = {}
 
-    def __init__(self, nome_ingrediente, quantidade_estoque=0.0, trie_global=None, tabela_hash=None):
+    # Adicionado unidade_estoque
+    def __init__(self, nome_ingrediente, quantidade_estoque=0.0, unidade_estoque="und", trie_global=None, tabela_hash=None):
         self.nome_ingrediente = nome_ingrediente
         self.quantidade_estoque = quantidade_estoque
+        self.unidade_estoque = unidade_estoque
         self.lista_receitas_ingredientes = []
         
         Ingredientes.registro_global[nome_ingrediente.lower()] = self
-        if trie_global: trie_global.insert(nome_ingrediente.lower(), self)
-        if tabela_hash: tabela_hash.inserir(nome_ingrediente.lower(), self)
+        
+        if trie_global:
+            trie_global.insert(nome_ingrediente.lower(), self)
+        if tabela_hash:
+            tabela_hash.inserir(nome_ingrediente.lower(), self)
 
     @classmethod
     def get_ou_criar(cls, nome_ingrediente, trie_global=None, tabela_hash=None):
         nome_key = nome_ingrediente.lower()
         if nome_key not in cls.registro_global:
-            return cls(nome_ingrediente, 0.0, trie_global, tabela_hash)
+            # Passa 0.0 e "und" como valores iniciais de fábrica
+            return cls(nome_ingrediente, 0.0, "und", trie_global, tabela_hash)
         return cls.registro_global[nome_key]
+
+    def atualizar_estoque(self, nova_quantidade: float, nova_unidade: str):
+        self.quantidade_estoque = nova_quantidade
+        self.unidade_estoque = nova_unidade
 
     def adicionar_receita(self, receita):
         if receita not in self.lista_receitas_ingredientes:
@@ -40,7 +50,9 @@ class Ingredientes:
     def mudar_nome(self, novo_nome, trie_global=None, tabela_hash=None):
         nome_antigo_key = self.nome_ingrediente.lower()
         novo_nome_key = novo_nome.lower()
-        if novo_nome_key in Ingredientes.registro_global: raise ValueError(f"O ingrediente '{novo_nome}' já existe!")
+        
+        if novo_nome_key in Ingredientes.registro_global:
+            raise ValueError(f"O ingrediente '{novo_nome}' já existe!")
             
         if trie_global: trie_global.remove(nome_antigo_key, self)
         if tabela_hash: tabela_hash.remover(nome_antigo_key, self)
