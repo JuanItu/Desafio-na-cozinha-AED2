@@ -17,6 +17,7 @@ from data.data_manager import carregar_dados, salvar_dados
 from motor.algoritmo_recomendações import AlgoritmoRecomendacao
 from motor.busca_geral import TrieBuscaGeral
 from motor.busca_id import TabelaHashNomes, construir_tabela_hash
+from motor.oficina_producao import OficinaProducao
 
 def montar_motor(lista_receitas) -> AlgoritmoRecomendacao:
     motor = AlgoritmoRecomendacao()
@@ -46,14 +47,86 @@ def _pedir_float(prompt: str) -> float | None:
         print("  ⚠ Valor inválido, ignorado.")
         return None
 
-def menu_recomendacao(motor: AlgoritmoRecomendacao, lista_receitas, trie_global, tabela_hash) -> None:
+def _resolver_sugestoes_coerencia(oficina: OficinaProducao, sugestoes: list) -> None:
+    """Oferece as 3 opções de interação da seção 5.4: aceitar tudo, selecionar
+    individualmente ou ajustar manualmente (deixando como está, para edição livre)."""
+    if not sugestoes:
+        print("  ✓ Nenhuma inconsistência de custo/tempo/preço encontrada.")
+        return
+
+    print(f"\n  ⚠ {len(sugestoes)} sugestão(ões) de ajuste de coerência encontrada(s):")
+    for i, s in enumerate(sugestoes, 1):
+        print(f"    {i}. {s}")
+
+    print("\n  1. Aceitar todas as sugestões")
+    print("  2. Selecionar sugestões aceitas (uma a uma)")
+    print("  3. Ajustar custo/tempo/preço manualmente (não aplica nada agora)")
+    print("  0. Ignorar por enquanto")
+    opcao = input("  Opção: ").strip()
+
+    if opcao == '1':
+        for s in list(sugestoes):
+            oficina.aplicar_sugestao(s)
+        print("  ✓ Todas as sugestões foram aplicadas!")
+    elif opcao == '2':
+        for s in list(sugestoes):
+            resp = input(f"    Aplicar '{s.receita.nome_receita}' • {s.tipo}: {s.valor_atual} -> {s.valor_sugerido}? (S/N): ").strip().upper()
+            if resp == 'S':
+                oficina.aplicar_sugestao(s)
+        print("  ✓ Sugestões selecionadas aplicadas!")
+    elif opcao == '3':
+        print("  → Use a opção de edição da receita (Alterar Custo/Tempo/Preço) para ajustar manualmente.")
+    else:
+        print("  Nenhuma sugestão aplicada.")
+
+
+def _resolver_cortes_sugeridos(oficina: OficinaProducao, cortes: list) -> None:
+    """Oferece as 3 opções de interação da seção 4: aplicar todos, escolher
+    dentre os sugeridos, ou cortar manualmente digitando o nome do preparo."""
+    if not cortes:
+        print("  ✓ Nenhuma autodependência ou ciclo de dependências encontrado.")
+        return
+
+    print(f"\n  ⚠ {len(cortes)} corte(s) sugerido(s) para desfazer ciclos/autodependências:")
+    for i, c in enumerate(cortes, 1):
+        print(f"    {i}. {c}")
+
+    print("\n  1. Aplicar todos os cortes sugeridos")
+    print("  2. Escolher cortes dentre os sugeridos (um a um)")
+    print("  3. Escolher cortes manualmente (digitar receita e preparo)")
+    print("  0. Ignorar por enquanto")
+    opcao = input("  Opção: ").strip()
+
+    if opcao == '1':
+        oficina.aplicar_todos_cortes()
+        print("  ✓ Todos os cortes foram aplicados!")
+    elif opcao == '2':
+        for c in list(cortes):
+            resp = input(f"    Cortar '{c.origem.nome_receita}' -x-> '{c.destino.nome_receita}'? (S/N): ").strip().upper()
+            if resp == 'S':
+                oficina.aplicar_corte(c)
+        print("  ✓ Cortes selecionados aplicados!")
+    elif opcao == '3':
+        nome_origem = input("    Nome da receita: ").strip().lower()
+        nome_destino = input("    Nome do preparo a remover: ").strip().lower()
+        origem = Receita.registro_global.get(nome_origem)
+        if origem and origem.remover_preparo(nome_destino):
+            origem.salvar_snapshot("Corte manual de dependência (Modo Investigação)")
+            print("  ✓ Dependência removida manualmente!")
+        else:
+            print("  ⚠ Receita ou dependência não encontrada.")
+    else:
+        print("  Nenhum corte aplicado.")
+
+
+def menu_recomendacao(motor: AlgoritmoRecomendacao, lista_receitas, trie_global, tabela_hash, oficina: OficinaProducao) -> None:
     print("\n" + "═" * 55)
     print("  RECOMENDAÇÃO DE RECEITAS")
     print("═" * 55)
     print("  Deixe em branco para ignorar um filtro.\n")
 
     tempo   = _pedir_inteiro("  Tempo máximo de preparo (min): ")
-    custo   = _pedir_inteiro("  Custo máximo (centavos de dólar): ")
+    custo   = _pedir_float("  Custo máximo (centavos de dólar): ")
     qtd     = _pedir_inteiro("  Quantas recomendações? [padrão=1]: ") or 1
     proib   = _pedir_lista("  Ingredientes proibidos (sep. vírgula): ")
     exig    = _pedir_lista("  Ingredientes exigidos  (sep. vírgula): ")
@@ -72,10 +145,10 @@ def menu_recomendacao(motor: AlgoritmoRecomendacao, lista_receitas, trie_global,
         escolha = _pedir_inteiro("  Digite o número da receita para explorar (0 para voltar): ")
         if escolha == 0 or escolha is None: break
         elif 1 <= escolha <= len(resultados):
-            menu_visualizar_receita(resultados[escolha - 1], motor, lista_receitas, trie_global, tabela_hash)
+            menu_visualizar_receita(resultados[escolha - 1], motor, lista_receitas, trie_global, tabela_hash, oficina)
         else: print("  ⚠ Opção inválida.\n")
 
-def menu_busca_geral(motor, lista_receitas, trie_global: TrieBuscaGeral, tabela_hash) -> None:
+def menu_busca_geral(motor, lista_receitas, trie_global: TrieBuscaGeral, tabela_hash, oficina: OficinaProducao) -> None:
     print("\n" + "═" * 55)
     print("  BUSCA GERAL (NOME OU PREFIXO)")
     print("═" * 55)
@@ -127,12 +200,12 @@ def menu_busca_geral(motor, lista_receitas, trie_global: TrieBuscaGeral, tabela_
         if escolha == '0': break
         elif escolha in opcoes:
             tipo, obj = opcoes[escolha]
-            if tipo == 'receita': menu_visualizar_receita(obj, motor, lista_receitas, trie_global, tabela_hash)
-            elif tipo == 'categoria': menu_visualizar_categoria(obj, motor, lista_receitas, trie_global, tabela_hash)
-            elif tipo == 'ingrediente': menu_visualizar_ingrediente(obj, motor, lista_receitas, trie_global, tabela_hash)
+            if tipo == 'receita': menu_visualizar_receita(obj, motor, lista_receitas, trie_global, tabela_hash, oficina)
+            elif tipo == 'categoria': menu_visualizar_categoria(obj, motor, lista_receitas, trie_global, tabela_hash, oficina)
+            elif tipo == 'ingrediente': menu_visualizar_ingrediente(obj, motor, lista_receitas, trie_global, tabela_hash, oficina)
         else: print("  ⚠ Opção inválida.")
 
-def menu_busca_hash(motor, lista_receitas, trie_global, tabela_hash: TabelaHashNomes) -> None:
+def menu_busca_hash(motor, lista_receitas, trie_global, tabela_hash: TabelaHashNomes, oficina: OficinaProducao) -> None:
     print("\n" + "=" * 55)
     print("  BUSCA POR NOME EXATO (TABELA HASH)")
     print("=" * 55)
@@ -165,9 +238,9 @@ def menu_busca_hash(motor, lista_receitas, trie_global, tabela_hash: TabelaHashN
         if escolha == '0': break
         elif escolha in opcoes:
             obj_escolhido = opcoes[escolha]
-            if isinstance(obj_escolhido, Receita): menu_visualizar_receita(obj_escolhido, motor, lista_receitas, trie_global, tabela_hash)
-            elif isinstance(obj_escolhido, Categoria): menu_visualizar_categoria(obj_escolhido, motor, lista_receitas, trie_global, tabela_hash)
-            elif isinstance(obj_escolhido, Ingredientes): menu_visualizar_ingrediente(obj_escolhido, motor, lista_receitas, trie_global, tabela_hash)
+            if isinstance(obj_escolhido, Receita): menu_visualizar_receita(obj_escolhido, motor, lista_receitas, trie_global, tabela_hash, oficina)
+            elif isinstance(obj_escolhido, Categoria): menu_visualizar_categoria(obj_escolhido, motor, lista_receitas, trie_global, tabela_hash, oficina)
+            elif isinstance(obj_escolhido, Ingredientes): menu_visualizar_ingrediente(obj_escolhido, motor, lista_receitas, trie_global, tabela_hash, oficina)
         else: print("  ⚠ Opção inválida.")
 
 def menu_diagnostico_hash(tabela_hash: TabelaHashNomes) -> None:
@@ -184,10 +257,11 @@ def menu_adicionar_receita(motor: AlgoritmoRecomendacao, lista_receitas: list, t
         return
 
     tempo = _pedir_inteiro("  Tempo de preparo (min) [padrão=0]: ") or 0
-    custo = _pedir_inteiro("  Custo (centavos de dólar) [padrão=0]: ") or 0
+    custo = _pedir_float("  Custo (centavos de dólar) [padrão=0]: ") or 0
+    preco = _pedir_float("  Preço de venda [0 = apenas preparo intermediário, padrão=0]: ") or 0.0
 
     try:
-        nova_receita = Receita(nome_receita=nome, custo=custo, tempo_preparo=tempo, fator_recomendacao=0.0, trie_global=trie_global, tabela_hash=tabela_hash)
+        nova_receita = Receita(nome_receita=nome, custo=custo, tempo_preparo=tempo, fator_recomendacao=0.0, preco=preco, trie_global=trie_global, tabela_hash=tabela_hash)
     except ValueError as e:
         print(f"  ⚠ Erro: {e}")
         return 
@@ -210,7 +284,7 @@ def menu_adicionar_receita(motor: AlgoritmoRecomendacao, lista_receitas: list, t
     nova_receita.salvar_snapshot("Criação da Receita (Original)")
     print(f"\n  ✓ Receita '{nome}' criada com sucesso!")
 
-def menu_visualizar_categoria(categoria: Categoria, motor, lista_receitas, trie_global, tabela_hash) -> None:
+def menu_visualizar_categoria(categoria: Categoria, motor, lista_receitas, trie_global, tabela_hash, oficina: OficinaProducao) -> None:
     while True:
         print("\n" + "═" * 55)
         print(f"  CATEGORIA: {categoria.nome_categoria.upper()}")
@@ -245,10 +319,10 @@ def menu_visualizar_categoria(categoria: Categoria, motor, lista_receitas, trie_
                 print("  ✓ Categoria excluída!")
                 break
         elif escolha in opcoes:
-            menu_visualizar_receita(opcoes[escolha], motor, lista_receitas, trie_global, tabela_hash)
+            menu_visualizar_receita(opcoes[escolha], motor, lista_receitas, trie_global, tabela_hash, oficina)
         else: print("  ⚠ Opção inválida.")
 
-def menu_visualizar_ingrediente(ingrediente: Ingredientes, motor, lista_receitas, trie_global, tabela_hash) -> None:
+def menu_visualizar_ingrediente(ingrediente: Ingredientes, motor, lista_receitas, trie_global, tabela_hash, oficina: OficinaProducao) -> None:
     while True:
         print("\n" + "═" * 55)
         print(f"  INGREDIENTE: {ingrediente.nome_ingrediente.upper()}")
@@ -301,15 +375,15 @@ def menu_visualizar_ingrediente(ingrediente: Ingredientes, motor, lista_receitas
                 print("  ✓ Ingrediente excluído!")
                 break
         elif escolha in opcoes:
-            menu_visualizar_receita(opcoes[escolha], motor, lista_receitas, trie_global, tabela_hash)
+            menu_visualizar_receita(opcoes[escolha], motor, lista_receitas, trie_global, tabela_hash, oficina)
         else: print("  ⚠ Opção inválida.")
 
-def menu_visualizar_receita(receita: Receita, motor, lista_receitas, trie_global, tabela_hash) -> None:
+def menu_visualizar_receita(receita: Receita, motor, lista_receitas, trie_global, tabela_hash, oficina: OficinaProducao) -> None:
     while True:
         print("\n" + "═" * 55)
         print(f"  RECEITA: {receita.nome_receita.upper()}")
         print("═" * 55)
-        print(f"  Tempo: {receita.tempo_preparo} min | Custo: {receita.custo}¢$ | Fator: {receita.fator_recomendacao}")
+        print(f"  Tempo: {receita.tempo_preparo} min | Custo: {receita.custo}¢$ | Preço: {receita.preco}¢$ | Fator: {receita.fator_recomendacao}")
         
         opcoes = {}
         contador = 1
@@ -329,7 +403,15 @@ def menu_visualizar_receita(receita: Receita, motor, lista_receitas, trie_global
                 print(f"   {contador}. {rel.quantidade_necessaria} {rel.unidade_utilizada} de {rel.ingrediente.nome_ingrediente}")
                 opcoes[str(contador)] = ('ingrediente', rel.ingrediente)
                 contador += 1
-                
+
+        print("\n  [ Preparos (Módulo 5) ]")
+        if not receita.lista_preparos: print("   - Nenhum preparo cadastrado")
+        else:
+            for prep in receita.lista_preparos:
+                print(f"   {contador}. {prep.nome_receita}")
+                opcoes[str(contador)] = ('receita', prep)
+                contador += 1
+
         print("\n  [E] Editar Receita | [X] Excluir Receita | [0] Voltar")
         escolha = input("  Ação ou Número para explorar: ").strip().upper()
         
@@ -346,6 +428,9 @@ def menu_visualizar_receita(receita: Receita, motor, lista_receitas, trie_global
                 print("  6. Remover Ingrediente")
                 print("  7. Adicionar Categoria")
                 print("  8. Remover Categoria")
+                print("  9. Alterar Preço de Venda")
+                print("  10. Adicionar Preparo (dependência — Módulo 5)")
+                print("  11. Remover Preparo (dependência — Módulo 5)")
                 print("  0. Salvar e Sair do Modo de Edição")
                 edicao = input("  Opção: ").strip()
                 
@@ -362,7 +447,7 @@ def menu_visualizar_receita(receita: Receita, motor, lista_receitas, trie_global
                         alteracoes_feitas.append("Nome")
                     except ValueError as e: print(f"  ⚠ Erro: {e}")
                 elif edicao == '2':
-                    novo_c = _pedir_inteiro("  Novo Custo: ")
+                    novo_c = _pedir_float("  Novo Custo: ")
                     if novo_c is not None:
                         receita.atualizar_custo(novo_c)
                         alteracoes_feitas.append("Custo")
@@ -372,14 +457,14 @@ def menu_visualizar_receita(receita: Receita, motor, lista_receitas, trie_global
                         receita.atualizar_tempo(novo_t)
                         alteracoes_feitas.append("Tempo")
                 elif edicao == '4':
-                    novo_f = _pedir_float("  Novo Fator (ex: 4.5): ")
+                    novo_f = _pedir_inteiro("  Novo Fator (ex: 110): ")
                     if novo_f is not None:
                         receita.atualizar_fator_recomendacao(novo_f)
                         alteracoes_feitas.append("Fator")
                 elif edicao == '5':
                     ing_nome = input("  Nome do ingrediente a adicionar: ").strip()
                     if ing_nome:
-                        qtd = _pedir_inteiro("  Quantidade (número) [padrão=1]: ") or 1
+                        qtd = _pedir_float("  Quantidade (número) [padrão=1]: ") or 1
                         und = input("  Unidade (ex: g, ml) [padrão=und]: ").strip() or "und"
                         receita.adicionar_ingrediente(ing_nome, und, qtd, trie_global, tabela_hash)
                         alteracoes_feitas.append(f"+Ingrediente ({ing_nome})")
@@ -420,6 +505,41 @@ def menu_visualizar_receita(receita: Receita, motor, lista_receitas, trie_global
                             alteracoes_feitas.append(f"-Categoria ({nome_cat_alvo})")
                         else:
                             print("  ⚠ Seleção inválida.")
+                elif edicao == '9':
+                    novo_p = _pedir_float("  Novo Preço de Venda [0 = apenas preparo intermediário]: ")
+                    if novo_p is not None:
+                        receita.atualizar_preco(novo_p)
+                        alteracoes_feitas.append("Preço")
+                        # Verificação de Manutenção (seção 5.1-5.3), pois o preço mudou
+                        sugestoes = oficina.verificacao_manutencao(receita)
+                        _resolver_sugestoes_coerencia(oficina, sugestoes)
+                elif edicao == '10':
+                    prep_nome = input("  Nome do preparo a adicionar como dependência: ").strip().lower()
+                    preparo_obj = Receita.registro_global.get(prep_nome)
+                    if preparo_obj is None:
+                        print("  ⚠ Receita não encontrada. Cadastre-a primeiro.")
+                    else:
+                        receita.adicionar_preparo(preparo_obj)
+                        alteracoes_feitas.append(f"+Preparo ({preparo_obj.nome_receita})")
+                        # Verificação de Manutenção: coerência de custo/tempo/preço
+                        sugestoes = oficina.verificacao_manutencao(receita)
+                        _resolver_sugestoes_coerencia(oficina, sugestoes)
+                elif edicao == '11':
+                    if not receita.lista_preparos:
+                        print("  ✗ Esta receita não tem preparos para remover.")
+                    else:
+                        print("\n  Qual preparo deseja remover?")
+                        for i, prep in enumerate(receita.lista_preparos, 1):
+                            print(f"    {i}. {prep.nome_receita}")
+
+                        idx = _pedir_inteiro("  Número do preparo: ")
+                        if idx and 1 <= idx <= len(receita.lista_preparos):
+                            prep_alvo = receita.lista_preparos[idx - 1]
+                            nome_prep_alvo = prep_alvo.nome_receita
+                            receita.remover_preparo(nome_prep_alvo)
+                            alteracoes_feitas.append(f"-Preparo ({nome_prep_alvo})")
+                        else:
+                            print("  ⚠ Seleção inválida.")
                 else:
                     print("  ⚠ Opção inválida.")
         elif escolha == 'X':
@@ -432,9 +552,76 @@ def menu_visualizar_receita(receita: Receita, motor, lista_receitas, trie_global
                 break
         elif escolha in opcoes:
             tipo, obj = opcoes[escolha]
-            if tipo == 'categoria': menu_visualizar_categoria(obj, motor, lista_receitas, trie_global, tabela_hash)
-            else: menu_visualizar_ingrediente(obj, motor, lista_receitas, trie_global, tabela_hash)
+            if tipo == 'categoria': menu_visualizar_categoria(obj, motor, lista_receitas, trie_global, tabela_hash, oficina)
+            elif tipo == 'receita': menu_visualizar_receita(obj, motor, lista_receitas, trie_global, tabela_hash, oficina)
+            else: menu_visualizar_ingrediente(obj, motor, lista_receitas, trie_global, tabela_hash, oficina)
         else: print("  ⚠ Opção inválida.")
+
+
+def menu_oficina_producao(oficina: OficinaProducao) -> None:
+    while True:
+        print("\n" + "═" * 55)
+        print("  MÓDULO 5 — OFICINA DE PRODUÇÃO")
+        print("═" * 55)
+        print("  1. Rodar Verificação Geral (autodependências, ciclos, coerência)")
+        print("  2. Ver / Aplicar cortes sugeridos pendentes")
+        print("  3. Ver / Aplicar sugestões de coerência pendentes")
+        print("  4. Consulta: Existe algum erro de dependência?")
+        print("  5. Consulta: Sequência correta de produção do menu")
+        print("  6. Consulta: Preparos necessários antes de uma receita X")
+        print("  0. Voltar")
+
+        opcao = input("  Escolha: ").strip()
+
+        if opcao == "0": break
+
+        elif opcao == "1":
+            resultado = oficina.verificacao_geral()
+            print(f"\n  Grafo é um DAG (sem ciclos)? {'SIM' if resultado['eh_dag'] else 'NÃO'}")
+            _resolver_cortes_sugeridos(oficina, resultado["cortes_sugeridos"])
+            if resultado["eh_dag"]:
+                _resolver_sugestoes_coerencia(oficina, resultado["sugestoes_coerencia"])
+            else:
+                print("  → Resolva os cortes acima e rode a Verificação Geral novamente")
+                print("    para liberar a checagem de coerência e a ordem de produção.")
+
+        elif opcao == "2":
+            _resolver_cortes_sugeridos(oficina, oficina.lista_cortes_sugeridos)
+
+        elif opcao == "3":
+            _resolver_sugestoes_coerencia(oficina, oficina.lista_sugestoes_coerencia)
+
+        elif opcao == "4":
+            if oficina.existe_erro_dependencia():
+                print("\n  ⚠ SIM: existem autodependências e/ou ciclos de dependência não resolvidos.")
+            else:
+                print("\n  ✓ NÃO: o grafo de dependências está consistente (DAG).")
+
+        elif opcao == "5":
+            ordem = oficina.sequencia_producao()
+            if ordem is None:
+                print("\n  ✗ Não é possível gerar a sequência: existem ciclos/autodependências pendentes.")
+                print("    Rode a opção 1 (Verificação Geral) e resolva os cortes primeiro.")
+            else:
+                print("\n  ✓ Sequência correta de produção (preparos antes de quem os utiliza):")
+                for i, r in enumerate(ordem, 1):
+                    print(f"    {i}. {r.nome_receita}")
+
+        elif opcao == "6":
+            nome = input("  Nome da receita X: ").strip().lower()
+            r = Receita.registro_global.get(nome)
+            if r is None:
+                print("  ⚠ Receita não encontrada.")
+            else:
+                preparos = oficina.preparos_necessarios_antes_de(r)
+                if not preparos:
+                    print(f"\n  '{r.nome_receita}' não depende de nenhum preparo.")
+                else:
+                    print(f"\n  Preparos necessários antes de '{r.nome_receita}' (diretos + transitivos):")
+                    for p in preparos:
+                        print(f"    - {p.nome_receita}")
+        else:
+            print("  ⚠ Opção inválida.")
 
 
 def menu_investigacao() -> None:
@@ -489,7 +676,7 @@ def _exibir_lista_investigacao(lista_receitas: list, titulo: str):
 
 
 def menu_principal(motor, lista_receitas, lista_ingredientes,
-                   lista_categorias, mapa_id_ingrediente, trie_global, tabela_hash):
+                   lista_categorias, mapa_id_ingrediente, trie_global, tabela_hash, oficina: OficinaProducao):
     while True:
         print("\n╔" + "═" * 48 + "╗")
         print("║      DESAFIO NA COZINHA — MENU PRINCIPAL       ║")
@@ -502,18 +689,20 @@ def menu_principal(motor, lista_receitas, lista_ingredientes,
         print("║  6. Adicionar nova receita                     ║")
         print("║  7. Salvar estado atual                        ║")
         print("║  8. Modo Investigação (Histórico/Lixeira)      ║")
+        print("║  9. Oficina de Produção (Módulo 5)             ║")
         print("║  0. Sair                                       ║")
         print("╚" + "═" * 48 + "╝")
         opcao = input("  Opção: ").strip()
 
         if opcao == "1": motor.exibir_lista(limite=15)
-        elif opcao == "2": menu_recomendacao(motor, lista_receitas, trie_global, tabela_hash)
-        elif opcao == "3": menu_busca_geral(motor, lista_receitas, trie_global, tabela_hash)
-        elif opcao == "4": menu_busca_hash(motor, lista_receitas, trie_global, tabela_hash)
+        elif opcao == "2": menu_recomendacao(motor, lista_receitas, trie_global, tabela_hash, oficina)
+        elif opcao == "3": menu_busca_geral(motor, lista_receitas, trie_global, tabela_hash, oficina)
+        elif opcao == "4": menu_busca_hash(motor, lista_receitas, trie_global, tabela_hash, oficina)
         elif opcao == "5": menu_diagnostico_hash(tabela_hash)
         elif opcao == "6": menu_adicionar_receita(motor, lista_receitas, trie_global, tabela_hash)
         elif opcao == "7": salvar_dados(lista_receitas, lista_ingredientes, lista_categorias, mapa_id_ingrediente)
         elif opcao == "8": menu_investigacao()
+        elif opcao == "9": menu_oficina_producao(oficina)
         elif opcao == "0":
             print("  Encerrando. Até logo!")
             break
@@ -550,8 +739,19 @@ def main():
     tabela_hash = construir_tabela_hash(lista_receitas, lista_ingredientes, lista_categorias)
     print("  ✓ Motores prontos!\n")
 
+    # --- MÓDULO 5: OFICINA DE PRODUÇÃO — Verificação Geral na inicialização ---
+    oficina = OficinaProducao(lista_receitas)
+    resultado_inicial = oficina.verificacao_geral()
+    print("Rodando Verificação Geral da Oficina de Produção (Módulo 5)...")
+    if resultado_inicial["eh_dag"]:
+        print(f"  ✓ Grafo de dependências é um DAG. "
+              f"{len(resultado_inicial['sugestoes_coerencia'])} sugestão(ões) de coerência pendente(s).")
+    else:
+        print(f"  ⚠ {len(resultado_inicial['cortes_sugeridos'])} corte(s) sugerido(s) "
+              f"para desfazer ciclos/autodependências. Veja no menu 'Oficina de Produção'.")
+
     menu_principal(motor, lista_receitas, lista_ingredientes,
-                   lista_categorias, mapa_id_ingrediente, trie_global, tabela_hash)
+                   lista_categorias, mapa_id_ingrediente, trie_global, tabela_hash, oficina)
 
 if __name__ == "__main__":
     main()

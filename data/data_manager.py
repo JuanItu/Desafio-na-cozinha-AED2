@@ -25,6 +25,7 @@ def carregar_dados(usar_salvos: bool = False):
         dados_json = json.load(f)
 
     lista_receitas = []
+    pendentes_preparos = []  # [(receita, [nomes_dos_preparos])] -> ligado após criar todas as receitas
 
     # --- SUPORTE AOS DOIS FORMATOS DE JSON ---
     if isinstance(dados_json, dict) and "receitas" in dados_json:
@@ -45,11 +46,15 @@ def carregar_dados(usar_salvos: bool = False):
                 nome_receita=r_json["nome"],
                 custo=r_json["custo_centavos_dolar"],
                 tempo_preparo=r_json["tempo_preparo_minutos"],
-                fator_recomendacao=r_json["popularidade_likes"]
+                fator_recomendacao=r_json["popularidade_likes"],
+                preco=r_json.get("preco_venda", 0.0)
             )
         except ValueError:
             continue
-            
+
+        if r_json.get("preparos"):
+            pendentes_preparos.append((receita, r_json["preparos"]))
+
         if "historico_estados" in r_json:
             receita.historico_estados = r_json["historico_estados"]
         if "ultima_atualizacao" in r_json:
@@ -76,6 +81,16 @@ def carregar_dados(usar_salvos: bool = False):
         else:
             lista_receitas.append(receita)
 
+    # --- LIGAÇÃO DAS DEPENDÊNCIAS (PREPAROS) — 2ª passada ---
+    # Precisa ser feita depois que TODAS as receitas existem, pois um preparo
+    # pode estar cadastrado mais adiante na lista do JSON.
+    for receita, nomes_preparos in pendentes_preparos:
+        for nome_prep in nomes_preparos:
+            preparo_obj = Receita.registro_global.get(nome_prep.lower()) \
+                or Receita.registro_excluidas.get(nome_prep.lower())
+            if preparo_obj is not None:
+                receita.adicionar_preparo(preparo_obj)
+
     lista_categorias = list(Categoria.registro_global.values())
     lista_ingredientes = list(Ingredientes.registro_global.values())
 
@@ -97,6 +112,8 @@ def salvar_dados(lista_receitas, lista_ingredientes, lista_categorias, mapa_id_i
             for qi in r.lista_quantidade_ingredientes
         ]
         
+        nomes_preparos = [p.nome_receita for p in r.lista_preparos]
+
         dados_receitas.append({
             "nome": r.nome_receita,
             "categorias": nomes_cats,
@@ -104,6 +121,8 @@ def salvar_dados(lista_receitas, lista_ingredientes, lista_categorias, mapa_id_i
             "tempo_preparo_minutos": r.tempo_preparo,
             "custo_centavos_dolar": r.custo,
             "popularidade_likes": r.fator_recomendacao,
+            "preco_venda": r.preco,
+            "preparos": nomes_preparos,
             "historico_estados": r.historico_estados,
             "ultima_atualizacao": r.ultima_atualizacao.isoformat(),
             "data_exclusao": r.data_exclusao.isoformat() if r.data_exclusao else None,

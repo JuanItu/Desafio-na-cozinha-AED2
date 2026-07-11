@@ -6,7 +6,7 @@ class Receita:
     registro_global = {}
     registro_excluidas = {} # O nosso "Arquivo Morto"
 
-    def __init__(self, nome_receita, custo=0.0, tempo_preparo=0, fator_recomendacao=0.0, trie_global=None, tabela_hash=None):
+    def __init__(self, nome_receita, custo=0.0, tempo_preparo=0, fator_recomendacao=0.0, preco=0.0, trie_global=None, tabela_hash=None):
         nome_key = nome_receita.lower()
         
         if nome_key in Receita.registro_global:
@@ -16,9 +16,14 @@ class Receita:
         self.custo = custo
         self.tempo_preparo = tempo_preparo
         self.fator_recomendacao = fator_recomendacao
-        
+        self.preco = preco  # preço de venda; 0 = receita é apenas um preparo intermediário
+
         self.lista_categoria_receitas = []
         self.lista_quantidade_ingredientes = []
+
+        # --- MÓDULO 5: OFICINA DE PRODUÇÃO (dependências entre preparos) ---
+        self.lista_preparos = []      # receitas que ESTA receita precisa (dependências diretas)
+        self.lista_dependentes = []   # receitas que precisam DESTA receita (reverso, p/ limpeza e consultas)
         
         # --- PREPARAÇÃO DO MODO INVESTIGAÇÃO ---
         self.historico_estados = []
@@ -38,15 +43,18 @@ class Receita:
         categorias = [c.nome_categoria for c in self.lista_categoria_receitas]
         ingredientes = [f"{qi.quantidade_necessaria}{qi.unidade_utilizada} {qi.ingrediente.nome_ingrediente}" 
                         for qi in self.lista_quantidade_ingredientes]
-                        
+        preparos = [p.nome_receita for p in self.lista_preparos]
+
         snapshot = {
             "data": self.ultima_atualizacao.strftime("%d/%m/%Y %H:%M:%S"),
             "motivo": motivo,
             "nome": self.nome_receita,
             "custo": self.custo,
             "tempo": self.tempo_preparo,
+            "preco": self.preco,
             "categorias": categorias,
-            "ingredientes": ingredientes
+            "ingredientes": ingredientes,
+            "preparos": preparos
         }
         
         self.historico_estados.append(snapshot)
@@ -67,7 +75,19 @@ class Receita:
         # Limpa os ingredientes
         for relacao in self.lista_quantidade_ingredientes:
             relacao.ingrediente.remover_receita(self)
-            
+
+        # Limpa as dependências (preparos que esta receita usava)
+        for prep in list(self.lista_preparos):
+            if self in prep.lista_dependentes:
+                prep.lista_dependentes.remove(self)
+        self.lista_preparos.clear()
+
+        # Avisa quem dependia desta receita como preparo, para não deixar referência solta
+        for dependente in list(self.lista_dependentes):
+            dependente.lista_preparos.remove(self)
+            dependente.salvar_snapshot(f"Preparo '{self.nome_receita}' foi apagado do sistema")
+        self.lista_dependentes.clear()
+
         nome_key = self.nome_receita.lower()
         
         # Atualiza os motores de busca
@@ -130,6 +150,33 @@ class Receita:
     def atualizar_tempo(self, novo_tempo) -> bool:
         self.tempo_preparo = novo_tempo
         return True
+
+    def atualizar_preco(self, novo_preco) -> bool:
+        self.preco = novo_preco
+        return True
+
+    # --- MÓDULO 5: OFICINA DE PRODUÇÃO ---
+
+    def adicionar_preparo(self, receita_preparo: "Receita") -> bool:
+        """Registra que ESTA receita depende de 'receita_preparo' como preparo direto.
+        Não bloqueia autodependência nem ciclos aqui: a Oficina de Produção
+        (Tarjan + DFS de pilha) é responsável por detectá-los e sugerir cortes."""
+        if receita_preparo not in self.lista_preparos:
+            self.lista_preparos.append(receita_preparo)
+            receita_preparo.lista_dependentes.append(self)
+            return True
+        return False
+
+    def remover_preparo(self, nome_receita_preparo: str) -> bool:
+        """Remove a dependência com um preparo específico, atualizando ambos os lados."""
+        nome_key = nome_receita_preparo.lower()
+        for prep in self.lista_preparos:
+            if prep.nome_receita.lower() == nome_key:
+                self.lista_preparos.remove(prep)
+                if self in prep.lista_dependentes:
+                    prep.lista_dependentes.remove(self)
+                return True
+        return False
 
     def mudar_nome(self, novo_nome, trie_global=None, tabela_hash=None):
         nome_antigo_key = self.nome_receita.lower()
