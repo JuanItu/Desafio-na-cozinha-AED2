@@ -12,12 +12,14 @@ if str(_RAIZ) not in sys.path:
 from modelos.receita import Receita
 from modelos.categoria import Categoria
 from modelos.ingredientes import Ingredientes
+from modelos.menu import Menu
 
 from data.data_manager import carregar_dados, salvar_dados
 from motor.algoritmo_recomendações import AlgoritmoRecomendacao
 from motor.busca_geral import TrieBuscaGeral
 from motor.busca_id import TabelaHashNomes, construir_tabela_hash
 from motor.oficina_producao import OficinaProducao
+from motor.gerar_menu import OtimizadorMenuVIP
 
 def montar_motor(lista_receitas) -> AlgoritmoRecomendacao:
     motor = AlgoritmoRecomendacao()
@@ -673,6 +675,130 @@ def _exibir_lista_investigacao(lista_receitas: list, titulo: str):
                 print(f"    Ingredientes: {', '.join(versao['ingredientes']) if versao['ingredientes'] else 'Nenhum'}")
             input("\n  [ Pressione ENTER para voltar à lista ]")
         else: print("  ⚠ Opção inválida.")
+        
+def menu_modo_chef(motor) -> None:
+    while True:
+        print("\n" + "═" * 55)
+        print("  MODO CHEF (MÓDULO 6 — MENU DEGUSTAÇÃO VIP)")
+        print("═" * 55)
+        print("  1. Gerar Menu VIP Otimizado (Automático)")
+        print("  2. Ver Banco de Menus Salvos")
+        print("  0. Voltar")
+        
+        opcao = input("  Escolha: ").strip()
+        
+        if opcao == "0":
+            break
+            
+        elif opcao == "1":
+            print("\n  [ CONFIGURAÇÃO DAS RESTRIÇÕES ]")
+            limite_custo = _pedir_float("  Custo máximo total (centavos de dólar): ")
+            if limite_custo is None: continue
+                
+            limite_tempo = _pedir_inteiro("  Tempo máximo de preparo (min): ")
+            if limite_tempo is None: continue
+                
+            categorias_solicitadas = []
+            pesos_categorias = []
+            
+            print("\n  [ COMPOSIÇÃO DO MENU ]")
+            print("  Adicione as categorias desejadas (ex: Entradas, Pratos Principais, Sobremesas).")
+            print("  Deixe o nome em branco para terminar a composição e iniciar a busca.\n")
+            
+            while True:
+                nome_cat = input("  Nome da Categoria: ").strip()
+                if not nome_cat: 
+                    break
+                    
+                # Procura a categoria no registo global
+                cat_obj = Categoria.registro_global.get(nome_cat.lower())
+                if not cat_obj or not cat_obj.lista_categoria_receitas:
+                    print("    ⚠ Categoria não encontrada ou sem receitas. Tente novamente.")
+                    continue
+                    
+                qtd = _pedir_inteiro(f"    Quantos pratos da categoria '{cat_obj.nome_categoria}'? [padrão=1]: ") or 1
+                categorias_solicitadas.append(cat_obj)
+                pesos_categorias.append(qtd)
+                
+            if not categorias_solicitadas:
+                print("  ⚠ Operação cancelada: Nenhuma categoria foi adicionada.")
+                continue
+                
+            print("\n  A calcular o menu perfeito... (Isto pode demorar alguns milissegundos 🚀)")
+            
+            # Instancia o motor e inicia a busca!
+            otimizador = OtimizadorMenuVIP(categorias_solicitadas, pesos_categorias, limite_custo, limite_tempo)
+            novo_menu = otimizador.buscar_menu_otimo()
+            
+            if novo_menu:
+                novo_menu.exibir_recibo()
+                print("  ✓ Menu gerado com sucesso!")
+                
+                guardar = input("  Deseja dar um nome e guardar este menu no sistema? (S/N): ").strip().upper()
+                if guardar == 'S':
+                    nome_customizado = input("  Digite o nome do Menu: ").strip()
+                    if nome_customizado:
+                        # Apaga a chave temporária e guarda com o nome definitivo
+                        del Menu.registro_global[novo_menu.nome_menu.lower()]
+                        novo_menu.nome_menu = nome_customizado
+                        Menu.registro_global[nome_customizado.lower()] = novo_menu
+                        print(f"  ✓ Menu '{nome_customizado}' guardado na memória!")
+                else:
+                    # Se não quiser guardar, removemos do banco de memória
+                    del Menu.registro_global[novo_menu.nome_menu.lower()]
+            else:
+                print("\n  ✗ IMPOSSÍVEL! Nenhuma combinação de pratos atende a estas restrições.")
+                print("    Tente aumentar o orçamento, o tempo, ou verificar as receitas disponíveis.")
+
+        elif opcao == "2":
+            if not Menu.registro_global:
+                print("\n  ✗ Nenhum menu guardado no sistema.")
+            else:
+                while True:
+                    print("\n  [ BANCO DE MENUS SALVOS ]")
+                    lista_menus = list(Menu.registro_global.values())
+                    for idx, menu_obj in enumerate(lista_menus, 1):
+                        print(f"  {idx}. {menu_obj.nome_menu} (Custo: {menu_obj.custo_total:.2f}¢$ | Tempo: {menu_obj.tempo_total}m)")
+                    print("  0. Voltar")
+                    
+                    escolha = _pedir_inteiro("\n  Escolha um menu para abrir (0 para voltar): ")
+                    if escolha == 0 or escolha is None:
+                        break
+                    
+                    if 1 <= escolha <= len(lista_menus):
+                        menu_selecionado = lista_menus[escolha - 1]
+                        menu_selecionado.exibir_recibo() # Imprime o layout chique do cardápio
+                        
+                        # --- SUB-MENU PARA INSPECIONAR AS RECEITAS ---
+                        while True:
+                            print("\n  [ OPÇÕES DO MENU ABERTO ]")
+                            print("  1. Inspecionar uma receita específica deste menu")
+                            print("  0. Voltar à lista de menus")
+                            sub_opcao = input("  Escolha: ").strip()
+                            
+                            if sub_opcao == "0":
+                                break
+                            elif sub_opcao == "1":
+                                # Achata (flatten) as receitas para listar tudo de forma numerada
+                                pratos_flat = []
+                                for pratos in menu_selecionado.pratos_por_categoria.values():
+                                    pratos_flat.extend(pratos)
+                                    
+                                print("\n  [ PRATOS DO MENU ]")
+                                for i, prato in enumerate(pratos_flat, 1):
+                                    print(f"  {i}. {prato.nome_receita}")
+                                print("  0. Cancelar")
+                                
+                                prato_idx = _pedir_inteiro("\n  Qual prato deseja inspecionar? ")
+                                if prato_idx and 1 <= prato_idx <= len(pratos_flat):
+                                    prato_selecionado = pratos_flat[prato_idx - 1]
+                                    print(f"\n  --- DETALHES DA RECEITA: {prato_selecionado.nome_receita.upper()} ---")
+                                    # Aproveita a função linda do motor para mostrar todos os dados!
+                                    motor.exibir_recomendacao([prato_selecionado])
+                            else:
+                                print("  ⚠ Opção inválida.")
+                    else:
+                        print("  ⚠ Número de menu inválido.")
 
 
 def menu_principal(motor, lista_receitas, lista_ingredientes,
@@ -685,11 +811,12 @@ def menu_principal(motor, lista_receitas, lista_ingredientes,
         print("║  2. Obter recomendação                         ║")
         print("║  3. Busca Geral (Nome/Prefixo) — Trie          ║")
         print("║  4. Busca por Nome Exato — Tabela Hash         ║")
-        print("║  5. Diagnostico da Tabela Hash                 ║")
+        print("║  5. Diagnóstico da Tabela Hash                 ║")
         print("║  6. Adicionar nova receita                     ║")
         print("║  7. Salvar estado atual                        ║")
         print("║  8. Modo Investigação (Histórico/Lixeira)      ║")
         print("║  9. Oficina de Produção (Módulo 5)             ║")
+        print("║ 10. Modo Chef (Módulo 6 - Menu Degustação VIP) ║") # <-- NOVA OPÇÃO
         print("║  0. Sair                                       ║")
         print("╚" + "═" * 48 + "╝")
         opcao = input("  Opção: ").strip()
@@ -703,8 +830,9 @@ def menu_principal(motor, lista_receitas, lista_ingredientes,
         elif opcao == "7": salvar_dados(lista_receitas, lista_ingredientes, lista_categorias, mapa_id_ingrediente)
         elif opcao == "8": menu_investigacao()
         elif opcao == "9": menu_oficina_producao(oficina)
+        elif opcao == "10": menu_modo_chef(motor)
         elif opcao == "0":
-            print("  Encerrando. Até logo!")
+            print("  A encerrar o sistema. Até logo!")
             break
         else: print("  Opção inválida.\n")
 

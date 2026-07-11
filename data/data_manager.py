@@ -10,6 +10,7 @@ if str(_RAIZ) not in sys.path:
 from modelos.receita      import Receita
 from modelos.ingredientes import Ingredientes
 from modelos.categoria    import Categoria
+from modelos.menu         import Menu
 
 _CAMINHO_FONTE  = Path(__file__).parent / "dados_fonte.json"
 _CAMINHO_SALVOS = Path(__file__).parent / "dados_salvos.json"
@@ -90,6 +91,24 @@ def carregar_dados(usar_salvos: bool = False):
                 or Receita.registro_excluidas.get(nome_prep.lower())
             if preparo_obj is not None:
                 receita.adicionar_preparo(preparo_obj)
+                
+    if isinstance(dados_json, dict) and "menus" in dados_json:
+        Menu.registro_global.clear()  # Limpa o banco em memória para evitar duplicações
+        
+        for m_json in dados_json["menus"]:
+            novo_menu = Menu(m_json["nome_menu"])
+            dict_pratos_objs = {}
+            
+            # Reconecta as strings (nomes) de volta aos objetos Receita em memória
+            for cat_nome, nomes_receitas in m_json.get("pratos_por_categoria", {}).items():
+                dict_pratos_objs[cat_nome] = []
+                for nome_rec in nomes_receitas:
+                    rec_obj = Receita.registro_global.get(nome_rec.lower())
+                    if rec_obj:
+                        dict_pratos_objs[cat_nome].append(rec_obj)
+                        
+            # O próprio Menu calcula as estatísticas sozinho ao definir os pratos
+            novo_menu.definir_pratos(dict_pratos_objs)
 
     lista_categorias = list(Categoria.registro_global.values())
     lista_ingredientes = list(Ingredientes.registro_global.values())
@@ -129,7 +148,7 @@ def salvar_dados(lista_receitas, lista_ingredientes, lista_categorias, mapa_id_i
             "excluida": r.data_exclusao is not None
         })
         
-    # --- NOVO: SALVA O ESTOQUE GLOBAL ---
+    # --- SALVA O ESTOQUE GLOBAL ---
     dados_estoque = []
     for ing in Ingredientes.registro_global.values():
         dados_estoque.append({
@@ -138,13 +157,26 @@ def salvar_dados(lista_receitas, lista_ingredientes, lista_categorias, mapa_id_i
             "unidade": ing.unidade_estoque
         })
         
-    # Empacota as duas gavetas
+    dados_menus = []
+    for menu in Menu.registro_global.values():
+        # Converte a lista de objetos Receita para uma lista de Nomes (Strings)
+        pratos_nomes = {}
+        for cat, lista_recs in menu.pratos_por_categoria.items():
+            pratos_nomes[cat] = [r.nome_receita for r in lista_recs]
+        
+        dados_menus.append({
+            "nome_menu": menu.nome_menu,
+            "pratos_por_categoria": pratos_nomes
+        })
+        
+    # Empacota as três gavetas
     dados_completos = {
         "receitas": dados_receitas,
-        "estoque_ingredientes": dados_estoque
+        "estoque_ingredientes": dados_estoque,
+        "menus": dados_menus # <-- ADICIONAR OS MENUS AQUI
     }
-        
-    with open(caminho, "w", encoding="utf-8") as f:
-        json.dump(dados_completos, f, ensure_ascii=False, indent=4)
+    
+    with open(_CAMINHO_SALVOS, "w", encoding="utf-8") as f:
+        json.dump(dados_completos, f, indent=4, ensure_ascii=False)
         
     print(f"\n  ✓ {len(dados_receitas)} receitas e {len(dados_estoque)} estoques de ingredientes salvos com sucesso!")

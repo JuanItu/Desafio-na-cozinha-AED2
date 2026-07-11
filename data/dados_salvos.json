@@ -5758,5 +5758,21 @@
             "quantidade": 3000.0,
             "unidade": "unit"
         }
+    ],
+    "menus": [
+        {
+            "nome_menu": "Menu Dia Dos Namorados",
+            "pratos_por_categoria": {
+                "side dish": [
+                    "Soft Chin Chin"
+                ],
+                "main course": [
+                    "Grilled Chicken Banh Mi"
+                ],
+                "dessert": [
+                    "Baked Caramel Custard"
+                ]
+            }
+        }
     ]
 }
