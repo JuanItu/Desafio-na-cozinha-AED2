@@ -1,0 +1,5436 @@
+{
+    "receitas": [
+        {
+            "nome": "4 Ingredient Chicken Pot Pie",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "pie crust",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "campbell's chicken gravy",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cut-up vegetables",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cans swanson premium chicken breast in water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 440.62,
+            "popularidade_likes": 24,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "4 Ingredient Chicken Pot Pie",
+                    "custo": 440.62,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.981327",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Beef Carrot Stew",
+            "categorias": [
+                "antipasti",
+                "soup",
+                "starter",
+                "snack",
+                "appetizer",
+                "antipasto",
+                "hor d'oeuvre"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "scent leaves",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "beef",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "carrots",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "curry",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ginger",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "seasoning cubes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "bulb of onion",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cooking spoons of blended tatashe-pepper mix",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cooking spoons of vegetable oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 77.7,
+            "popularidade_likes": 171,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Beef Carrot Stew",
+                    "custo": 77.7,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.981539",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Easy Instant Pot Beef Tips and Rice",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "sirloin beef tips",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cream of mushroom soup",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic powder",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "dale's seasoning sauce",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "olive oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "onion",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 30,
+            "custo_centavos_dolar": 220.3,
+            "popularidade_likes": 25,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Easy Instant Pot Beef Tips and Rice",
+                    "custo": 220.3,
+                    "tempo": 30,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.981685",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Coconut Macaroons With Chocolate Drizzle",
+            "categorias": [],
+            "ingredientes": [
+                {
+                    "nome": "flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "coconut",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "vanilla extract",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "condensed milk",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 27.23,
+            "popularidade_likes": 10,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Coconut Macaroons With Chocolate Drizzle",
+                    "custo": 27.23,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.981790",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Artisan Farfalle Pasta With Smoked Salmon and Cream Sauce",
+            "categorias": [
+                "side dish",
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "chicken broth",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "5%% cooking cream",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "extra virgin oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "artisan pasta",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "shallots",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salmon",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sun tomatoes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "white wine",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 649.97,
+            "popularidade_likes": 3,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Artisan Farfalle Pasta With Smoked Salmon and Cream Sauce",
+                    "custo": 649.97,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.981892",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Homemade Animal Crackers",
+            "categorias": [
+                "dessert"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "allspice",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "baking powder",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "brown sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "butter",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cinnamon",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cocoa powder",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "egg",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "oats",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "vanilla",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 37.53,
+            "popularidade_likes": 39,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Homemade Animal Crackers",
+                    "custo": 37.53,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.983680",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Poached Prawns with Fettuccine and French String Beans",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "fettuccine",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "lemon juice",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "prawns",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt and pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "string beans",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "butter",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 277.97,
+            "popularidade_likes": 7,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Poached Prawns with Fettuccine and French String Beans",
+                    "custo": 277.97,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.983788",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Appetizing Apple and Almond Soup",
+            "categorias": [
+                "antipasti",
+                "soup",
+                "starter",
+                "snack",
+                "appetizer",
+                "antipasto",
+                "hor d'oeuvre"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "almonds",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "apples",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "carrots",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cinnamon",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "gooseberry",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "heavy cream",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "tomatoes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 65.8,
+            "popularidade_likes": 4,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Appetizing Apple and Almond Soup",
+                    "custo": 65.8,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.983852",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Chicken Lo Mein",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "bean sprouts",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "bok choy",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "carrot",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "spaghetti",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ginger",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken broth",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "soy sauce",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "mushrooms",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "peanut oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "scallions",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken breast",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 177.0,
+            "popularidade_likes": 2,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Chicken Lo Mein",
+                    "custo": 177.0,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.983932",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Candied Spiced Pecans",
+            "categorias": [
+                "fingerfood",
+                "antipasti",
+                "starter",
+                "snack",
+                "appetizer",
+                "antipasto",
+                "hor d'oeuvre"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "allspice",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "brown sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "butter",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cinnamon",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "granulated sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ground cloves",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "maple extract",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "nutmeg",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pecans",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 101.39,
+            "popularidade_likes": 104,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Candied Spiced Pecans",
+                    "custo": 101.39,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.984023",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Guacamole",
+            "categorias": [
+                "antipasti",
+                "condiment",
+                "starter",
+                "snack",
+                "appetizer",
+                "dip",
+                "antipasto",
+                "hor d'oeuvre",
+                "spread"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "haas avocados",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "onion",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "jalapeno pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cilantro",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "lime juice",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "basil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "oregano",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 87.21,
+            "popularidade_likes": 20,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Guacamole",
+                    "custo": 87.21,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.984106",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Spinach Coriander Chive Bread",
+            "categorias": [
+                "bread"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "all purpose flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "milk",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sunflower oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "yeast",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chives",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "coriander leaves",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "spinach",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "milk to brush the bread",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "seeds to sprinkle on the bread",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 94.11,
+            "popularidade_likes": 3,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Spinach Coriander Chive Bread",
+                    "custo": 94.11,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.984196",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Skinny Green Monster Smoothie",
+            "categorias": [
+                "morning meal",
+                "brunch",
+                "beverage",
+                "breakfast",
+                "drink"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "banana",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "baby spinach",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "peanut butter",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "vanilla almond milk",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "greek yogurt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 199.46,
+            "popularidade_likes": 7,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Skinny Green Monster Smoothie",
+                    "custo": 199.46,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.984267",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Simple Poached Egg Dinner",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "full baby spinach",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "bacon",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pasteurized eggs",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "olive oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "onion or",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt & pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "vinegar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 20,
+            "custo_centavos_dolar": 347.53,
+            "popularidade_likes": 3,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Simple Poached Egg Dinner",
+                    "custo": 347.53,
+                    "tempo": 20,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.984346",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Mango Salsa",
+            "categorias": [
+                "antipasti",
+                "condiment",
+                "starter",
+                "snack",
+                "appetizer",
+                "dip",
+                "antipasto",
+                "hor d'oeuvre",
+                "spread"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "cherry tomatoes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "bell pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "lime juice",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "mangoes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "mint leaves",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "bell pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "onions",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 428.51,
+            "popularidade_likes": 14,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Mango Salsa",
+                    "custo": 428.51,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.984418",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Vegan Chocolate Banana Pie",
+            "categorias": [
+                "dessert"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "silken tofu",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "bananas",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chocolate-melted in a bain marie",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cornstarch-mixed",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "maple syrup",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pie crust",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 108.58,
+            "popularidade_likes": 23,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Vegan Chocolate Banana Pie",
+                    "custo": 108.58,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.984500",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Hyderabadi baghara Baingan",
+            "categorias": [
+                "side dish"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "baby eggplants- 10-12",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "kashmiri chilies- 3-4",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "coconut",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "coriander seeds",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cumin seeds",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "curry leaves- 8-10",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ginger- 1",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "tamarind- a lime sized",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "onion",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "nigella seeds",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sesame seeds",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "turmeric",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "jaggeryns",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "peanutsns",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cashewnuts",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cashewnuts",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 124.3,
+            "popularidade_likes": 2,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Hyderabadi baghara Baingan",
+                    "custo": 124.3,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.984547",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Beef Teriyaki Stir Fry",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "broccoli florets",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "brown sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cornstarch",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sesame oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "flank steak",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ginger",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "mushrooms",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "bell pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "scallions",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sesame seeds",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "soy sauce",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 332.75,
+            "popularidade_likes": 5,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Beef Teriyaki Stir Fry",
+                    "custo": 332.75,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.984648",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Pumpkin soup with wine",
+            "categorias": [
+                "antipasti",
+                "soup",
+                "starter",
+                "snack",
+                "appetizer",
+                "antipasto",
+                "hor d'oeuvre"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "muscat pumpkin",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cream",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cream",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "vegetable stock from 1 cube",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sage leaves",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "red wine",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 513.27,
+            "popularidade_likes": 14,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Pumpkin soup with wine",
+                    "custo": 513.27,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.984735",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Flank Steak With Garlicky Mediterranean Salad",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "balsamic vinegar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "feta",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "flank steak",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "grill seasoning",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "lemon juice",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "lemon zest",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salad greens",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "mushroom",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "olive oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "olives",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "oregano",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "bell pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "onion",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pepper flakes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "roma tomato",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 15,
+            "custo_centavos_dolar": 583.79,
+            "popularidade_likes": 2,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Flank Steak With Garlicky Mediterranean Salad",
+                    "custo": 583.79,
+                    "tempo": 15,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.984804",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Soft Chin Chin",
+            "categorias": [
+                "side dish"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "all purpose flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "baking powder",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "butter/margarine",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "coconut milk",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "egg",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "vanilla",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 55.63,
+            "popularidade_likes": 204,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Soft Chin Chin",
+                    "custo": 55.63,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.984896",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Orange & Ginger Chicken",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "brown sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ginger root",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "green onion",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "lemon juice",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "olive oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "orange",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pepper flakes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "rice vinegar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken breasts",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "soy sauce",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 180,
+            "custo_centavos_dolar": 139.68,
+            "popularidade_likes": 2,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Orange & Ginger Chicken",
+                    "custo": 139.68,
+                    "tempo": 180,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.984963",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Balsamic & Honey Glazed Salmon with Lemony Asparagus",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "apple cider vinegar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "asparagus",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "balsamic vinegar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "dill",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "grapeseed oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "herbs de provence",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "honey",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "juice of lemon",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "lemon zest",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salmon fillet",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt and pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "vegetable stock",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 60,
+            "custo_centavos_dolar": 443.76,
+            "popularidade_likes": 28,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Balsamic & Honey Glazed Salmon with Lemony Asparagus",
+                    "custo": 443.76,
+                    "tempo": 60,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.985049",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Oreo Mini Cheesecake",
+            "categorias": [
+                "dessert"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "cream cheese",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "whipping cream",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "vanilla extract",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "eggs",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cream of tartar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "oreo",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 51.27,
+            "popularidade_likes": 9,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Oreo Mini Cheesecake",
+                    "custo": 51.27,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.985136",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Chewy Gingersnaps",
+            "categorias": [
+                "dessert"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "baking soda",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "brown sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "butter",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cinnamon",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "eggs",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ginger",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "kosher salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "molasses",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 30.37,
+            "popularidade_likes": 27,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Chewy Gingersnaps",
+                    "custo": 30.37,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.985187",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Make Ahead Quiche",
+            "categorias": [
+                "lunch",
+                "main course",
+                "morning meal",
+                "brunch",
+                "main dish",
+                "breakfast",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "unbaked pie crust",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cheddar cheese",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "monterrey jack cheese",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ham",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "eggs",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "half and half",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "green onions",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ground mustard",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 92.11,
+            "popularidade_likes": 2,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Make Ahead Quiche",
+                    "custo": 92.11,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.985256",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Egyptain Cauliflower Side Salad",
+            "categorias": [
+                "side dish",
+                "antipasti",
+                "salad",
+                "starter",
+                "snack",
+                "appetizer",
+                "antipasto",
+                "hor d'oeuvre"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "cauliflower",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cumin",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "parsley",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "lemon juice",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "olive oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "bell pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 25,
+            "custo_centavos_dolar": 150.58,
+            "popularidade_likes": 3,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Egyptain Cauliflower Side Salad",
+                    "custo": 150.58,
+                    "tempo": 25,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.985354",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Ginger Chicken Stir-Fry",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "broccoli/cauliflower/carrots",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken breasts",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken broth",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "brown rice",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cornstarch",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ground ginger",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "onion",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "teriyaki sauce",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "vegetable oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 152.33,
+            "popularidade_likes": 2,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Ginger Chicken Stir-Fry",
+                    "custo": 152.33,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.985434",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Grilled Chicken Banh Mi",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "fish sauce",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "lime juice",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "jalapeno",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken breasts",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "tap water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "rice vinegar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "carrots",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "daikon radishes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sub rolls",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "mayonnaise",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cucumber",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cilantro leaves",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "jalapeno",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 258.48,
+            "popularidade_likes": 43,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Grilled Chicken Banh Mi",
+                    "custo": 258.48,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.985508",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Basic Hummus",
+            "categorias": [
+                "antipasti",
+                "condiment",
+                "starter",
+                "snack",
+                "appetizer",
+                "dip",
+                "antipasto",
+                "hor d'oeuvre",
+                "spread"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "chickpeas",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "olive oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "juice of lemon",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "tahini",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cumin",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 9.8,
+            "popularidade_likes": 4,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Basic Hummus",
+                    "custo": 9.8,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.985609",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Baked Rigatoni With Sausage",
+            "categorias": [
+                "side dish",
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "from 1 bunch basil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "canned tomatoes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "mozzarella",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic cloves",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sausage",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "kosher salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "olive oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "onion",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "parmigiano-reggiano",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "rigatoni",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 258.68,
+            "popularidade_likes": 9,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Baked Rigatoni With Sausage",
+                    "custo": 258.68,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.985680",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Vegetarian Christmas wreath",
+            "categorias": [
+                "side dish"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "broccoli florets",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cherry tomatoes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cheese",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "bell pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cream cheese",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "mayonnaise",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "dill",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "olives",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "scallion",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 191.76,
+            "popularidade_likes": 11,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Vegetarian Christmas wreath",
+                    "custo": 191.76,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.985771",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Baked Caramel Custard",
+            "categorias": [
+                "dessert"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "egg substitute",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "egg yolk",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "evaporated skim milk",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "port wine",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "skim milk",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sugar plus",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "vanilla",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 76.26,
+            "popularidade_likes": 46,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Baked Caramel Custard",
+                    "custo": 76.26,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.985829",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Fresh and Simple Swai Ceviche",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "avocado",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chile-garlic paste",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cilantro",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "swai fillets",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "juice of lime",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "olive oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt and pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "shallot",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "tomato",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 266.64,
+            "popularidade_likes": 2,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Fresh and Simple Swai Ceviche",
+                    "custo": 266.64,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.985883",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Chicken Parmayonnaise",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "kosher salt and coarse pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "herbs",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "mayonnaise",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "parmesan",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken breasts",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 128.91,
+            "popularidade_likes": 2,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Chicken Parmayonnaise",
+                    "custo": 128.91,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.985959",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Butternut Squash, Arugula and Goat Cheese Quinoa",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "olive oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "butternut squash",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "quinoa",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken stock",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "arugula",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "balsamic vinegar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "goat cheese",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt and pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "walnuts",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 251.24,
+            "popularidade_likes": 3,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Butternut Squash, Arugula and Goat Cheese Quinoa",
+                    "custo": 251.24,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986011",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Spicy Tuna Cakes",
+            "categorias": [],
+            "ingredientes": [
+                {
+                    "nome": "cajun seasoning",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "tuna",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chili peppers",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "dijon mustard",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "egg",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic cloves",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "greek yogurt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "green onions",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "hot sauce",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "juice of lemon",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "mirepoix",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "panko breadcrumbs",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cream",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 144.39,
+            "popularidade_likes": 5,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Spicy Tuna Cakes",
+                    "custo": 144.39,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986077",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Cherry Lime Mojito",
+            "categorias": [
+                "beverage",
+                "drink"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "cherries",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "mint leaves",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "lime",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "demerara sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "rum",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "carbonated water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 207.39,
+            "popularidade_likes": 21,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Cherry Lime Mojito",
+                    "custo": 207.39,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986158",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Korean Extra Crispy Fried Chicken w Sweet Spicy Glaze",
+            "categorias": [
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "chicken wings",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "canola oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "soy sauce",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "thai chili peppers",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ketchup",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "rice vinegar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "brown sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sesame oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "honey",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cornstarch",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt and pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sesame seeds",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 226.95,
+            "popularidade_likes": 7,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Korean Extra Crispy Fried Chicken w Sweet Spicy Glaze",
+                    "custo": 226.95,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986214",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Blue Cheese Tartlets With Fig Jam and Walnuts",
+            "categorias": [
+                "fingerfood",
+                "antipasti",
+                "starter",
+                "snack",
+                "appetizer",
+                "antipasto",
+                "hor d'oeuvre"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "cheese",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "butter",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "fig jam",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "orange zest",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "walnuts",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 95.48,
+            "popularidade_likes": 8,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Blue Cheese Tartlets With Fig Jam and Walnuts",
+                    "custo": 95.48,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986305",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Pasta With Chicken and Mushrooms",
+            "categorias": [
+                "side dish",
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "balsamic vinegar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "bay leaf",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken breast halves",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken broth",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "linguini",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "mushrooms",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "olive oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "thyme",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 175.15,
+            "popularidade_likes": 2,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Pasta With Chicken and Mushrooms",
+                    "custo": 175.15,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986367",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Gluten Free Blueberry Muffins",
+            "categorias": [
+                "morning meal",
+                "brunch",
+                "breakfast"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "baking powder",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "driscoll's blueberries",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "eggs",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "lemon zest",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "butter",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "vanilla extract",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "milk",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "xanthan gum",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 49.84,
+            "popularidade_likes": 34,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Gluten Free Blueberry Muffins",
+                    "custo": 49.84,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986446",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Doughnuts",
+            "categorias": [
+                "morning meal",
+                "brunch",
+                "breakfast"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "honey",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "powdered milk",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "warm water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "yeast",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 67.93,
+            "popularidade_likes": 205,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Doughnuts",
+                    "custo": 67.93,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986519",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "S'more Bars",
+            "categorias": [
+                "dessert"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "butter",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "graham cracker crumbs",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "milk chocolate chocolate chips minus a handful of chips",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "marshmallows",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 49.68,
+            "popularidade_likes": 14,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "S'more Bars",
+                    "custo": 49.68,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986568",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Braised Oxtail",
+            "categorias": [
+                "side dish"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "bay leaves",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "carrot",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "celery",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "noodles",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "fat",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "onions",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "oxtail",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "bell pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "tomatoes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 110.37,
+            "popularidade_likes": 2,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Braised Oxtail",
+                    "custo": 110.37,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986616",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Fig, Apple, and Arugula Salad",
+            "categorias": [
+                "side dish",
+                "antipasti",
+                "salad",
+                "starter",
+                "snack",
+                "appetizer",
+                "antipasto",
+                "hor d'oeuvre"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "roquette arugula lettuce",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "figs",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "an apple",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "peppers",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "dressing",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "olive oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "maple syrup",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "rosemary",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sumac powder",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 486.36,
+            "popularidade_likes": 4,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Fig, Apple, and Arugula Salad",
+                    "custo": 486.36,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986682",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Kale and Roasted Sweet Potato Soup with Chicken Sausage",
+            "categorias": [
+                "lunch",
+                "soup",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "sweet potatoes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "onion",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "kale",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "mushrooms",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken sausage",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken stock",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "garlic",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "thyme",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ground coriander",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chili flakes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sea salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "olive oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 292.88,
+            "popularidade_likes": 2,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Kale and Roasted Sweet Potato Soup with Chicken Sausage",
+                    "custo": 292.88,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986765",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Upside Down Chicken Cake",
+            "categorias": [],
+            "ingredientes": [
+                {
+                    "nome": "strips.",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "butter",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "canola oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "carrot",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken powder",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chicken stock)",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "eggs",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ice water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "onion",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "pepper",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sponge cake mix",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "spring onion",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "vanilla extract",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ovalette",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ovalette",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 93.59,
+            "popularidade_likes": 5,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Upside Down Chicken Cake",
+                    "custo": 93.59,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986856",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Moon Pies",
+            "categorias": [
+                "dessert"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "baking powder",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "baking soda",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "butter",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "confectioners' sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "egg",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "evaporated milk",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "flour",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "marshmallow creme",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "cocoa powder",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "vanilla extract",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sugar",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 19.73,
+            "popularidade_likes": 3,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Moon Pies",
+                    "custo": 19.73,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:53:59.986939",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Szechuan-Style Shirataki Noodles",
+            "categorias": [
+                "side dish",
+                "lunch",
+                "main course",
+                "main dish",
+                "dinner"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "shirataki",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "protein",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "soy sauce",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "rice wine",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "chili sauce",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "ginger",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "scallions",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "veggies",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "sesame oil",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 45,
+            "custo_centavos_dolar": 862.45,
+            "popularidade_likes": 2,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:53:59",
+                    "motivo": "Estado original carregado do arquivo",
+                    "nome": "Szechuan-Style Shirataki Noodles",
+                    "custo": 862.45,
+                    "tempo": 45,
+                    "categorias": [],
+                    "ingredientes": []
+                },
+                {
+                    "data": "24/05/2026 21:54:43",
+                    "motivo": "Edição: -Ingrediente (add the soy sauce), -Ingrediente (add the scallions and your protein and continue to stir-fry until it's through . add the noodles), -Ingrediente (turn into a bowl), -Ingrediente (microwave the noodles)",
+                    "nome": "Szechuan-Style Shirataki Noodles",
+                    "custo": 862.45,
+                    "tempo": 45,
+                    "categorias": [
+                        "side dish",
+                        "lunch",
+                        "main course",
+                        "main dish",
+                        "dinner"
+                    ],
+                    "ingredientes": [
+                        "1und shirataki",
+                        "1und protein",
+                        "1und soy sauce",
+                        "1und rice wine",
+                        "1und chili sauce",
+                        "1und ginger",
+                        "1und scallions",
+                        "1und veggies",
+                        "1und sesame oil"
+                    ]
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T21:54:43.554002",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Rice and Beans",
+            "categorias": [
+                "main dish",
+                "brazilian cousine"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "rice",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "beans",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "water",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "salt",
+                    "quantidade": 1,
+                    "unidade": "und"
+                },
+                {
+                    "nome": "varied meat cubes",
+                    "quantidade": 1,
+                    "unidade": "und"
+                }
+            ],
+            "tempo_preparo_minutos": 60,
+            "custo_centavos_dolar": 366,
+            "popularidade_likes": 210.0,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 21:58:21",
+                    "motivo": "Criação da Receita (Original)",
+                    "nome": "rice and beans",
+                    "custo": 366,
+                    "tempo": 60,
+                    "categorias": [
+                        "main dish",
+                        "brazilian cousine"
+                    ],
+                    "ingredientes": [
+                        "2cups rice",
+                        "2cups beans",
+                        "7cups water",
+                        "6spoons salt",
+                        "250g varied meat cubes"
+                    ]
+                },
+                {
+                    "data": "24/05/2026 21:59:11",
+                    "motivo": "Edição: Fator",
+                    "nome": "rice and beans",
+                    "custo": 366,
+                    "tempo": 60,
+                    "categorias": [
+                        "main dish",
+                        "brazilian cousine"
+                    ],
+                    "ingredientes": [
+                        "2cups rice",
+                        "2cups beans",
+                        "7cups water",
+                        "6spoons salt",
+                        "250g varied meat cubes"
+                    ]
+                },
+                {
+                    "data": "24/05/2026 22:02:27",
+                    "motivo": "Edição: Nome, Nome",
+                    "nome": "Rice and Beans",
+                    "custo": 366,
+                    "tempo": 60,
+                    "categorias": [
+                        "main dish",
+                        "brazilian cousine"
+                    ],
+                    "ingredientes": [
+                        "2cups rice",
+                        "2cups beans",
+                        "7cups water",
+                        "6spoons salt",
+                        "250g varied meat cubes"
+                    ]
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T22:02:27.685320",
+            "data_exclusao": null,
+            "excluida": false
+        },
+        {
+            "nome": "Limonada",
+            "categorias": [
+                "juice",
+                "drink"
+            ],
+            "ingredientes": [
+                {
+                    "nome": "lemon",
+                    "quantidade": 6,
+                    "unidade": "units"
+                },
+                {
+                    "nome": "water",
+                    "quantidade": 2,
+                    "unidade": "l"
+                }
+            ],
+            "tempo_preparo_minutos": 5,
+            "custo_centavos_dolar": 50,
+            "popularidade_likes": 0.0,
+            "historico_estados": [
+                {
+                    "data": "24/05/2026 22:43:18",
+                    "motivo": "Criação da Receita (Original)",
+                    "nome": "Limonada",
+                    "custo": 50,
+                    "tempo": 5,
+                    "categorias": [
+                        "juice",
+                        "drink"
+                    ],
+                    "ingredientes": [
+                        "6units lemon",
+                        "2l water"
+                    ]
+                }
+            ],
+            "ultima_atualizacao": "2026-05-24T22:43:18.108831",
+            "data_exclusao": null,
+            "excluida": false
+        }
+    ],
+    "estoque_ingredientes": [
+        {
+            "nome": "pie crust",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "campbell's chicken gravy",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cut-up vegetables",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cans swanson premium chicken breast in water",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "scent leaves",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "beef",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "carrots",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "curry",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "garlic",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "ginger",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "seasoning cubes",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "bulb of onion",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cooking spoons of blended tatashe-pepper mix",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cooking spoons of vegetable oil",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sirloin beef tips",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cream of mushroom soup",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "garlic powder",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "dale's seasoning sauce",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "olive oil",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "onion",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "water",
+            "quantidade": 1000000.0,
+            "unidade": "l"
+        },
+        {
+            "nome": "flour",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "coconut",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "salt",
+            "quantidade": 60.0,
+            "unidade": "kg"
+        },
+        {
+            "nome": "vanilla extract",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "condensed milk",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chicken broth",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "5%% cooking cream",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "extra virgin oil",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "artisan pasta",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "shallots",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "salmon",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sun tomatoes",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "white wine",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "allspice",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "baking powder",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "brown sugar",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "butter",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cinnamon",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cocoa powder",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "egg",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "oats",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "vanilla",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "fettuccine",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "lemon juice",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "prawns",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "salt and pepper",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "string beans",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "almonds",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "apples",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "gooseberry",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "heavy cream",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sugar",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "tomatoes",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "bean sprouts",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "bok choy",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "carrot",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "spaghetti",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "soy sauce",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "mushrooms",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "peanut oil",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "scallions",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chicken breast",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "granulated sugar",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "ground cloves",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "maple extract",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "nutmeg",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "pecans",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "haas avocados",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "jalapeno pepper",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cilantro",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "pepper",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "lime juice",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "basil",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "oregano",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "all purpose flour",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "milk",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sunflower oil",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "yeast",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chives",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "coriander leaves",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "spinach",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "milk to brush the bread",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "seeds to sprinkle on the bread",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "banana",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "baby spinach",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "peanut butter",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "vanilla almond milk",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "greek yogurt",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "full baby spinach",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "bacon",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "pasteurized eggs",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "onion or",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "salt & pepper",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "vinegar",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cherry tomatoes",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "bell pepper",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "mangoes",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "mint leaves",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "onions",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "silken tofu",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "bananas",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chocolate-melted in a bain marie",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cornstarch-mixed",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "maple syrup",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "baby eggplants- 10-12",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "kashmiri chilies- 3-4",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "coriander seeds",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cumin seeds",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "curry leaves- 8-10",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "ginger- 1",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "tamarind- a lime sized",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "oil",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "nigella seeds",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sesame seeds",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "turmeric",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "jaggeryns",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "peanutsns",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cashewnuts",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "broccoli florets",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cornstarch",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sesame oil",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "flank steak",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "muscat pumpkin",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cream",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "vegetable stock from 1 cube",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sage leaves",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "red wine",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "balsamic vinegar",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "feta",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "grill seasoning",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "lemon zest",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "salad greens",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "mushroom",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "olives",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "pepper flakes",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "roma tomato",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "butter/margarine",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "coconut milk",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "ginger root",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "green onion",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "orange",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "rice vinegar",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chicken breasts",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "apple cider vinegar",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "asparagus",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "dill",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "grapeseed oil",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "herbs de provence",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "honey",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "juice of lemon",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "salmon fillet",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "vegetable stock",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cream cheese",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "whipping cream",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "eggs",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cream of tartar",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "oreo",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "baking soda",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "kosher salt",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "molasses",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "unbaked pie crust",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cheddar cheese",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "monterrey jack cheese",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "ham",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "half and half",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "green onions",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "ground mustard",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cauliflower",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cumin",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "parsley",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "broccoli/cauliflower/carrots",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "brown rice",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "ground ginger",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "teriyaki sauce",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "vegetable oil",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "fish sauce",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "jalapeno",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "tap water",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "daikon radishes",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sub rolls",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "mayonnaise",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cucumber",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cilantro leaves",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chickpeas",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "tahini",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "from 1 bunch basil",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "canned tomatoes",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "mozzarella",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "garlic cloves",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sausage",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "parmigiano-reggiano",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "rigatoni",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cheese",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "scallion",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "egg substitute",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "egg yolk",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "evaporated skim milk",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "port wine",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "skim milk",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sugar plus",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "avocado",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chile-garlic paste",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "swai fillets",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "juice of lime",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "shallot",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "tomato",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "kosher salt and coarse pepper",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "herbs",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "parmesan",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "butternut squash",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "quinoa",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chicken stock",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "arugula",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "goat cheese",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "walnuts",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cajun seasoning",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "tuna",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chili peppers",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "dijon mustard",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "hot sauce",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "mirepoix",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "panko breadcrumbs",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "cherries",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "lime",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "demerara sugar",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "rum",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "carbonated water",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chicken wings",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "canola oil",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "thai chili peppers",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "ketchup",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "fig jam",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "orange zest",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "bay leaf",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chicken breast halves",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "linguini",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "thyme",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "driscoll's blueberries",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "xanthan gum",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "powdered milk",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "warm water",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "graham cracker crumbs",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "milk chocolate chocolate chips minus a handful of chips",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "marshmallows",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "bay leaves",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "celery",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "noodles",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "fat",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "oxtail",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "roquette arugula lettuce",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "figs",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "an apple",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "peppers",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "dressing",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "rosemary",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sumac powder",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sweet potatoes",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "kale",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chicken sausage",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "ground coriander",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chili flakes",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sea salt",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "strips.",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chicken powder",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chicken stock)",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "ice water",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "sponge cake mix",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "spring onion",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "ovalette",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "confectioners' sugar",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "evaporated milk",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "marshmallow creme",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "shirataki",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "protein",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "rice wine",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "chili sauce",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "veggies",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "rice",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "beans",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "varied meat cubes",
+            "quantidade": 0.0,
+            "unidade": "und"
+        },
+        {
+            "nome": "lemon",
+            "quantidade": 3000.0,
+            "unidade": "unit"
+        }
+    ]
+}
