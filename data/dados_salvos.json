@@ -5773,6 +5773,41 @@
                     "Baked Caramel Custard"
                 ]
             }
+        },
+        {
+            "nome_menu": "Teste - E2/M2/S3",
+            "pratos_por_categoria": {
+                "side dish": [
+                    "Soft Chin Chin",
+                    "Egyptain Cauliflower Side Salad"
+                ],
+                "main dish": [
+                    "Rice and Beans",
+                    "Easy Instant Pot Beef Tips and Rice"
+                ],
+                "dessert": [
+                    "Baked Caramel Custard",
+                    "Homemade Animal Crackers",
+                    "Chewy Gingersnaps"
+                ]
+            }
+        },
+        {
+            "nome_menu": "4 Diferent Categories",
+            "pratos_por_categoria": {
+                "side dish": [
+                    "Soft Chin Chin"
+                ],
+                "main dish": [
+                    "Easy Instant Pot Beef Tips and Rice"
+                ],
+                "lunch": [
+                    "Grilled Chicken Banh Mi"
+                ],
+                "dessert": [
+                    "Homemade Animal Crackers"
+                ]
+            }
         }
     ]
 }
