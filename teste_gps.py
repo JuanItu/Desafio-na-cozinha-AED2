@@ -7,22 +7,21 @@ import random
 import textwrap
 from data.mapa_manager import carregar_malha_urbana
 from motor.roteador_logistico import RoteadorLogistico
-from motor.infraestrutura_minima import OtimizadorInfraestrutura  # <-- Importação do seu Kruskal!
+from motor.infraestrutura_minima import OtimizadorInfraestrutura
+from modelos.logistica import CozinhaRegisto, PontoRetiradaRegisto # <-- Modelos físicos
+from motor.fluxo_capacidade import MotorFluxoMCMF                 # <-- Novo Motor de Fluxo
 
 # =====================================================================
-# 1. GERADORES DE MAPA
+# 1. GERADORES DE MAPA (Mantidos idênticos)
 # =====================================================================
 
 def gerar_mapa_bairro(caminho: str):
-    """Mapa 6x6 com um bloqueio no centro (36 nós)"""
     with open(caminho, 'w', encoding='utf-8') as f:
         f.write("# MAPA 1: BAIRRO FECHADO\n")
         for x in range(6):
             for y in range(6): f.write(f"V {float(x)} {float(y)}\n")
-                
         for x in range(6):
             for y in range(6):
-                # Obras no cruzamento 2,2
                 if x == 2 and y == 2: continue 
                 if x < 5 and not (x+1 == 2 and y == 2):
                     f.write(f"A {float(x)} {float(y)} {float(x+1)} {float(y)} 1.0\n")
@@ -30,20 +29,15 @@ def gerar_mapa_bairro(caminho: str):
                     f.write(f"A {float(x)} {float(y)} {float(x)} {float(y+1)} 1.0\n")
 
 def gerar_mapa_anel(caminho: str):
-    """Mapa 20x20 em formato de 'O'. O A* precisa dar a volta no lago! (~200 nós)"""
     with open(caminho, 'w', encoding='utf-8') as f:
         f.write("# MAPA 2: A CIDADE ANEL\n")
         validos = set()
-        
-        # Filtra os vértices que formam a "rosquinha" (Raio interno 4, externo 9)
         for x in range(20):
             for y in range(20):
                 dist_centro = math.hypot(x - 10, y - 10)
                 if 4.0 <= dist_centro <= 9.0:
                     validos.add((x, y))
                     f.write(f"V {float(x)} {float(y)}\n")
-                    
-        # Conecta apenas se o vizinho também fizer parte do anel
         for x, y in validos:
             if (x+1, y) in validos:
                 f.write(f"A {float(x)} {float(y)} {float(x+1)} {float(y)} 1.0\n")
@@ -51,22 +45,16 @@ def gerar_mapa_anel(caminho: str):
                 f.write(f"A {float(x)} {float(y)} {float(x)} {float(y+1)} 1.0\n")
 
 def gerar_mapa_metropole(caminho: str):
-    """Mapa 50x50 com ruas bloqueadas aleatoriamente e rodovia diagonal (2500 nós)"""
     with open(caminho, 'w', encoding='utf-8') as f:
         f.write("# MAPA 3: METRÓPOLE SÃO PAULO\n")
-        
         for x in range(50):
             for y in range(50): f.write(f"V {float(x)} {float(y)}\n")
-                
         for x in range(50):
             for y in range(50):
-                # 5% de chance de uma rua estar interditada
                 if x < 49 and random.random() > 0.05:
                     f.write(f"A {float(x)} {float(y)} {float(x+1)} {float(y)} 1.0\n")
                 if y < 49 and random.random() > 0.05:
                     f.write(f"A {float(x)} {float(y)} {float(x)} {float(y+1)} 1.0\n")
-                
-                # Rodovia Expressa Diagonal (Velocidade maior = Custo de peso 0.8)
                 if x == y and x < 49:
                     f.write(f"A {float(x)} {float(y)} {float(x+1)} {float(y+1)} 0.8\n")
 
@@ -86,7 +74,7 @@ def main():
     while True:
         limpar_tela()
         print("╔═════════════════════════════════════════════╗")
-        print("║   LABORATÓRIO DE GPS (A* ROUTING ENGINE)    ║")
+        print("║   LABORATÓRIO LOGÍSTICO (GPS, MST E FLUXO)  ║")
         print("╚═════════════════════════════════════════════╝")
         print("  1. Carregar Bairro Fechado (Pequeno, Obstáculo central)")
         print("  2. Carregar Cidade Anel (Média, Lago no centro)")
@@ -109,6 +97,10 @@ def main():
         print(f"  ✓ Mapa carregado em {(t1-t0)*1000:.2f} ms!")
         print(f"  ✓ Total de Cruzamentos (Nós): {len(malha)}")
         
+        # Variáveis globais da sessão de teste para guardar os estados!
+        cache_rotas_global = {}
+        mst_salva = []
+        
         # Sub-Menu de Rotas e Infraestrutura
         while True:
             print("\n" + "─" * 47)
@@ -119,10 +111,11 @@ def main():
             for i, coord in enumerate(amostra, 1):
                 print(f"    {i:02d}. Cruzamento {coord}")
             print("    0. Voltar ao Menu de Mapas")
-            print("    99. RODAR TESTE DE INFRAESTRUTURA (LAZY KRUSKAL - MST)")
+            print("   88. RODAR TESTE DE CAPACIDADE (FLUXO MÁXIMO MCMF)")
+            print("   99. RODAR TESTE DE INFRAESTRUTURA (LAZY KRUSKAL MST)")
             
             try:
-                entrada_usuario = input("\n  Selecione a ORIGEM (ou 99 para MST / 0 para sair): ").strip()
+                entrada_usuario = input("\n  Selecione a ORIGEM (88, 99 ou 0 para sair): ").strip()
                 if not entrada_usuario: continue
                 escolha_origem = int(entrada_usuario)
                 
@@ -130,10 +123,74 @@ def main():
                     break
                 
                 # ═════════════════════════════════════════════════════════════
-                # EXECUÇÃO DO SEU LAZY KRUSKAL
+                # TESTE 88: FLUXO MÁXIMO DE CUSTO MÍNIMO (MCMF)
+                # ═════════════════════════════════════════════════════════════
+                if escolha_origem == 88:
+                    qtd_cozinhas = min(4, len(malha) // 4)
+                    qtd_hubs = min(10, len(malha) // 2)
+                    
+                    print(f"\n  [ TESTE DE ESTRESSE: FLUXO MÁXIMO ]")
+                    print(f"  🏢 Sorteando {qtd_cozinhas} Cozinhas e {qtd_hubs} Hubs Logísticos...")
+                    
+                    amostra_fluxo = random.sample(list(malha.values()), qtd_cozinhas + qtd_hubs)
+                    
+                    # 1. Instancia as Cozinhas com capacidades aleatórias (Pratos/Hora)
+                    cozinhas = []
+                    for no in amostra_fluxo[:qtd_cozinhas]:
+                        cap_coz = random.randint(30, 80)
+                        cozinhas.append(CozinhaRegisto(no, cap_coz))
+                        
+                    # 2. Instancia os Hubs com capacidades aleatórias (Entregadores)
+                    hubs = []
+                    for no in amostra_fluxo[qtd_cozinhas:]:
+                        cap_hub = random.randint(10, 25)
+                        hubs.append(PontoRetiradaRegisto(no, cap_hub))
+                        
+                    t_ini_fluxo = time.perf_counter()
+                    
+                    # 3. Dispara o Motor (Passando o Cache!)
+                    motor_fluxo = MotorFluxoMCMF(cache_rotas=cache_rotas_global)
+                    
+                    print("  ⚙️ Construindo Grafo Virtual de Fluxo (Vertex Splitting)...")
+                    motor_fluxo.construir_grafo_virtual(cozinhas, hubs)
+                    
+                    print("  🚀 Empurrando pedidos pela rede (Bellman-Ford Preguiçoso)...")
+                    fluxo_total, custo_total = motor_fluxo.calcular_fluxo_maximo_custo_minimo()
+                    
+                    t_fim_fluxo = time.perf_counter()
+                    
+                    # --- Relatório Final ---
+                    cap_coz_max = sum(c.capacidade_pratos_hora for c in cozinhas)
+                    cap_hub_max = sum(h.capacidade_entregadores for h in hubs)
+                    
+                    print("  " + "═" * 60)
+                    print(f"  📊 RESULTADOS DO DELIVERY ({(t_fim_fluxo - t_ini_fluxo)*1000:.2f} ms)")
+                    print(f"  🍳 Teto de Produção   : {cap_coz_max} pratos/hora")
+                    print(f"  🛵 Teto Logístico     : {cap_hub_max} entregadores")
+                    print("  " + "─" * 60)
+                    print(f"  ✅ PEDIDOS ENTREGUES  : {fluxo_total} pratos (Fluxo Máximo)")
+                    print(f"  💸 CUSTO OPERACIONAL  : {custo_total:.2f} ¢$ (Custo Mínimo)")
+                    
+                    # Análise de Gargalo
+                    if fluxo_total == cap_coz_max:
+                        print("  ⚠️ GARGALO DA REDE: A produção das Cozinhas esgotou!")
+                    elif fluxo_total == cap_hub_max:
+                        print("  ⚠️ GARGALO DA REDE: Faltaram entregadores nos Hubs!")
+                    else:
+                        print("  ⚠️ GARGALO DA REDE: Limitações viárias isolaram alguns Hubs.")
+                    
+                    print("  " + "═" * 60)
+                    print(f"  🧠 Status do Cache de Rotas: {len(cache_rotas_global)} conexões memorizadas")
+                    print("  " + "═" * 60)
+                    
+                    input("\nPressione ENTER para continuar...")
+                    continue
+
+
+                # ═════════════════════════════════════════════════════════════
+                # TESTE 99: LAZY KRUSKAL COM CACHE E EXIBIÇÃO VISUAL
                 # ═════════════════════════════════════════════════════════════
                 if escolha_origem == 99:
-                    # Escolhe uma quantidade de nós proporcional ao tamanho do mapa
                     qtd_hubs = min(20, len(malha) // 2)
                     print(f"\n  [ TESTE DE ESTRESSE: LAZY KRUSKAL MST ]")
                     print(f"  Sorteando {qtd_hubs} cruzamentos para simular Cozinhas e Hubs...")
@@ -141,55 +198,40 @@ def main():
                     pontos_infraestrutura = random.sample(list(malha.values()), qtd_hubs)
                     
                     t_ini_mst = time.perf_counter()
-                    mst, custo_mst, astars_rodados = OtimizadorInfraestrutura.gerar_mst_logistica(pontos_infraestrutura)
+                    mst_salva, custo_mst, astars_rodados = OtimizadorInfraestrutura.gerar_mst_logistica(
+                        pontos_infraestrutura, cache_rotas_global
+                    )
                     t_fim_mst = time.perf_counter()
                     
-                    # Cálculo teórico de quantas arestas um Kruskal tradicional O(V²) calcularia
                     max_arestas_possiveis = (qtd_hubs * (qtd_hubs - 1)) // 2
                     poupados = max_arestas_possiveis - astars_rodados
                     
                     print("  " + "═" * 60)
                     print(f"  🌳 MST Calculada em {(t_fim_mst - t_ini_mst)*1000:.2f} ms!")
                     print(f"  📍 Pontos Conectados: {qtd_hubs}")
-                    print(f"  🛣️  Arestas Finais na Árvore: {len(mst)}")
-                    print(f"  💰 Custo Total da Infraestrutura Física: {custo_mst:.2f}")
-                    print("  " + "─" * 60)
-                    print(f"  🧠 EFICIÊNCIA DO SEU MOTOR (Lazy Evaluation):")
-                    print(f"     - Caminhos A* Executados : {astars_rodados}")
-                    print(f"     - Caminhos A* Poupados   : {poupados} 🚀")
-                    print("  " + "═" * 60)
+                    print(f"  💰 Custo da Infraestrutura: {custo_mst:.2f}")
+                    print(f"  🧠 Inteligência: {astars_rodados} A* Executados | {poupados} Poupados")
                     
-                    # ═════════════════════════════════════════════════════════════
-                    # NOVO: EXIBIÇÃO VISUAL DA ÁRVORE GERADORA MÍNIMA
-                    # ═════════════════════════════════════════════════════════════
+                    # Exibição Visual da MST
                     print("\n  [ REPRESENTAÇÃO VISUAL DA ÁRVORE (Lista de Adjacência) ]")
-                    
-                    # 1. Monta o Dicionário de Adjacências
                     adj_mst = {}
-                    for p1, p2, custo_aresta, rota in mst:
+                    for p1, p2, custo_aresta, rota in mst_salva:
                         if p1 not in adj_mst: adj_mst[p1] = []
                         if p2 not in adj_mst: adj_mst[p2] = []
-                        
-                        # Como a MST é não-direcionada, adicionamos a via para os dois lados
                         adj_mst[p1].append((p2, custo_aresta))
                         adj_mst[p2].append((p1, custo_aresta))
                         
-                    # 2. Imprime de forma elegante
-                    # Ordena as chaves pelas coordenadas só para ficar bonito no terminal
                     nos_ordenados = sorted(adj_mst.keys(), key=lambda n: (n.x, n.y))
-                    
                     for no in nos_ordenados:
                         vizinhos = adj_mst[no]
-                        # Formata os vizinhos: (X,Y) [Custo]
-                        vizinhos_str = " | ".join([f"({v.x:.0f},{v.y:.0f}) [Custo: {c:.1f}]" for v, c in vizinhos])
-                        print(f"  🌳 Nó ({no.x:2.0f},{no.y:2.0f}) se conecta com ➔ {vizinhos_str}")
-                    
+                        vizinhos_str = " | ".join([f"({v.x:.0f},{v.y:.0f}) [{c:.1f}]" for v, c in vizinhos])
+                        print(f"  🌳 Nó ({no.x:2.0f},{no.y:2.0f}) liga com ➔ {vizinhos_str}")
                     print("  " + "═" * 60)
                     
                     input("\nPressione ENTER para continuar...")
                     continue
                 
-                # Fluxo Normal de Teste de Rota do A*
+                # Fluxo Normal de Teste de Rota do A* (Mantido idêntico)
                 escolha_destino = int(input("  Selecione o NÚMERO do cruzamento de DESTINO: "))
                 if escolha_destino == 0: break
                 
@@ -213,17 +255,11 @@ def main():
                     tempo_ms = (t_fim - t_ini) * 1000
                     
                     if not caminho:
-                        print(f"  {nome_alg} | ✗ IMPOSSÍVEL (Sem caminho)")
+                        print(f"  {nome_alg} | ✗ IMPOSSÍVEL")
                     else:
                         print(f"  {nome_alg} | ⏱️ {tempo_ms:8.3f} ms | 📏 Custo: {custo:6.2f} | 📍 {len(caminho):4d} passos")
                 
                 print("  " + "─" * 60)
-                
-                # Imprime os passos da última rota gerada (w=2.0) só por curiosidade
-                if caminho:
-                    print("  📍 Trajeto sugerido pelo A* Rápido:")
-                    rota_str = " -> ".join([f"({no.x:.0f},{no.y:.0f})" for no in caminho])
-                    print(textwrap.indent(textwrap.fill(rota_str, width=80), "     "))
                 
             except (ValueError, IndexError):
                 print("  ⚠ Entrada inválida! Tente novamente.")

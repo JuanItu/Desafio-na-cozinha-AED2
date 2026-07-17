@@ -1,4 +1,4 @@
-# motor/infraestrutura.py
+# motor/infraestrutura_minima.py
 
 import heapq
 from modelos.logistica import NoLogistico
@@ -9,26 +9,21 @@ from motor.roteador_logistico import RoteadorLogistico
 # =====================================================================
 class UnionFind:
     def __init__(self, elementos: list):
-        # Cada nó começa sendo o seu próprio "Pai"
         self.pai = {e: e for e in elementos}
         self.rank = {e: 0 for e in elementos}
         self.componentes_ativos = len(elementos)
 
     def find(self, i):
-        """Encontra a raiz da árvore (Ilha) e faz Compressão de Caminho em O(α(N))"""
         if self.pai[i] != i:
-            self.pai[i] = self.find(self.pai[i]) # Path compression!
+            self.pai[i] = self.find(self.pai[i])
         return self.pai[i]
 
     def union(self, i, j) -> bool:
-        """Une duas ilhas. Retorna True se a união foi bem sucedida, False se já estavam juntos"""
         raiz_i = self.find(i)
         raiz_j = self.find(j)
 
-        if raiz_i == raiz_j:
-            return False # Já estão na mesma ilha (Formaria um ciclo!)
+        if raiz_i == raiz_j: return False
 
-        # Union by Rank (A árvore menor aponta para a maior)
         if self.rank[raiz_i] < self.rank[raiz_j]:
             self.pai[raiz_i] = raiz_j
         elif self.rank[raiz_i] > self.rank[raiz_j]:
@@ -47,21 +42,23 @@ class UnionFind:
 class OtimizadorInfraestrutura:
     
     @staticmethod
-    def gerar_mst_logistica(pontos_interesse: list[NoLogistico]) -> tuple[list[tuple], float, int]:
+    def gerar_mst_logistica(pontos_interesse: list[NoLogistico], cache_rotas: dict = None) -> tuple[list[tuple], float, int]:
         """
-        Recebe a lista de Cozinhas e Pontos de Retirada.
         Gera a Árvore Geradora Mínima usando Lazy Kruskal.
-        Retorna: (Lista_de_Arestas_na_MST, Custo_Total, Quantidade_de_A_Estrelas_Executados)
+        Se 'cache_rotas' for fornecido, armazena os custos reais dos A* calculados nele.
         """
+        if cache_rotas is None:
+            cache_rotas = {}
+            
         n_pontos = len(pontos_interesse)
         if n_pontos <= 1:
             return [], 0.0, 0
             
         uf = UnionFind(pontos_interesse)
         heap = []
-        contador = 0 # Desempate pro heapq
+        contador = 0 
         
-        # 1. GERAÇÃO PREGUIÇOSA (Apenas Linha Reta) - O(V^2) super leve
+        # 1. GERAÇÃO PREGUIÇOSA (Apenas Linha Reta)
         for i in range(n_pontos):
             for j in range(i + 1, n_pontos):
                 p1 = pontos_interesse[i]
@@ -76,7 +73,6 @@ class OtimizadorInfraestrutura:
 
         mst_final = []
         custo_total_mst = 0.0
-        astars_poupados = 0
         astars_executados = 0
 
         # 2. O LOOP DO KRUSKAL
@@ -85,10 +81,9 @@ class OtimizadorInfraestrutura:
             
             # PROTEÇÃO DE CICLOS ANTECIPADA: Se os pontos já estão na mesma ilha, descarta!
             if uf.find(p1) == uf.find(p2):
-                if not astar_ok: astars_poupados += 1
                 continue
                 
-            # O PULO DO GATO: Aresta promissora, mas ainda é baseada em "Linha Reta"
+            # Aresta promissora, mas ainda é baseada em "Linha Reta"
             if not astar_ok:
                 astars_executados += 1
                 
@@ -98,17 +93,18 @@ class OtimizadorInfraestrutura:
                 if not rota_real:
                     continue # Se for impossível chegar fisicamente, a aresta morre aqui
                     
+                # Injeta no cache compartilhado (Bidirecional)
+                cache_rotas[(p1, p2)] = custo_real
+                cache_rotas[(p2, p1)] = custo_real
+                    
                 # Devolve pro Heap com o custo real! (Mesmo se for igual à euclidiana, temos que provar)
                 contador += 1
                 heapq.heappush(heap, (custo_real, True, contador, p1, p2, rota_real))
-                
-            # É a Aresta Real Campeã! (Astar_ok == True)
+            
+            # É a Aresta Real Campeã! (Astar_ok == True)    
             else:
                 if uf.union(p1, p2):
                     mst_final.append((p1, p2, custo_atual, rota_caminho))
                     custo_total_mst += custo_atual
-
-        # Exibe um relatório rápido para provar a eficiência
-        # print(f"  [DEBUG LAZY KRUSKAL] Astars Executados: {astars_executados} | Poupados/Ignorados: {astars_poupados}")
         
         return mst_final, custo_total_mst, astars_executados
