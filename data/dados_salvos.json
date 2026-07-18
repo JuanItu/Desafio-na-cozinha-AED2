@@ -1698,7 +1698,9 @@
             "custo_centavos_dolar": 139.68,
             "popularidade_likes": 2,
             "preco_venda": 0.0,
-            "preparos": [],
+            "preparos": [
+                "Oreo Mini Cheesecake"
+            ],
             "historico_estados": [
                 {
                     "data": "24/05/2026 21:53:59",
@@ -1708,9 +1710,43 @@
                     "tempo": 180,
                     "categorias": [],
                     "ingredientes": []
+                },
+                {
+                    "data": "18/07/2026 19:51:45",
+                    "motivo": "Edição: +Preparo (Oreo Mini Cheesecake)",
+                    "nome": "Orange & Ginger Chicken",
+                    "custo": 139.68,
+                    "tempo": 180,
+                    "preco": 0.0,
+                    "categorias": [
+                        "lunch",
+                        "main course",
+                        "main dish",
+                        "dinner"
+                    ],
+                    "ingredientes": [
+                        "1und brown sugar",
+                        "1und flour",
+                        "1und ginger root",
+                        "1und garlic",
+                        "1und green onion",
+                        "1und lemon juice",
+                        "1und olive oil",
+                        "1und orange",
+                        "1und pepper",
+                        "1und pepper flakes",
+                        "1und rice vinegar",
+                        "1und salt",
+                        "1und chicken breasts",
+                        "1und soy sauce",
+                        "1und water"
+                    ],
+                    "preparos": [
+                        "Oreo Mini Cheesecake"
+                    ]
                 }
             ],
-            "ultima_atualizacao": "2026-05-24T21:53:59.984963",
+            "ultima_atualizacao": "2026-07-18T19:51:45.033432",
             "data_exclusao": null,
             "excluida": false
         },
@@ -5805,6 +5841,22 @@
                     "Grilled Chicken Banh Mi"
                 ],
                 "dessert": [
+                    "Homemade Animal Crackers"
+                ]
+            }
+        },
+        {
+            "nome_menu": "(SD2:MC1:D2)",
+            "pratos_por_categoria": {
+                "side dish": [
+                    "Soft Chin Chin",
+                    "Egyptain Cauliflower Side Salad"
+                ],
+                "main course": [
+                    "Simple Poached Egg Dinner"
+                ],
+                "dessert": [
+                    "Baked Caramel Custard",
                     "Homemade Animal Crackers"
                 ]
             }

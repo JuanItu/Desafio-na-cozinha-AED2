@@ -8,8 +8,9 @@ import textwrap
 from data.mapa_manager import carregar_malha_urbana
 from motor.roteador_logistico import RoteadorLogistico
 from motor.infraestrutura_minima import OtimizadorInfraestrutura
-from modelos.logistica import CozinhaRegisto, PontoRetiradaRegisto # <-- Modelos físicos
-from motor.fluxo_capacidade import MotorFluxoMCMF                 # <-- Novo Motor de Fluxo
+from modelos.logistica import CozinhaRegisto, PontoRetiradaRegisto 
+from motor.fluxo_capacidade import MotorFluxoMCMF
+from motor.roteador_entregas import RoteadorEntregasTSP
 
 # =====================================================================
 # 1. GERADORES DE MAPA (Mantidos idênticos)
@@ -111,11 +112,12 @@ def main():
             for i, coord in enumerate(amostra, 1):
                 print(f"    {i:02d}. Cruzamento {coord}")
             print("    0. Voltar ao Menu de Mapas")
+            print("   77. RODAR TESTE DE ROTA DE ENTREGAS (TSP)")
             print("   88. RODAR TESTE DE CAPACIDADE (FLUXO MÁXIMO MCMF)")
             print("   99. RODAR TESTE DE INFRAESTRUTURA (LAZY KRUSKAL MST)")
             
             try:
-                entrada_usuario = input("\n  Selecione a ORIGEM (88, 99 ou 0 para sair): ").strip()
+                entrada_usuario = input("\n  Selecione a ORIGEM (77, 88, 99 ou 0 para sair): ").strip()
                 if not entrada_usuario: continue
                 escolha_origem = int(entrada_usuario)
                 
@@ -186,6 +188,61 @@ def main():
                     input("\nPressione ENTER para continuar...")
                     continue
 
+                # ═════════════════════════════════════════════════════════════
+                # TESTE 77: ROTEAMENTO MULTI-ENTREGAS (MÓDULO 8 - TSP HÍBRIDO)
+                # ═════════════════════════════════════════════════════════════
+                if escolha_origem == 77:
+                    qtd_entregas = 12
+                    print(f"\n  [ TESTE DE INFRAESTRUTURA: CIRCUITO DE ENTREGAS TSP ]")
+                    print(f"  Sorteando 1 Ponto de Despacho e {qtd_entregas} Clientes isolados...")
+                    
+                    amostra_tsp = random.sample(list(malha.values()), qtd_entregas + 1)
+                    ponto_despacho = amostra_tsp[0]
+                    clientes_entrega = amostra_tsp[1:]
+                    
+                    t_ini_tsp = time.perf_counter()
+                    
+                    # Dispara o nosso Roteador do Caixeiro Viajante Híbrido!
+                    circuito, custo_tsp, astars_tsp = RoteadorEntregasTSP.resolver_tsp_hibrido(
+                        ponto_despacho, clientes_entrega, cache_rotas_global
+                    )
+                    
+                    t_fim_tsp = time.perf_counter()
+                    
+                    print("  " + "═" * 60)
+                    print(f"  🏁 CIRCUITO CALCULADO EM {(t_fim_tsp - t_ini_tsp)*1000:.2f} ms")
+                    print(f"  📍 Origem do Despacho : {ponto_despacho.coordenadas}")
+                    print("  " + "─" * 60)
+                    
+                    # ANÁLISE INTELIGENTE DE CONECTIVIDADE
+                    if custo_tsp == float('inf'):
+                        print("  ❌ ROTA IMPOSSÍVEL: O Ponto de Despacho ou uma via principal está completamente isolada!")
+                        print("     Nenhum entregador consegue completar o circuito fechado.")
+                    else:
+                        # O circuito tem a origem no início e no fim, por isso subtraímos 2 para saber os clientes reais
+                        qtd_visitados = len(circuito) - 2
+                        clientes_visitados = set(circuito) - {ponto_despacho}
+                        clientes_isolados = set(clientes_entrega) - clientes_visitados
+                        
+                        print(f"  📦 Clientes Visitados : {qtd_visitados} de {qtd_entregas}")
+                        if clientes_isolados:
+                            print(f"  ⚠️ Clientes Isolados  : {len(clientes_isolados)} (Ignorados por falta de acesso viário)")
+                            
+                        print(f"  💰 Custo Real da Rota : {custo_tsp:.2f} (Distância Viária)")
+                        print("  " + "─" * 60)
+                        print(f"  🧠 EFICIÊNCIA DO LAZY INSERTION:")
+                        print(f"     - Caminhos A* Reais Executados: {astars_tsp}")
+                        print(f"     - Status Atual do Cache Global: {len(cache_rotas_global)} rotas")
+                        print("  " + "═" * 60)
+                        print("  🗺️  Ordem Sequencial do Itinerário de Entrega:")
+                        
+                        itinerario_str = " ➔ ".join([f"({no.x:.0f},{no.y:.0f})" for no in circuito])
+                        print(textwrap.indent(textwrap.fill(itinerario_str, width=80), "     "))
+                    
+                    print("  " + "═" * 60)
+                    
+                    input("\nPressione ENTER para continuar...")
+                    continue
 
                 # ═════════════════════════════════════════════════════════════
                 # TESTE 99: LAZY KRUSKAL COM CACHE E EXIBIÇÃO VISUAL
