@@ -271,6 +271,49 @@ def menu_busca_geral(motor, lista_receitas, trie_global: TrieBuscaGeral, tabela_
             elif tipo == 'ingrediente': menu_visualizar_ingrediente(obj, motor, lista_receitas, trie_global, tabela_hash, oficina)
         else: print("  ⚠ Opção inválida.")
 
+def _buscar_com_sugestao_trie_generico(trie_global: TrieBuscaGeral, texto: str):
+    """
+    Igual a _buscar_com_sugestao_trie, mas para buscas genéricas (como a Busca
+    por Nome Exato / Tabela Hash) que podem envolver Receita, Categoria OU
+    Ingrediente ao mesmo tempo. Retorna o objeto escolhido, ou None.
+    """
+    texto_lower = texto.lower().strip()
+    if not texto_lower:
+        return None
+
+    prefixo_testado = texto_lower
+    no = trie_global.get_node(prefixo_testado)
+
+    while no is None and len(prefixo_testado) > 1:
+        prefixo_testado = prefixo_testado[:-1]
+        no = trie_global.get_node(prefixo_testado)
+
+    if no is None:
+        return None
+
+    dados = trie_global.get_all_separated_alphabetically(no)
+    candidatos = []
+    for r in dados['Receita']:
+        candidatos.append(('RECEITA', r.nome_receita, r))
+    for c in dados['Categoria']:
+        candidatos.append(('CATEGORIA', c.nome_categoria, c))
+    for i in dados['Ingredientes']:
+        candidatos.append(('INGREDIENTE', i.nome_ingrediente, i))
+
+    if not candidatos:
+        return None
+
+    print(f"\n  ⚠ '{texto}' não encontrado exatamente. Você quis dizer (prefixo '{prefixo_testado}'):")
+    for idx, (tipo, nome_obj, _obj) in enumerate(candidatos[:10], 1):
+        print(f"    {idx}. [{tipo}] {nome_obj}")
+    print("    0. Nenhuma das opções")
+
+    escolha = _pedir_inteiro("  Escolha uma opção: ")
+    if escolha and 1 <= escolha <= min(len(candidatos), 10):
+        return candidatos[escolha - 1][2]
+    return None
+
+
 def menu_busca_hash(motor, lista_receitas, trie_global, tabela_hash: TabelaHashNomes, oficina: OficinaProducao) -> None:
     print("\n" + "=" * 55)
     print("  BUSCA POR NOME EXATO (TABELA HASH)")
@@ -279,11 +322,16 @@ def menu_busca_hash(motor, lista_receitas, trie_global, tabela_hash: TabelaHashN
     nome = input("  Digite o nome exato: ").strip()
     if not nome: return
 
-    resultados = tabela_hash.buscar(nome) 
+    resultados = tabela_hash.buscar(nome)
 
     if not resultados:
-        print(f"\n  ✗ Nenhum resultado para '{nome}'.")
-        return
+        # Nome exato não achado na hash: pede ajuda à Trie (Módulo 2)
+        sugestao = _buscar_com_sugestao_trie_generico(trie_global, nome)
+        if sugestao is not None:
+            resultados = [sugestao]
+        else:
+            print(f"\n  ✗ Nenhum resultado para '{nome}'.")
+            return
 
     while True:
         print(f"\n  ✓ {len(resultados)} resultado(s) encontrado(s) para '{nome}':\n")
