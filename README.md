@@ -304,16 +304,6 @@ A rota ativa é mantida numa **lista duplamente encadeada circular** (`ListaCirc
 
 ---
 
-## Melhorias de UX (Trabalho 2)
-
-### Sugestão via Trie ao errar o nome
-Dois pontos da interface antes só consultavam a Tabela Hash por nome **exato**: "Adicionar Preparo" (edição de receita) e a solicitação de categoria no Modo Chef. Agora, quando a busca exata falha, o sistema reaproveita a **Trie do Módulo 2** (`_buscar_com_sugestao_trie`): corta progressivamente a última letra do texto digitado até achar um prefixo válido na árvore, e lista as receitas/categorias candidatas para o usuário escolher por número — sem exigir que ele digite o nome perfeitamente.
-
-### Bloqueio de ciclos na edição (ver Módulo 5 acima)
-Reaproveita a BFS `preparos_necessarios_antes_de()` do Módulo 5 para impedir, em tempo real, que uma edição feche um ciclo de dependências — mantendo o dataset de teste (`dados_teste_ciclos.json`) disponível à parte para continuar demonstrando a detecção retroativa de ciclos já existentes.
-
----
-
 ## [RECUPERAÇÃO P1]
 
 ### 1. Questão escolhida para recuperação
