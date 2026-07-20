@@ -1,0 +1,72 @@
+[
+  {
+    "id": 9001,
+    "nome": "Ciclo Molho Base",
+    "categorias": ["sauce", "teste-ciclo"],
+    "ingredientes": ["tomate", "cebola"],
+    "tempo_preparo_minutos": 20,
+    "custo_centavos_dolar": 50.0,
+    "popularidade_likes": 10,
+    "preparos": ["Ciclo Reducao Especial"]
+  },
+  {
+    "id": 9002,
+    "nome": "Ciclo Reducao Especial",
+    "categorias": ["sauce", "teste-ciclo"],
+    "ingredientes": ["vinho", "manteiga"],
+    "tempo_preparo_minutos": 15,
+    "custo_centavos_dolar": 30.0,
+    "popularidade_likes": 8,
+    "preparos": ["Ciclo Molho Base"]
+  },
+  {
+    "id": 9003,
+    "nome": "Ciclo Torta Recursiva",
+    "categorias": ["dessert", "teste-ciclo"],
+    "ingredientes": ["farinha", "acucar"],
+    "tempo_preparo_minutos": 40,
+    "custo_centavos_dolar": 60.0,
+    "popularidade_likes": 5,
+    "preparos": ["Ciclo Torta Recursiva"]
+  },
+  {
+    "id": 9004,
+    "nome": "Ciclo Triangulo A",
+    "categorias": ["main course", "teste-ciclo"],
+    "ingredientes": ["arroz"],
+    "tempo_preparo_minutos": 25,
+    "custo_centavos_dolar": 40.0,
+    "popularidade_likes": 12,
+    "preparos": ["Ciclo Triangulo B"]
+  },
+  {
+    "id": 9005,
+    "nome": "Ciclo Triangulo B",
+    "categorias": ["main course", "teste-ciclo"],
+    "ingredientes": ["feijao"],
+    "tempo_preparo_minutos": 20,
+    "custo_centavos_dolar": 35.0,
+    "popularidade_likes": 9,
+    "preparos": ["Ciclo Triangulo C"]
+  },
+  {
+    "id": 9006,
+    "nome": "Ciclo Triangulo C",
+    "categorias": ["main course", "teste-ciclo"],
+    "ingredientes": ["pimentao"],
+    "tempo_preparo_minutos": 15,
+    "custo_centavos_dolar": 25.0,
+    "popularidade_likes": 7,
+    "preparos": ["Ciclo Triangulo A"]
+  },
+  {
+    "id": 9007,
+    "nome": "Prato Valido Sem Ciclo",
+    "categorias": ["main course", "teste-ciclo"],
+    "ingredientes": ["batata"],
+    "tempo_preparo_minutos": 30,
+    "custo_centavos_dolar": 45.0,
+    "popularidade_likes": 15,
+    "preparos": ["Ciclo Molho Base"]
+  }
+]
