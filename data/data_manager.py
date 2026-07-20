@@ -14,9 +14,13 @@ from modelos.menu         import Menu
 
 _CAMINHO_FONTE  = Path(__file__).parent / "dados_fonte.json"
 _CAMINHO_SALVOS = Path(__file__).parent / "dados_salvos.json"
+_CAMINHO_TESTE_CICLOS = Path(__file__).parent / "dados_teste_ciclos.json"
 
-def carregar_dados(usar_salvos: bool = False):
-    if usar_salvos and _CAMINHO_SALVOS.exists():
+def carregar_dados(usar_salvos: bool = False, usar_teste_ciclos: bool = False):
+    if usar_teste_ciclos and _CAMINHO_TESTE_CICLOS.exists():
+        caminho_usado, print_msg = _CAMINHO_TESTE_CICLOS, \
+            "  -> Lendo base de TESTE com ciclos propositais (dados_teste_ciclos.json)..."
+    elif usar_salvos and _CAMINHO_SALVOS.exists():
         caminho_usado, print_msg = _CAMINHO_SALVOS, "  -> Lendo do arquivo de dados salvos..."
     else:
         caminho_usado, print_msg = _CAMINHO_FONTE, "  -> Lendo da base de fábrica original..."

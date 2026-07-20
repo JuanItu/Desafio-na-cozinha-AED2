@@ -10,6 +10,8 @@
 
 Sistema de gerenciamento de receitas e menus desenvolvido para a disciplina de AED II. O sistema permite buscas eficientes por nome e prefixo (Trie), busca por nome exato com O(1) amortizado (Tabela Hash com redimensionamento dinâmico), recomendação de receitas sob restrições (Algoritmo Guloso) e investigação de integridade das receitas (histórico de estados com snapshots).
 
+No **Desafio na Cozinha 2** (Trabalho 2), o sistema foi expandido com 4 novos módulos sobre a mesma base de dados e funcionalidades do Trabalho 1: verificação de dependências entre preparos com detecção de ciclos (Módulo 5), otimização de menus VIP sob restrições (Módulo 6), planejamento de infraestrutura de delivery e análise de capacidade/gargalo via redes de fluxo (Módulo 7), e roteamento inteligente de entregas com TSP híbrido (Módulo 8).
+
 ---
 
 ## Como Executar
@@ -32,8 +34,9 @@ python main.py
 Ao iniciar, o sistema pergunta qual base de dados carregar:
 
 ```
-  [1] Dados de Fábrica (dados_fonte.json)   ← base original com 50 receitas
-  [2] Dados Salvos    (dados_salvos.json)   ← estado salvo pelo usuário
+  [1] Dados de Fábrica (dados_fonte.json)          ← base original com 50 receitas
+  [2] Dados Salvos    (dados_salvos.json)          ← estado salvo pelo usuário
+  [3] Dados de Teste — Ciclos Propositais          ← dataset com ciclos de dependência propositais (ver seção "Módulo 5")
 ```
 
 Escolha `1` para começar com os dados originais.l 
@@ -172,6 +175,132 @@ Acessado pela opção `[2]` no menu principal. Usa o algoritmo guloso para recom
 Acessado pelas opções [3] (Trie, prefixo) e [4] (Hash, nome exato) no menu principal, permite visualizar e editar os dados das receitas, ingredientes e categorias.
 ### Adição de receitas 
 Permite adicionar receitas ao catálogo, elas podem ser inicializadas com nome, custo, tempo de preparo, lista de categorias e lista de ingredientes. O fator de recomendação é iniciado em 0, pois uma receita recém adicionada não teria ainda avaliações do público, além disso, colocar receitas ou ingredientes ausentes no sistema os adiciona automaticamente.
+
+---
+
+# Desafio na Cozinha 2 — Módulos 5 a 8
+
+O Trabalho 2 reutiliza integralmente a base de dados e os módulos do Trabalho 1 (Trie, Tabela Hash, Algoritmo Guloso, Histórico) e os expande com 4 novos módulos, focados em modelagem de redes e otimização de decisões. Todos acessíveis a partir do mesmo `main.py`.
+
+## Rede de Logística — Dimensões
+
+Os Módulos 7 e 8 operam sobre uma malha viária carregada de `data/malha_urbana.txt`:
+
+| Métrica | Valor |
+|---|---|
+| Vértices (cruzamentos) | 36 |
+| Arestas viárias (bidirecionais) | 58 |
+
+Atende ao requisito mínimo do enunciado (≥ 30 vértices e ≥ 50 arestas).
+
+---
+
+### 4. Módulo 5 — Oficina de Produção (Grafo de Dependências) — `motor/oficina_producao.py`
+
+**Onde é aplicada:** opção `[9] Oficina de Produção` no menu principal, e automaticamente na inicialização do sistema (Verificação Geral).
+
+**O que faz:** Modela as dependências entre receitas (`receita.lista_preparos`) como um **grafo dirigido**, onde uma aresta `A -> B` significa "A precisa de B como preparo". A partir disso, responde às consultas exigidas pelo enunciado:
+- *"Existe algum erro de dependência?"* → `existe_erro_dependencia()`
+- *"Qual a sequência correta para produzir o menu do dia?"* → `sequencia_producao()`
+- *"Quais preparos precisam ser concluídos antes da receita X?"* → `preparos_necessarios_antes_de(receita)`
+
+**Como foi implementada:**
+
+A Verificação Geral roda 5 passos em sequência:
+1. **Autodependências:** varredura O(V) checando se `r in r.lista_preparos`.
+2. **Tarjan — Componentes Fortemente Conexos (SCC):** implementado de forma **iterativa** (pilha explícita simulando a recursão, para evitar estouro de pilha em grafos grandes), em `O(V + E)`. Qualquer SCC com 2+ receitas indica um ciclo de dependências.
+3. **DFS restrita ao SCC:** para cada componente problemático, uma DFS que anda apenas dentro do SCC identifica a aresta que fecha o ciclo e sugere um `CorteSugerido` (a receita/edge a remover).
+4. **Ordenação topológica (Kahn/DFS pós-ordem):** só é executada se o grafo for um DAG (sem ciclos). Garante que cada preparo apareça antes de quem depende dele — a "sequência correta de produção".
+5. **Coerência de custo/tempo/preço:** varredura O(V+E) que compara o custo/tempo/preço de cada receita com a soma/máximo dos seus preparos diretos, sugerindo ajustes (`SugestaoAjuste`) quando a receita está "mais barata" ou "mais rápida" do que fisicamente possível.
+
+Toda sugestão (corte de ciclo ou ajuste de coerência) pode ser aplicada individualmente ou em lote pelo usuário.
+
+**Bloqueio de novos ciclos na edição:** para além da detecção retroativa, o `main.py` impede a criação de **novos** ciclos em tempo real: ao adicionar um preparo pela opção `[E] Editar Receita → 10. Adicionar Preparo`, a função `_criaria_ciclo()` reaproveita a BFS de `preparos_necessarios_antes_de()` para checar se a nova aresta fecharia um ciclo, bloqueando a operação se sim.
+
+**Dados de teste com ciclos propositais:** como o bloqueio acima impede criar ciclos pela interface, para continuar demonstrando a detecção retroativa (passos 1-3) existe a opção `[3]` na tela inicial, que carrega `data/dados_teste_ciclos.json` — um dataset pequeno com uma autodependência, um ciclo de 2 receitas e um ciclo de 3 receitas.
+
+**Complexidade:** `O(V + E)` para a Verificação Geral completa (Tarjan é linear; a DFS restrita e a ordenação topológica também são lineares).
+
+**Justificativa:** Tarjan foi escolhido por resolver detecção de ciclos em grafos dirigidos em tempo linear numa única passada, sem precisar de múltiplas execuções de DFS por nó (como uma abordagem ingênua faria). A ordenação topológica por DFS pós-ordem é a forma mais direta de obter uma sequência de produção válida, já que a definição de DAG garante que ela existe.
+
+---
+
+### 5. Módulo 6 — Menu Degustação VIP (Otimização) — `motor/gerar_menu.py`
+
+**Onde é aplicada:** opção `[10] Modo Chef` → `1. Gerar Menu VIP Otimizado`.
+
+**O que faz:** Dado um orçamento e tempo máximos, e uma lista de categorias com a quantidade de pratos exigida em cada uma (ex: 1 entrada + 1 prato principal + 1 sobremesa), encontra a combinação de receitas que **maximiza o lucro ou a popularidade**, respeitando os limites — respondendo a perguntas como *"Qual o melhor menu com orçamento de R$ 500?"*.
+
+**Como foi implementada:**
+
+O problema é combinatório (escolher k receitas de cada categoria dentre várias), então a força bruta seria exponencial. A solução implementada é uma **busca best-first via Max-Heap**, com duas otimizações centrais:
+
+1. **Pré-ordenação gulosa por categoria:** as receitas de cada categoria são ordenadas por `lucro` (ou `fator_recomendacao`) decrescente. Isso garante que o **estado inicial** do heap (pegar os `k` melhores de cada categoria) já é o candidato de maior lucro possível — e cada "vizinho" gerado a partir dele só pode ter lucro igual ou menor.
+2. **Geração incremental de vizinhos ("staircase"):** ao expandir um estado, cada categoria avança **apenas para o próximo índice válido** (não para todas as combinações possíveis), com poda O(1) via tetos de custo/tempo pré-calculados por categoria. Isso evita gerar exponencialmente todas as combinações.
+3. **Memoização via Trie dinâmica (`TrieCategoria`/`NodeTrieVIP`):** cada caminho de índices já visitado (ex: categoria "entrada" = receitas nos índices `(2, 5)`) é registrado numa Trie, que armazena a soma acumulada de lucro/custo/tempo daquele caminho. Isso evita recalcular somas parciais toda vez que o mesmo sub-estado é revisitado por ramos diferentes do heap.
+
+Como o heap sempre extrai o estado de **maior lucro disponível** (`EstadoMenu.__lt__` inverte a comparação para simular Max-Heap com `heapq`, que é Min-Heap nativo), e os vizinhos gerados só reduzem o lucro, **o primeiro estado que satisfizer as restrições de custo/tempo ao ser retirado do heap é, garantidamente, o menu ótimo global** — sem precisar explorar todas as combinações.
+
+Antes de iniciar a busca, o sistema também faz uma checagem de viabilidade O(n log n) (ordenando custos/tempos por categoria) para detectar de antemão se nem a combinação mais barata cabe no orçamento/tempo, evitando busca desnecessária.
+
+**Complexidade:** `O(K log K)` onde `K` é o número de estados efetivamente expandidos até achar a primeira combinação viável (tipicamente muito menor que o total de combinações possíveis, graças à poda e à ordem gulosa de exploração); cada expansão custa `O(número de categorias)`.
+
+**Justificativa:** Esse problema é uma variação do clássico "k maiores somas combinadas de listas ordenadas" (resolvido classicamente com heap). Usar heap + memoização por Trie é mais adequado que programação dinâmica pura aqui porque as restrições são multidimensionais (custo E tempo simultaneamente) e o espaço de estados é gerado sob demanda, evitando pré-computar tabelas gigantes quando o menu ótimo geralmente é encontrado nas primeiras extrações do heap.
+
+---
+
+### 6. Módulo 7 — O Pesadelo Logístico (MST + Fluxo de Custo Mínimo) — `motor/infraestrutura_minima.py`, `motor/fluxo_capacidade.py`
+
+**Onde é aplicada:** opção `[11] Pesadelo Logístico` no menu principal (submenu com as duas funcionalidades abaixo).
+
+#### 6.1 Infraestrutura Mínima (MST) — *"determinar a menor rede de conexões necessária"*
+
+**O que faz:** Dado um conjunto de pontos operacionais (cozinhas, hubs), calcula a **Árvore Geradora Mínima** — a menor malha de conexões viárias reais que interliga todos eles, minimizando o custo total de infraestrutura.
+
+**Como foi implementada:** **Lazy Kruskal**: em vez de calcular a rota real (A*) entre **todos** os pares de pontos de antemão (caro), o algoritmo:
+1. Insere no heap todas as arestas com o custo **estimado** (distância euclidiana / linha reta), que é sempre um limite inferior do custo real.
+2. Ao extrair a aresta de menor custo do heap, se ela ainda é só uma estimativa, dispara o **A* real** sob demanda, e a reinsere no heap com o custo verdadeiro.
+3. Só quando uma aresta sai do heap **já validada com A* real** é que ela é testada contra o **Union-Find** (com *union by rank* + *path compression*) e, se não fechar ciclo, é adicionada à MST.
+
+Isso garante corretude (o Kruskal só aceita arestas com custo real) evitando rodar A* em pares de pontos que nunca seriam vantajosos de qualquer forma.
+
+**Complexidade:** `O(E log E)` no pior caso (E = pares de pontos), mas o número de A* efetivamente executados costuma ser muito menor que `E`, já que muitas arestas nunca saem do heap por serem descartadas antes (ciclo) ou superadas por opções melhores.
+
+#### 6.2 Capacidade Máxima de Atendimento (Fluxo/Gargalo) — *"existe gargalo operacional?"*
+
+**O que faz:** Modela cozinhas (com capacidade de produção em pratos/hora) e hubs (com capacidade de entregadores) como uma rede de fluxo, calculando **quantos pedidos o sistema atende simultaneamente** e **onde está o gargalo** (produção, entrega ou malha viária).
+
+**Como foi implementada:** **Fluxo Máximo de Custo Mínimo (MCMF)** via **Successive Shortest Paths** com **Bellman-Ford** (necessário pois a rede residual tem arestas de custo negativo):
+1. **Vertex splitting:** cada cozinha/hub vira dois nós (`_IN`/`_OUT`) ligados por uma aresta cuja capacidade é a capacidade real (pratos/hora ou nº de entregadores) — a técnica clássica para modelar capacidade **de vértice** (e não só de aresta) em redes de fluxo.
+2. Uma super-fonte se conecta a todas as cozinhas, e todos os hubs se conectam a um super-sumidouro.
+3. A cada iteração, roda Bellman-Ford para achar o caminho mais barato ainda disponível; o custo das arestas cozinha→hub é resolvido **preguiçosamente** (A* real só é calculado a primeira vez que aquele par é atravessado, e o resultado é cacheado).
+4. Empurra o máximo de fluxo possível por esse caminho (o "gargalo" local do caminho), atualiza a rede residual, e repete até não haver mais caminho.
+
+**Compartilhamento de cache:** o dicionário de rotas A* reais (`cache_rotas_global`) é **compartilhado** entre a MST (Módulo 7.1), o Fluxo (7.2) e o TSP (Módulo 8) — uma rota calculada por qualquer um dos três motores fica disponível para os outros, evitando recálculo.
+
+**Complexidade:** `O(F × V × E)` onde F é o valor do fluxo máximo (número de iterações de Bellman-Ford, cada uma `O(V × E)`).
+
+**Justificativa (Módulo 7 como um todo):** MST resolve exatamente "menor rede que conecta tudo" — é o problema clássico para o qual Kruskal/Prim foram desenhados. Para capacidade/gargalo, fluxo em rede é a ferramenta padrão em teoria dos grafos; o MCMF (em vez de fluxo máximo puro) foi escolhido porque o enunciado também pede o "custo operacional", não só a quantidade máxima atendida.
+
+---
+
+### 7. Módulo 8 — Roteamento de Entregas (TSP Híbrido) — `motor/roteador_entregas.py`
+
+**Onde é aplicada:** opção `[12] Roteamento de Entregas` no menu principal.
+
+**O que faz:** Dado um ponto de despacho (restaurante) e uma lista de clientes, encontra uma **rota única** que visita todos os clientes e retorna à origem, **minimizando a distância/tempo total percorrido** — o "Planejamento Inteligente de Entregas" escolhido como desafio do Módulo 8. Esta é a técnica avançada que não foi exigida em nenhum módulo anterior.
+
+**Como foi implementada:** É uma heurística híbrida em 3 fases para o Problema do Caixeiro Viajante (TSP, NP-difícil — resolver de forma exata é inviável para instâncias reais):
+
+1. **Fase 1 — Semente inicial via Convex Hull (Envoltória Convexa):** o algoritmo **Monotone Chain de Andrew**, `O(n log n)`, calcula o contorno externo de todos os pontos (origem + clientes). Esse contorno vira o "esqueleto" inicial do circuito — geometricamente, o hull nunca se auto-intersecta, então é uma base de rota consistente.
+2. **Fase 2 — Validação do anel base:** as arestas do hull são avaliadas com **A\*** real (não mais estimativa), usando a malha viária de fato.
+3. **Fase 3 — Lazy Farthest/Cheapest Insertion:** os pontos que ficaram **dentro** do hull são inseridos um a um no ponto do anel onde causam o **menor aumento de custo** (`Δ = custo(A,D) + custo(D,B) − custo(A,B)`), usando um **min-heap de propostas**. Assim como no MST, o A\* real só é calculado quando uma proposta chega a ser a melhor candidata do heap (estimativa euclidiana primeiro, validação real depois) — evitando A\* em inserções que nunca seriam escolhidas.
+
+A rota ativa é mantida numa **lista duplamente encadeada circular** (`ListaCircularRota`), o que permite inserir um novo cliente "no meio" do anel em `O(1)`, sem precisar deslocar nenhum outro elemento (como aconteceria com um array/lista Python comum).
+
+**Complexidade:** `O(n log n)` para o Convex Hull, e `O(n log n)` amortizado para as inserções (heap de tamanho proporcional a n × pontos internos, com poda). No total, muito mais rápido que os `O(n!)` de uma busca exaustiva ou mesmo os `O(n² 2ⁿ)` de programação dinâmica exata (Held-Karp), às custas de não garantir o ótimo absoluto — trade-off aceitável e padrão na indústria para roteamento com muitos pontos.
+
+**Justificativa:** TSP exato é inviável mesmo para dezenas de pontos. A combinação Convex Hull + Insertion é uma heurística clássica e bem estudada que produz rotas próximas do ótimo (tipicamente dentro de 10-15% do ótimo) em tempo polinomial, e a estrutura de lista circular evita o custo de reconstrução de array a cada inserção.
 
 ---
 

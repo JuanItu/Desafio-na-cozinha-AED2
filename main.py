@@ -21,6 +21,13 @@ from motor.busca_id import TabelaHashNomes, construir_tabela_hash
 from motor.oficina_producao import OficinaProducao
 from motor.gerar_menu import OtimizadorMenuVIP
 
+# --- MÓDULO 7/8: LOGÍSTICA (MST, FLUXO E ROTEAMENTO DE ENTREGAS) ---
+from data.mapa_manager import carregar_malha_urbana
+from motor.roteador_entregas import RoteadorEntregasTSP
+from motor.infraestrutura_minima import OtimizadorInfraestrutura
+from motor.fluxo_capacidade import MotorFluxoMCMF
+from modelos.logistica import CozinhaRegisto, PontoRetiradaRegisto
+
 def montar_motor(lista_receitas) -> AlgoritmoRecomendacao:
     motor = AlgoritmoRecomendacao()
     for receita in lista_receitas:
@@ -48,6 +55,63 @@ def _pedir_float(prompt: str) -> float | None:
     except ValueError:
         print("  ⚠ Valor inválido, ignorado.")
         return None
+
+def _buscar_com_sugestao_trie(trie_global: TrieBuscaGeral, texto: str, tipo_chave: str):
+    """
+    Usado quando uma busca por nome EXATO (via hash / dict) falha. Reaproveita
+    a Trie do Módulo 2 (Busca Geral) para sugerir o que o usuário talvez quisesse
+    digitar: reduz progressivamente o texto digitado até achar um prefixo válido
+    na árvore e lista as opções encontradas a partir dali (ordem alfabética).
+
+    tipo_chave: 'Receita' ou 'Categoria' (chaves do dict de get_all_separated_alphabetically).
+    Retorna o objeto escolhido pelo usuário, ou None se nada foi encontrado/escolhido.
+    """
+    texto = texto.lower().strip()
+    if not texto:
+        return None
+
+    prefixo_testado = texto
+    no = trie_global.get_node(prefixo_testado)
+
+    # Vai cortando a última letra até achar um prefixo que exista na Trie
+    while no is None and len(prefixo_testado) > 1:
+        prefixo_testado = prefixo_testado[:-1]
+        no = trie_global.get_node(prefixo_testado)
+
+    if no is None:
+        return None
+
+    candidatos = trie_global.get_all_separated_alphabetically(no)[tipo_chave]
+    if not candidatos:
+        return None
+
+    rotulo = "nome_receita" if tipo_chave == "Receita" else "nome_categoria"
+
+    print(f"\n  ⚠ '{texto}' não encontrado exatamente. Você quis dizer (prefixo '{prefixo_testado}'):")
+    for i, obj in enumerate(candidatos[:10], 1):
+        print(f"    {i}. {getattr(obj, rotulo)}")
+    print("    0. Nenhuma das opções")
+
+    escolha = _pedir_inteiro("  Escolha uma opção: ")
+    if escolha and 1 <= escolha <= min(len(candidatos), 10):
+        return candidatos[escolha - 1]
+    return None
+
+
+def _criaria_ciclo(oficina: OficinaProducao, origem: "Receita", destino: "Receita") -> bool:
+    """
+    Verifica, ANTES de efetivar a aresta origem -> destino (origem passa a ter
+    destino como preparo), se isso fecharia um ciclo de dependências.
+
+    Reaproveita a BFS do Módulo 5 (preparos_necessarios_antes_de): se 'origem' já
+    está entre os preparos diretos/transitivos de 'destino', então 'destino' já
+    depende de 'origem' — adicionar origem -> destino fecharia o ciclo.
+    """
+    if origem is destino:
+        return True
+    dependentes_de_destino = oficina.preparos_necessarios_antes_de(destino)
+    return origem in dependentes_de_destino
+
 
 def _resolver_sugestoes_coerencia(oficina: OficinaProducao, sugestoes: list) -> None:
     """Oferece as 3 opções de interação da seção 5.4: aceitar tudo, selecionar
@@ -207,6 +271,49 @@ def menu_busca_geral(motor, lista_receitas, trie_global: TrieBuscaGeral, tabela_
             elif tipo == 'ingrediente': menu_visualizar_ingrediente(obj, motor, lista_receitas, trie_global, tabela_hash, oficina)
         else: print("  ⚠ Opção inválida.")
 
+def _buscar_com_sugestao_trie_generico(trie_global: TrieBuscaGeral, texto: str):
+    """
+    Igual a _buscar_com_sugestao_trie, mas para buscas genéricas (como a Busca
+    por Nome Exato / Tabela Hash) que podem envolver Receita, Categoria OU
+    Ingrediente ao mesmo tempo. Retorna o objeto escolhido, ou None.
+    """
+    texto_lower = texto.lower().strip()
+    if not texto_lower:
+        return None
+
+    prefixo_testado = texto_lower
+    no = trie_global.get_node(prefixo_testado)
+
+    while no is None and len(prefixo_testado) > 1:
+        prefixo_testado = prefixo_testado[:-1]
+        no = trie_global.get_node(prefixo_testado)
+
+    if no is None:
+        return None
+
+    dados = trie_global.get_all_separated_alphabetically(no)
+    candidatos = []
+    for r in dados['Receita']:
+        candidatos.append(('RECEITA', r.nome_receita, r))
+    for c in dados['Categoria']:
+        candidatos.append(('CATEGORIA', c.nome_categoria, c))
+    for i in dados['Ingredientes']:
+        candidatos.append(('INGREDIENTE', i.nome_ingrediente, i))
+
+    if not candidatos:
+        return None
+
+    print(f"\n  ⚠ '{texto}' não encontrado exatamente. Você quis dizer (prefixo '{prefixo_testado}'):")
+    for idx, (tipo, nome_obj, _obj) in enumerate(candidatos[:10], 1):
+        print(f"    {idx}. [{tipo}] {nome_obj}")
+    print("    0. Nenhuma das opções")
+
+    escolha = _pedir_inteiro("  Escolha uma opção: ")
+    if escolha and 1 <= escolha <= min(len(candidatos), 10):
+        return candidatos[escolha - 1][2]
+    return None
+
+
 def menu_busca_hash(motor, lista_receitas, trie_global, tabela_hash: TabelaHashNomes, oficina: OficinaProducao) -> None:
     print("\n" + "=" * 55)
     print("  BUSCA POR NOME EXATO (TABELA HASH)")
@@ -215,11 +322,16 @@ def menu_busca_hash(motor, lista_receitas, trie_global, tabela_hash: TabelaHashN
     nome = input("  Digite o nome exato: ").strip()
     if not nome: return
 
-    resultados = tabela_hash.buscar(nome) 
+    resultados = tabela_hash.buscar(nome)
 
     if not resultados:
-        print(f"\n  ✗ Nenhum resultado para '{nome}'.")
-        return
+        # Nome exato não achado na hash: pede ajuda à Trie (Módulo 2)
+        sugestao = _buscar_com_sugestao_trie_generico(trie_global, nome)
+        if sugestao is not None:
+            resultados = [sugestao]
+        else:
+            print(f"\n  ✗ Nenhum resultado para '{nome}'.")
+            return
 
     while True:
         print(f"\n  ✓ {len(resultados)} resultado(s) encontrado(s) para '{nome}':\n")
@@ -519,7 +631,15 @@ def menu_visualizar_receita(receita: Receita, motor, lista_receitas, trie_global
                     prep_nome = input("  Nome do preparo a adicionar como dependência: ").strip().lower()
                     preparo_obj = Receita.registro_global.get(prep_nome)
                     if preparo_obj is None:
+                        # Nome exato não achado na hash: pede ajuda à Trie (Módulo 2)
+                        preparo_obj = _buscar_com_sugestao_trie(trie_global, prep_nome, 'Receita')
+
+                    if preparo_obj is None:
                         print("  ⚠ Receita não encontrada. Cadastre-a primeiro.")
+                    elif _criaria_ciclo(oficina, receita, preparo_obj):
+                        print(f"  ⛔ Operação bloqueada: '{receita.nome_receita}' -> "
+                              f"'{preparo_obj.nome_receita}' criaria um ciclo de dependências "
+                              f"(a Oficina de Produção/Módulo 5 não permite ciclos ao editar).")
                     else:
                         receita.adicionar_preparo(preparo_obj)
                         alteracoes_feitas.append(f"+Preparo ({preparo_obj.nome_receita})")
@@ -676,7 +796,7 @@ def _exibir_lista_investigacao(lista_receitas: list, titulo: str):
             input("\n  [ Pressione ENTER para voltar à lista ]")
         else: print("  ⚠ Opção inválida.")
         
-def menu_modo_chef(motor) -> None:
+def menu_modo_chef(motor, trie_global: TrieBuscaGeral) -> None:
     while True:
         print("\n" + "═" * 55)
         print("  MODO CHEF (MÓDULO 6 — MENU DEGUSTAÇÃO VIP)")
@@ -710,8 +830,12 @@ def menu_modo_chef(motor) -> None:
                 if not nome_cat: 
                     break
                     
-                # Procura a categoria no registo global
+                # Procura a categoria no registo global (nome exato)
                 cat_obj = Categoria.registro_global.get(nome_cat.lower())
+                if cat_obj is None:
+                    # Nome exato não achado na hash: pede ajuda à Trie (Módulo 2)
+                    cat_obj = _buscar_com_sugestao_trie(trie_global, nome_cat, 'Categoria')
+
                 if not cat_obj or not cat_obj.lista_categoria_receitas:
                     print("    ⚠ Categoria não encontrada ou sem receitas. Tente novamente.")
                     continue
@@ -801,8 +925,240 @@ def menu_modo_chef(motor) -> None:
                         print("  ⚠ Número de menu inválido.")
 
 
+def _selecionar_pontos_malha(pontos: list, prompt: str, indice_excluir: int = None) -> list:
+    """Mostra os índices já numerados de 'pontos' e devolve a lista de NoLogistico
+    escolhidos a partir de uma entrada separada por vírgula. Usado pelos menus
+    de logística (Módulos 7 e 8) para não repetir a mesma lógica de parsing."""
+    entrada = input(prompt).strip()
+    if not entrada:
+        return []
+
+    selecionados = []
+    for token in entrada.split(","):
+        token = token.strip()
+        if not token:
+            continue
+        try:
+            idx = int(token)
+        except ValueError:
+            continue
+        if 1 <= idx <= len(pontos) and idx != indice_excluir:
+            selecionados.append(pontos[idx - 1])
+    return selecionados
+
+
+def menu_infraestrutura_minima(malha_urbana: dict, cache_rotas_global: dict) -> None:
+    """MÓDULO 7 (parte 1) — 'A menor rede de conexões necessária para interligar
+    todos os pontos operacionais.' Usa MST via Lazy Kruskal (Union-Find + heap,
+    com A* real disparado só sob demanda para as arestas realmente promissoras)."""
+    print("\n" + "═" * 55)
+    print("  MÓDULO 7 — INFRAESTRUTURA MÍNIMA (MST)")
+    print("═" * 55)
+
+    if not malha_urbana:
+        print("  ✗ Nenhuma malha urbana carregada (verifique data/malha_urbana.txt).")
+        return
+
+    print("  Determina a menor rede de conexões viárias necessária para ligar")
+    print("  todos os pontos operacionais informados (cozinhas, hubs, etc.).\n")
+
+    pontos = list(malha_urbana.values())
+    print("  [ CRUZAMENTOS DISPONÍVEIS NA MALHA ]")
+    for i, no in enumerate(pontos, 1):
+        print(f"   {i:3d}. ({no.x:.0f}, {no.y:.0f})")
+
+    pontos_operacionais = _selecionar_pontos_malha(
+        pontos, "\n  Números dos pontos operacionais a conectar (separados por vírgula): "
+    )
+    if len(pontos_operacionais) < 2:
+        print("  ⚠ Selecione ao menos 2 pontos para calcular uma infraestrutura.")
+        return
+
+    print("\n  Calculando infraestrutura mínima (Lazy Kruskal)...")
+    mst, custo_total, astars_executados = OtimizadorInfraestrutura.gerar_mst_logistica(
+        pontos_operacionais, cache_rotas_global
+    )
+
+    max_arestas_possiveis = (len(pontos_operacionais) * (len(pontos_operacionais) - 1)) // 2
+    poupados = max_arestas_possiveis - astars_executados
+
+    print("\n  " + "═" * 55)
+    print(f"  📍 Pontos Conectados        : {len(pontos_operacionais)}")
+    print(f"  💰 Custo Total da Rede      : {custo_total:.2f}")
+    print(f"  🧠 A* Executados / Poupados : {astars_executados} / {max(poupados, 0)}")
+
+    if not mst:
+        print("  ⚠ Não foi possível conectar todos os pontos (malha desconexa).")
+    else:
+        adj = {}
+        for p1, p2, custo_aresta, _rota in mst:
+            adj.setdefault(p1, []).append((p2, custo_aresta))
+            adj.setdefault(p2, []).append((p1, custo_aresta))
+
+        print("\n  [ ÁRVORE GERADORA MÍNIMA — LISTA DE ADJACÊNCIA ]")
+        for no in sorted(adj.keys(), key=lambda n: (n.x, n.y)):
+            vizinhos_str = " | ".join(f"({v.x:.0f},{v.y:.0f}) [{c:.1f}]" for v, c in adj[no])
+            print(f"    ({no.x:.0f},{no.y:.0f}) ➔ {vizinhos_str}")
+    print("  " + "═" * 55)
+
+
+def menu_capacidade_atendimento(malha_urbana: dict, cache_rotas_global: dict) -> None:
+    """MÓDULO 7 (parte 2) — 'Qual a capacidade máxima de atendimento? Existe
+    gargalo operacional?' Modela cozinhas (produção) e hubs (entregadores) como
+    uma rede de Fluxo Máximo de Custo Mínimo (MCMF, via Bellman-Ford)."""
+    print("\n" + "═" * 55)
+    print("  MÓDULO 7 — CAPACIDADE MÁXIMA DE ATENDIMENTO (FLUXO)")
+    print("═" * 55)
+
+    if not malha_urbana:
+        print("  ✗ Nenhuma malha urbana carregada (verifique data/malha_urbana.txt).")
+        return
+
+    print("  Calcula quantos pedidos o sistema consegue atender simultaneamente,")
+    print("  dadas as capacidades de produção das cozinhas e de entrega dos hubs.\n")
+
+    pontos = list(malha_urbana.values())
+    print("  [ CRUZAMENTOS DISPONÍVEIS NA MALHA ]")
+    for i, no in enumerate(pontos, 1):
+        print(f"   {i:3d}. ({no.x:.0f}, {no.y:.0f})")
+
+    indices_cozinhas = _selecionar_pontos_malha(
+        pontos, "\n  Números dos pontos que serão COZINHAS (produção) — sep. vírgula: "
+    )
+    if not indices_cozinhas:
+        print("  ⚠ Nenhuma cozinha informada.")
+        return
+
+    indices_hubs = _selecionar_pontos_malha(
+        pontos, "\n  Números dos pontos que serão HUBS de entrega — sep. vírgula: "
+    )
+    if not indices_hubs:
+        print("  ⚠ Nenhum hub informado.")
+        return
+
+    cozinhas = []
+    for no in indices_cozinhas:
+        cap = _pedir_inteiro(f"    Capacidade de produção (pratos/hora) em ({no.x:.0f},{no.y:.0f}) [padrão=30]: ") or 30
+        cozinhas.append(CozinhaRegisto(no, cap))
+
+    hubs = []
+    for no in indices_hubs:
+        cap = _pedir_inteiro(f"    Capacidade de entregadores em ({no.x:.0f},{no.y:.0f}) [padrão=10]: ") or 10
+        hubs.append(PontoRetiradaRegisto(no, cap))
+
+    print("\n  Construindo grafo virtual de fluxo (Vertex Splitting)...")
+    motor_fluxo = MotorFluxoMCMF(cache_rotas=cache_rotas_global)
+    motor_fluxo.construir_grafo_virtual(cozinhas, hubs)
+
+    print("  Calculando fluxo máximo de custo mínimo (Bellman-Ford)...")
+    fluxo_total, custo_total = motor_fluxo.calcular_fluxo_maximo_custo_minimo()
+
+    cap_coz_max = sum(c.capacidade_pratos_hora for c in cozinhas)
+    cap_hub_max = sum(h.capacidade_entregadores for h in hubs)
+
+    print("\n  " + "═" * 55)
+    print(f"  🍳 Teto de Produção   : {cap_coz_max} pratos/hora")
+    print(f"  🛵 Teto Logístico     : {cap_hub_max} entregadores")
+    print("  " + "─" * 55)
+    print(f"  ✅ PEDIDOS ATENDIDOS  : {fluxo_total} pratos (Fluxo Máximo)")
+    print(f"  💸 CUSTO OPERACIONAL  : {custo_total:.2f} ¢$ (Custo Mínimo)")
+
+    if fluxo_total == 0:
+        print("  ⚠ GARGALO DA REDE: nenhuma rota viária liga cozinhas a hubs.")
+    elif fluxo_total == cap_coz_max:
+        print("  ⚠ GARGALO DA REDE: a produção das cozinhas esgotou primeiro.")
+    elif fluxo_total == cap_hub_max:
+        print("  ⚠ GARGALO DA REDE: faltaram entregadores nos hubs.")
+    else:
+        print("  ⚠ GARGALO DA REDE: limitações viárias isolaram parte da capacidade.")
+
+    print(f"\n  🧠 Cache de rotas A* compartilhado: {len(cache_rotas_global)} conexões memorizadas")
+    print("  " + "═" * 55)
+
+
+def menu_pesadelo_logistico(malha_urbana: dict, cache_rotas_global: dict) -> None:
+    """MÓDULO 7 — O Pesadelo Logístico: agrupa a Infraestrutura Mínima (MST) e
+    a Capacidade Máxima de Atendimento (Fluxo/Gargalo)."""
+    while True:
+        print("\n" + "═" * 55)
+        print("  MÓDULO 7 — O PESADELO LOGÍSTICO")
+        print("═" * 55)
+        print("  1. Infraestrutura Mínima (MST — menor rede de conexões)")
+        print("  2. Capacidade Máxima de Atendimento (Fluxo / Gargalo)")
+        print("  0. Voltar")
+
+        opcao = input("  Escolha: ").strip()
+        if opcao == "0":
+            break
+        elif opcao == "1":
+            menu_infraestrutura_minima(malha_urbana, cache_rotas_global)
+        elif opcao == "2":
+            menu_capacidade_atendimento(malha_urbana, cache_rotas_global)
+        else:
+            print("  ⚠ Opção inválida.")
+
+
+def menu_roteamento_entregas(malha_urbana: dict, cache_rotas_global: dict) -> None:
+    """MÓDULO 8 — Planejamento Inteligente de Entregas (TSP Híbrido).
+    Determina uma rota única e eficiente para um entregador visitar vários
+    clientes, minimizando a distância/tempo total percorrido."""
+    print("\n" + "═" * 55)
+    print("  MÓDULO 8 — ROTEAMENTO DE ENTREGAS (TSP HÍBRIDO)")
+    print("═" * 55)
+
+    if not malha_urbana:
+        print("  ✗ Nenhuma malha urbana carregada (verifique data/malha_urbana.txt).")
+        return
+
+    print("  Monta uma rota única de entrega para vários clientes, minimizando")
+    print("  a distância/tempo total percorrido (Convex Hull + Lazy Insertion + A*).\n")
+
+    pontos = list(malha_urbana.values())
+    print("  [ CRUZAMENTOS DISPONÍVEIS NA MALHA ]")
+    for i, no in enumerate(pontos, 1):
+        print(f"   {i:3d}. ({no.x:.0f}, {no.y:.0f})")
+
+    idx_origem = _pedir_inteiro("\n  Número do ponto de DESPACHO (restaurante/hub): ")
+    if not idx_origem or not (1 <= idx_origem <= len(pontos)):
+        print("  ⚠ Ponto de despacho inválido.")
+        return
+    origem = pontos[idx_origem - 1]
+
+    print("\n  Agora escolha os clientes a visitar (números separados por vírgula).")
+    clientes = _selecionar_pontos_malha(pontos, "  Clientes: ", indice_excluir=idx_origem)
+
+    if not clientes:
+        print("  ⚠ Nenhum cliente válido informado.")
+        return
+
+    print("\n  Calculando o circuito de entregas...")
+    circuito, custo_total, astars_executados = RoteadorEntregasTSP.resolver_tsp_hibrido(
+        origem, clientes, cache_rotas_global
+    )
+
+    print("\n  " + "═" * 55)
+    if not circuito or custo_total == float('inf'):
+        print("  ❌ ROTA IMPOSSÍVEL: algum ponto está isolado na malha viária.")
+    else:
+        clientes_visitados = set(circuito) - {origem}
+        clientes_isolados = set(clientes) - clientes_visitados
+
+        print(f"  📍 Origem do Despacho    : ({origem.x:.0f}, {origem.y:.0f})")
+        print(f"  📦 Clientes Visitados    : {len(clientes_visitados)} de {len(clientes)}")
+        if clientes_isolados:
+            print(f"  ⚠  Clientes Isolados     : {len(clientes_isolados)} (sem acesso viário)")
+        print(f"  💰 Distância/Tempo Total : {custo_total:.2f}")
+        print(f"  🧠 Caminhos A* Executados: {astars_executados} | Cache global: {len(cache_rotas_global)} rotas")
+
+        itinerario_str = " ➔ ".join(f"({no.x:.0f},{no.y:.0f})" for no in circuito)
+        print("\n  Itinerário sequencial do entregador:")
+        print(f"    {itinerario_str}")
+    print("  " + "═" * 55)
+
+
 def menu_principal(motor, lista_receitas, lista_ingredientes,
-                   lista_categorias, mapa_id_ingrediente, trie_global, tabela_hash, oficina: OficinaProducao):
+                   lista_categorias, mapa_id_ingrediente, trie_global, tabela_hash, oficina: OficinaProducao,
+                   malha_urbana: dict, cache_rotas_global: dict):
     while True:
         print("\n╔" + "═" * 48 + "╗")
         print("║      DESAFIO NA COZINHA — MENU PRINCIPAL       ║")
@@ -816,7 +1172,9 @@ def menu_principal(motor, lista_receitas, lista_ingredientes,
         print("║  7. Salvar estado atual                        ║")
         print("║  8. Modo Investigação (Histórico/Lixeira)      ║")
         print("║  9. Oficina de Produção (Módulo 5)             ║")
-        print("║ 10. Modo Chef (Módulo 6 - Menu Degustação VIP) ║") # <-- NOVA OPÇÃO
+        print("║ 10. Modo Chef (Módulo 6 - Menu Degustação VIP) ║")
+        print("║ 11. Pesadelo Logístico (Módulo 7 - MST/Fluxo)  ║")
+        print("║ 12. Roteamento de Entregas (Módulo 8 - TSP)    ║") # <-- NOVA OPÇÃO
         print("║  0. Sair                                       ║")
         print("╚" + "═" * 48 + "╝")
         opcao = input("  Opção: ").strip()
@@ -830,7 +1188,9 @@ def menu_principal(motor, lista_receitas, lista_ingredientes,
         elif opcao == "7": salvar_dados(lista_receitas, lista_ingredientes, lista_categorias, mapa_id_ingrediente)
         elif opcao == "8": menu_investigacao()
         elif opcao == "9": menu_oficina_producao(oficina)
-        elif opcao == "10": menu_modo_chef(motor)
+        elif opcao == "10": menu_modo_chef(motor, trie_global)
+        elif opcao == "11": menu_pesadelo_logistico(malha_urbana, cache_rotas_global)
+        elif opcao == "12": menu_roteamento_entregas(malha_urbana, cache_rotas_global)
         elif opcao == "0":
             print("  A encerrar o sistema. Até logo!")
             break
@@ -844,13 +1204,19 @@ def main():
     print("  Qual base de dados você deseja carregar?")
     print("  [1] Dados de Fábrica (dados_fonte.json)")
     print("  [2] Dados Salvos (dados_salvos.json)")
-    
+    print("  [3] Dados de Teste — Ciclos Propositais (dados_teste_ciclos.json)")
+
     escolha = input("  Opção [padrão=1]: ").strip()
     carregar_dados_salvos = (escolha == "2")
-    
+    carregar_teste_ciclos = (escolha == "3")
+
     print("\nCarregando dados do disco...")
     lista_receitas, lista_ingredientes, lista_categorias, mapa_id_ingrediente = \
-        carregar_dados(usar_salvos=carregar_dados_salvos)
+        carregar_dados(usar_salvos=carregar_dados_salvos, usar_teste_ciclos=carregar_teste_ciclos)
+
+    if carregar_teste_ciclos:
+        print("  ⚠ Modo de TESTE: este dataset contém ciclos de dependência propositais")
+        print("    (autodependência, ciclo de 2 e ciclo de 3) para demonstrar o Módulo 5.")
         
     print(f"  ✓ {len(lista_receitas)} receitas | "
           f"{len(lista_ingredientes)} ingredientes | "
@@ -867,6 +1233,12 @@ def main():
     tabela_hash = construir_tabela_hash(lista_receitas, lista_ingredientes, lista_categorias)
     print("  ✓ Motores prontos!\n")
 
+    # --- MÓDULO 7/8: LOGÍSTICA — Carrega a malha urbana para o Roteamento de Entregas ---
+    caminho_malha = str(_RAIZ / "data" / "malha_urbana.txt")
+    malha_urbana = carregar_malha_urbana(caminho_malha)
+    cache_rotas_global: dict = {}  # cache de rotas A* compartilhado entre chamadas do Módulo 8
+    print(f"  ✓ Malha urbana carregada: {len(malha_urbana)} cruzamentos (Módulo 8 pronto).")
+
     # --- MÓDULO 5: OFICINA DE PRODUÇÃO — Verificação Geral na inicialização ---
     oficina = OficinaProducao(lista_receitas)
     resultado_inicial = oficina.verificacao_geral()
@@ -879,7 +1251,8 @@ def main():
               f"para desfazer ciclos/autodependências. Veja no menu 'Oficina de Produção'.")
 
     menu_principal(motor, lista_receitas, lista_ingredientes,
-                   lista_categorias, mapa_id_ingrediente, trie_global, tabela_hash, oficina)
+                   lista_categorias, mapa_id_ingrediente, trie_global, tabela_hash, oficina,
+                   malha_urbana, cache_rotas_global)
 
 if __name__ == "__main__":
     main()
